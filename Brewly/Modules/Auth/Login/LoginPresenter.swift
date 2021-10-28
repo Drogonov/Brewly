@@ -22,7 +22,8 @@ class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Init
     
-    required init(view: LoginViewProtocol, router: AuthRouterProtocol) {
+    required init(view: LoginViewProtocol,
+                  router: AuthRouterProtocol) {
         self.view = view
         self.router = router
     }
