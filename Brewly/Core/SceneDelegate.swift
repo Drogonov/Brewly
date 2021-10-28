@@ -19,13 +19,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         let navigationController = UINavigationController()
-        let loadingCase: LoadingCase = .onboarding
-        
-        let router = MainRouter(navigationController: navigationController,
+
+        let loadingCase: FlowCase = .onboarding
+        let router = MainRouter(window: window,
+                                navigationController: navigationController,
                                 loadingCase: loadingCase)
         router.initialViewController()
         window?.rootViewController = navigationController
-        
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

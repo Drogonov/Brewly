@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  OnboardingView.swift
 //  Brewly
 //
 //  Created by Anton Vlezko on 28.10.2021.
@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct OnboardingView: View {
     
-    var loginButtonTapped: () -> Void
+    var onboardingButtonTapped: () -> Void
     
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
             Button {
-                loginButtonTapped()
+                onboardingButtonTapped()
             } label: {
-                Text("К онбоардингу")
+                Text("К логину")
             }
             Spacer()
         }

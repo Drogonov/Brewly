@@ -12,18 +12,21 @@ protocol OnboardingRouterProtocol: Router {
     
     func showOnboarding()
     func popToRoot()
+    func goToFlow(flow: FlowCase)
     
     init(navigationController: UINavigationController,
          builder: OnboardingModuleBuilderProtocol)
 }
 
 class OnboardingRouter: OnboardingRouterProtocol {
-    
+
     // MARK: - Properties
+    
+    weak var delegate: ChangeFlowRouterDelegate?
     
     var navigationController: UINavigationController?
     var builder: OnboardingModuleBuilderProtocol?
-    
+        
     // MARK: - Init
     
     required init(navigationController: UINavigationController,
@@ -45,5 +48,9 @@ class OnboardingRouter: OnboardingRouterProtocol {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }
+    }
+    
+    func goToFlow(flow: FlowCase) {
+        delegate?.goToFlow(flow: flow)
     }
 }

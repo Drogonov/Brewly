@@ -13,6 +13,7 @@ protocol AuthRouterProtocol: Router {
     func showLogin()
     func showSignUp()
     func popToRoot()
+    func goToFlow(flow: FlowCase)
     
     init(navigationController: UINavigationController,
          builder: AuthModuleBuilderProtocol)
@@ -21,6 +22,8 @@ protocol AuthRouterProtocol: Router {
 class AuthRouter: AuthRouterProtocol {
     
     // MARK: - Properties
+    
+    weak var delegate: ChangeFlowRouterDelegate?
     
     var navigationController: UINavigationController?
     var builder: AuthModuleBuilderProtocol?
@@ -53,5 +56,9 @@ class AuthRouter: AuthRouterProtocol {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
         }
+    }
+    
+    func goToFlow(flow: FlowCase) {
+        delegate?.goToFlow(flow: flow)
     }
 }

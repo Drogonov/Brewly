@@ -11,6 +11,7 @@ protocol LoginPresenterProtocol: AnyObject {
     init(view: LoginViewProtocol,
          router: AuthRouterProtocol)
     func setLoginView()
+    func changeFlow(flow: FlowCase)
 }
 
 class LoginPresenter: LoginPresenterProtocol {
@@ -32,5 +33,9 @@ class LoginPresenter: LoginPresenterProtocol {
     
     func setLoginView() {
         self.view?.setLoginView()
+    }
+    
+    func changeFlow(flow: FlowCase) {
+        router.goToFlow(flow: flow)
     }
 }

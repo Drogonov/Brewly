@@ -11,6 +11,7 @@ protocol OnboardingPresenterProtocol: AnyObject {
     init(view: OnboardingViewProtocol,
          router: OnboardingRouterProtocol)
     func setOnboardingView()
+    func changeFlow(flow: FlowCase)
 }
 
 class OnboardingPresenter: OnboardingPresenterProtocol {
@@ -32,5 +33,9 @@ class OnboardingPresenter: OnboardingPresenterProtocol {
     
     func setOnboardingView() {
         self.view?.setOnboardingView()
+    }
+    
+    func changeFlow(flow: FlowCase) {
+        router.goToFlow(flow: flow)
     }
 }
