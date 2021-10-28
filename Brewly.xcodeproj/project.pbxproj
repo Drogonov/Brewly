@@ -15,6 +15,16 @@
 		847A4E902729895B00539CD2 /* BrewlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E8F2729895B00539CD2 /* BrewlyTests.swift */; };
 		847A4E9A2729895B00539CD2 /* BrewlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E992729895B00539CD2 /* BrewlyUITests.swift */; };
 		847A4E9C2729895B00539CD2 /* BrewlyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E9B2729895B00539CD2 /* BrewlyUITestsLaunchTests.swift */; };
+		8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC18272AC57500FBE8BD /* LoginViewController.swift */; };
+		8493DC1B272AC59A00FBE8BD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */; };
+		8493DC1F272AC5EC00FBE8BD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */; };
+		8493DC21272AD2FC00FBE8BD /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */; };
+		8493DC23272AD30500FBE8BD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC22272AD30500FBE8BD /* LoginView.swift */; };
+		8493DC25272AD31600FBE8BD /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC24272AD31600FBE8BD /* SignUpPresenter.swift */; };
+		8493DC27272AD33100FBE8BD /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC26272AD33100FBE8BD /* OnboardingPresenter.swift */; };
+		8493DC29272AD37700FBE8BD /* AuthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC28272AD37700FBE8BD /* AuthBuilder.swift */; };
+		8493DC2B272AD93100FBE8BD /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC2A272AD93100FBE8BD /* AuthRouter.swift */; };
+		8493DC2D272ADD8400FBE8BD /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC2C272ADD8400FBE8BD /* Router.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +57,16 @@
 		847A4E952729895B00539CD2 /* BrewlyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrewlyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		847A4E992729895B00539CD2 /* BrewlyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewlyUITests.swift; sourceTree = "<group>"; };
 		847A4E9B2729895B00539CD2 /* BrewlyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewlyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8493DC18272AC57500FBE8BD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		8493DC22272AD30500FBE8BD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8493DC24272AD31600FBE8BD /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		8493DC26272AD33100FBE8BD /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		8493DC28272AD37700FBE8BD /* AuthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBuilder.swift; sourceTree = "<group>"; };
+		8493DC2A272AD93100FBE8BD /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
+		8493DC2C272ADD8400FBE8BD /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +117,7 @@
 		847A4E772729895A00539CD2 /* Brewly */ = {
 			isa = PBXGroup;
 			children = (
+				8493DC15272AC4C400FBE8BD /* Modules */,
 				847A4E7C2729895A00539CD2 /* ViewController.swift */,
 				847A4EA827298CE800539CD2 /* Core */,
 			);
@@ -125,11 +146,68 @@
 			children = (
 				847A4E782729895A00539CD2 /* AppDelegate.swift */,
 				847A4E7A2729895A00539CD2 /* SceneDelegate.swift */,
+				8493DC2C272ADD8400FBE8BD /* Router.swift */,
 				847A4E832729895B00539CD2 /* LaunchScreen.storyboard */,
 				847A4E812729895B00539CD2 /* Assets.xcassets */,
 				847A4E862729895B00539CD2 /* Info.plist */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		8493DC12272AC49300FBE8BD /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8493DC1C272AC5A400FBE8BD /* Login */,
+				8493DC1D272AC5B600FBE8BD /* SignUp */,
+				8493DC28272AD37700FBE8BD /* AuthBuilder.swift */,
+				8493DC2A272AD93100FBE8BD /* AuthRouter.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8493DC13272AC4A300FBE8BD /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */,
+				8493DC26272AD33100FBE8BD /* OnboardingPresenter.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		8493DC14272AC4AF00FBE8BD /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		8493DC15272AC4C400FBE8BD /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8493DC12272AC49300FBE8BD /* Auth */,
+				8493DC13272AC4A300FBE8BD /* Onboarding */,
+				8493DC14272AC4AF00FBE8BD /* MainTabBar */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8493DC1C272AC5A400FBE8BD /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8493DC22272AD30500FBE8BD /* LoginView.swift */,
+				8493DC18272AC57500FBE8BD /* LoginViewController.swift */,
+				8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		8493DC1D272AC5B600FBE8BD /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */,
+				8493DC24272AD31600FBE8BD /* SignUpPresenter.swift */,
+			);
+			path = SignUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,9 +340,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8493DC25272AD31600FBE8BD /* SignUpPresenter.swift in Sources */,
+				8493DC1B272AC59A00FBE8BD /* SignUpViewController.swift in Sources */,
+				8493DC1F272AC5EC00FBE8BD /* OnboardingViewController.swift in Sources */,
+				8493DC21272AD2FC00FBE8BD /* LoginPresenter.swift in Sources */,
 				847A4E7D2729895A00539CD2 /* ViewController.swift in Sources */,
+				8493DC29272AD37700FBE8BD /* AuthBuilder.swift in Sources */,
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
+				8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */,
+				8493DC27272AD33100FBE8BD /* OnboardingPresenter.swift in Sources */,
+				8493DC23272AD30500FBE8BD /* LoginView.swift in Sources */,
+				8493DC2B272AD93100FBE8BD /* AuthRouter.swift in Sources */,
 				847A4E7B2729895A00539CD2 /* SceneDelegate.swift in Sources */,
+				8493DC2D272ADD8400FBE8BD /* Router.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
