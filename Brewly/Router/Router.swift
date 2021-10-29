@@ -13,22 +13,40 @@ class MainRouter {
     
     var window: UIWindow?
     var navigationController: UINavigationController
+    var tabBarController: UITabBarController
+    
     var flowCase: FlowCase
+    
     var authBuilder: AuthModuleBuilderProtocol
     var onboardingBuilder: OnboardingModuleBuilderProtocol
+    var mainTabBarBuilder: MainTabBarBuilderProtocol
+    
+//    var historyController: UINavigationController!
     
     // MARK: - Init
     
     required init(window: UIWindow?,
                   navigationController: UINavigationController,
-                  loadingCase: FlowCase,
+                  tabBarController: UITabBarController,
+                  flowCase: FlowCase,
                   authBuilder: AuthModuleBuilderProtocol,
-                  onboardingBuilder: OnboardingModuleBuilderProtocol) {
+                  onboardingBuilder: OnboardingModuleBuilderProtocol,
+                  mainTabBarBuilder: MainTabBarBuilderProtocol) {
         self.window = window
         self.navigationController = navigationController
-        self.flowCase = loadingCase
+        self.tabBarController = tabBarController
+        
+        self.flowCase = flowCase
+        
         self.authBuilder = authBuilder
         self.onboardingBuilder = onboardingBuilder
+        self.mainTabBarBuilder = mainTabBarBuilder
+        
+//        historyController = embedToNav(mainTabBarBuilder.createHistoryModule(router: self))
+        
+        tabBarController.tabBar.unselectedItemTintColor = .gray
+        tabBarController.tabBar.tintColor = .label
+
     }
 }
 
@@ -55,12 +73,25 @@ extension MainRouter: MainRouterProtocol {
     }
 }
 
-// MARK: - Helper Functions
+// MARK: - MainTabBarRouterProtocol
 
-extension MainRouter {
-    private func showMainTabBar() {
-        let mainTabBarController = MainTabBarController()
-        self.window?.rootViewController = mainTabBarController
+extension MainRouter: MainTabBarRouterProtocol {
+    func showMainTabBar() {
+        let historyController = mainTabBarBuilder.createHistoryModule(router: self)
+        let settingsController = mainTabBarBuilder.createSettingsModule(router: self)
+        
+        tabBarController.viewControllers = [
+            embedToNav(historyController),
+            embedToNav(settingsController)
+        ]
+        
+        self.window?.rootViewController = tabBarController
+    }
+    
+    func showDetailHistory() {
+        let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
+        guard let navController = tabBarController.viewControllers?[0] as? UINavigationController else { return }
+        navController.pushViewController(detailViewController, animated: true)
     }
 }
 
@@ -86,5 +117,13 @@ extension MainRouter: OnboardingRouterProtocol {
         let onboardingViewController = onboardingBuilder.createOnboardingModule(router: self)
         navigationController.viewControllers = [onboardingViewController]
         window?.rootViewController = navigationController
+    }
+}
+
+// MARK: - Helper Functions
+
+extension MainRouter {
+    func embedToNav(_ viewController: UIViewController) -> UINavigationController {
+        return UINavigationController(rootViewController: viewController)
     }
 }

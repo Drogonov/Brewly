@@ -10,14 +10,24 @@ import SwiftUI
 struct OnboardingView: View {
     
     var onboardingButtonTapped: () -> Void
+    var mainTabBarButtonTapped: () -> Void
     
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
-            Button {
-                onboardingButtonTapped()
-            } label: {
-                Text("К логину")
+            VStack {
+                Button {
+                    onboardingButtonTapped()
+                } label: {
+                    Text("К логину")
+                }
+                .padding()
+                Button {
+                    mainTabBarButtonTapped()
+                } label: {
+                    Text("К главному контроллеру")
+                }
+                .padding()
             }
             Spacer()
         }

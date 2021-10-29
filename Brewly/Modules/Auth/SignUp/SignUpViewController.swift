@@ -26,10 +26,10 @@ class SignUpViewController: UIViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        configureNavigationController()
+        configureNavigationBar()
     }
     
-    private func configureNavigationController() {
+    private func configureNavigationBar() {
         self.navigationItem.title = "Sign Up"
     }
 }

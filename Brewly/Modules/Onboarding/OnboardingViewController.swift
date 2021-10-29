@@ -24,15 +24,26 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
+}
+
+// MARK: - Configure UI
+
+extension OnboardingViewController {
     private func configureUI() {
-        view.backgroundColor = .yellow
+        view.backgroundColor = .secondarySystemBackground
+        configureNavigationBar()
         configureOnboardingView()
+    }
+    
+    private func configureNavigationBar() {
+        self.navigationItem.title = "Onboarding"
     }
     
     private func configureOnboardingView() {
         let onboardingView = OnboardingView(onboardingButtonTapped: {
             self.presenter.changeFlow(flow: .auth)
+        }, mainTabBarButtonTapped: {
+            self.presenter.changeFlow(flow: .mainTabBar)
         })
         addOnboardingViewToVC(onboardingView: onboardingView)
     }

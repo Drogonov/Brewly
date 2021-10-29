@@ -21,9 +21,11 @@ protocol MainRouterProtocol: Router {
     
     init(window: UIWindow?,
          navigationController: UINavigationController,
-         loadingCase: FlowCase,
+         tabBarController: UITabBarController,
+         flowCase: FlowCase,
          authBuilder: AuthModuleBuilderProtocol,
-         onboardingBuilder: OnboardingModuleBuilderProtocol)
+         onboardingBuilder: OnboardingModuleBuilderProtocol,
+         mainTabBarBuilder: MainTabBarBuilderProtocol)
 }
 
 protocol AuthRouterProtocol: Router {
@@ -37,4 +39,12 @@ protocol OnboardingRouterProtocol: Router {
     var onboardingBuilder: OnboardingModuleBuilderProtocol { get set }
     
     func showOnboarding()
+}
+
+protocol MainTabBarRouterProtocol: Router {
+    var tabBarController: UITabBarController { get set }
+    var mainTabBarBuilder: MainTabBarBuilderProtocol { get set }
+    
+    func showMainTabBar()
+    func showDetailHistory()
 }
