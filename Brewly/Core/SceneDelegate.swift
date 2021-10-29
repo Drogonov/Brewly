@@ -18,19 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
         
-        let navigationController = UINavigationController()
-        let tabBarController = UITabBarController()
         let loadingCase: FlowCase = .onboarding
-        
-        let router = MainRouter(
-            window: window,
-            navigationController: navigationController,
-            tabBarController: tabBarController,
-            flowCase: loadingCase,
-            authBuilder: AuthModuleBuilder(),
-            onboardingBuilder: OnboardingModuleBuilder(),
-            mainTabBarBuilder: MainTabBarBuilder()
-        )
+        let router = MainRouter(window: window, flowCase: loadingCase)
         router.initialViewController()
     }
     

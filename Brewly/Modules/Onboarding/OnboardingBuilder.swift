@@ -15,7 +15,7 @@ class OnboardingModuleBuilder: OnboardingModuleBuilderProtocol {
     func createOnboardingModule(router: OnboardingRouterProtocol) -> UIViewController {
         let view = OnboardingViewController()
         let presenter = OnboardingPresenter(view: view,
-                                       router: router)
+                                            router: router)
         view.presenter = presenter
         return view
     }

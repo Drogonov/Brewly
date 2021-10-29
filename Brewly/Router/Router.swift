@@ -21,17 +21,17 @@ class MainRouter {
     var onboardingBuilder: OnboardingModuleBuilderProtocol
     var mainTabBarBuilder: MainTabBarBuilderProtocol
     
-//    var historyController: UINavigationController!
-    
     // MARK: - Init
     
-    required init(window: UIWindow?,
-                  navigationController: UINavigationController,
-                  tabBarController: UITabBarController,
-                  flowCase: FlowCase,
-                  authBuilder: AuthModuleBuilderProtocol,
-                  onboardingBuilder: OnboardingModuleBuilderProtocol,
-                  mainTabBarBuilder: MainTabBarBuilderProtocol) {
+    required init(
+        window: UIWindow?,
+        navigationController: UINavigationController = UINavigationController(),
+        tabBarController: UITabBarController = UITabBarController(),
+        flowCase: FlowCase,
+        authBuilder: AuthModuleBuilderProtocol = AuthModuleBuilder(),
+        onboardingBuilder: OnboardingModuleBuilderProtocol = OnboardingModuleBuilder(),
+        mainTabBarBuilder: MainTabBarBuilderProtocol = MainTabBarBuilder()
+    ) {
         self.window = window
         self.navigationController = navigationController
         self.tabBarController = tabBarController
@@ -42,11 +42,8 @@ class MainRouter {
         self.onboardingBuilder = onboardingBuilder
         self.mainTabBarBuilder = mainTabBarBuilder
         
-//        historyController = embedToNav(mainTabBarBuilder.createHistoryModule(router: self))
-        
         tabBarController.tabBar.unselectedItemTintColor = .gray
         tabBarController.tabBar.tintColor = .label
-
     }
 }
 
