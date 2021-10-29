@@ -23,7 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let loadingCase: FlowCase = .onboarding
         let router = MainRouter(window: window,
                                 navigationController: navigationController,
-                                loadingCase: loadingCase)
+                                loadingCase: loadingCase,
+                                authBuilder: AuthModuleBuilder(),
+                                onboardingBuilder: OnboardingModuleBuilder())
         router.initialViewController()
         window?.rootViewController = navigationController
 
