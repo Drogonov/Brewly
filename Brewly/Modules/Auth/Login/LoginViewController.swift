@@ -25,11 +25,32 @@ class LoginViewController: UIViewController {
         configureUI()
     }
     
+    // MARK: - Selectors
+    
+    @objc func showSignUp() {
+        presenter.showSignUp()
+    }
+}
+
+// MARK: - Configure UI
+
+extension LoginViewController {
     private func configureUI() {
-        view.backgroundColor = .yellow
+        view.backgroundColor = .secondarySystemBackground
+        configureNavigationBar()
         configureLoginView()
     }
     
+    private func configureNavigationBar() {
+        self.navigationItem.title = "Login"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Sign Up",
+            style: .plain,
+            target: self,
+            action: #selector(showSignUp)
+        )
+    }
+        
     private func configureLoginView() {
         let loginView = LoginView(loginButtonTapped: {
             self.presenter.changeFlow(flow: .onboarding)

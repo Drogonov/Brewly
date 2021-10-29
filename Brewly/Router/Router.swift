@@ -70,10 +70,11 @@ extension MainRouter: AuthRouterProtocol {
     func showLogin() {
         let loginViewController = authBuilder.createLoginModule(router: self)
         navigationController.viewControllers = [loginViewController]
+        window?.rootViewController = navigationController
     }
     
     func showSignUp() {
-        let signUpViewController = authBuilder.createLoginModule(router: self)
+        let signUpViewController = authBuilder.createSignUpModule(router: self)
         navigationController.pushViewController(signUpViewController, animated: true)
     }
 }
@@ -84,5 +85,6 @@ extension MainRouter: OnboardingRouterProtocol {
     func showOnboarding() {
         let onboardingViewController = onboardingBuilder.createOnboardingModule(router: self)
         navigationController.viewControllers = [onboardingViewController]
+        window?.rootViewController = navigationController
     }
 }

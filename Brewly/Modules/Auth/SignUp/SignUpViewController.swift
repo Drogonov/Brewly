@@ -21,7 +21,16 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        configureUI()
+    }
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+        configureNavigationController()
+    }
+    
+    private func configureNavigationController() {
+        self.navigationItem.title = "Sign Up"
     }
 }
 

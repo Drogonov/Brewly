@@ -10,7 +10,9 @@ import Foundation
 protocol LoginPresenterProtocol: AnyObject {
     init(view: LoginViewProtocol,
          router: AuthRouterProtocol)
+    
     func setLoginView()
+    func showSignUp()
     func changeFlow(flow: FlowCase)
 }
 
@@ -33,6 +35,10 @@ class LoginPresenter: LoginPresenterProtocol {
     
     func setLoginView() {
         self.view?.setLoginView()
+    }
+    
+    func showSignUp() {
+        router.showSignUp()
     }
     
     func changeFlow(flow: FlowCase) {

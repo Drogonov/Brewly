@@ -9,7 +9,7 @@ import UIKit
 
 protocol AuthModuleBuilderProtocol {
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController
-    func createSignInModule(router: AuthRouterProtocol) -> UIViewController
+    func createSignUpModule(router: AuthRouterProtocol) -> UIViewController
 }
 
 class AuthModuleBuilder: AuthModuleBuilderProtocol {
@@ -21,7 +21,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
         return view
     }
     
-    func createSignInModule(router: AuthRouterProtocol) -> UIViewController {
+    func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
         let view = SignUpViewController()
         let presenter = SignUpPresenter(view: view,
                                         router: router)
