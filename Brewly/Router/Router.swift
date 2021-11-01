@@ -13,7 +13,7 @@ class MainRouter {
     
     var window: UIWindow?
     var navigationController: UINavigationController
-    var tabBarController: UITabBarController
+    var tabBarController: MainTabBarController
     
     var flowCase: FlowCase
     
@@ -26,7 +26,7 @@ class MainRouter {
     required init(
         window: UIWindow?,
         navigationController: UINavigationController = UINavigationController(),
-        tabBarController: UITabBarController = UITabBarController(),
+        tabBarController: MainTabBarController = MainTabBarController(),
         flowCase: FlowCase,
         authBuilder: AuthModuleBuilderProtocol = AuthModuleBuilder(),
         onboardingBuilder: OnboardingModuleBuilderProtocol = OnboardingModuleBuilder(),
@@ -41,9 +41,6 @@ class MainRouter {
         self.authBuilder = authBuilder
         self.onboardingBuilder = onboardingBuilder
         self.mainTabBarBuilder = mainTabBarBuilder
-        
-        tabBarController.tabBar.unselectedItemTintColor = .gray
-        tabBarController.tabBar.tintColor = .label
     }
 }
 
@@ -76,18 +73,13 @@ extension MainRouter: MainTabBarRouterProtocol {
     func showMainTabBar() {
         let historyController = mainTabBarBuilder.createHistoryModule(router: self)
         let settingsController = mainTabBarBuilder.createSettingsModule(router: self)
-        
-        tabBarController.viewControllers = [
-            embedToNav(historyController),
-            embedToNav(settingsController)
-        ]
-        
+        tabBarController.configureTabBar(with: [historyController, settingsController])
         self.window?.rootViewController = tabBarController
     }
     
     func showDetailHistory() {
         let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
-        guard let navController = tabBarController.viewControllers?[0] as? UINavigationController else { return }
+        guard let navController = tabBarController.getNavController(with: HistoryViewController()) else { return }
         navController.pushViewController(detailViewController, animated: true)
     }
 }
@@ -114,13 +106,5 @@ extension MainRouter: OnboardingRouterProtocol {
         let onboardingViewController = onboardingBuilder.createOnboardingModule(router: self)
         navigationController.viewControllers = [onboardingViewController]
         window?.rootViewController = navigationController
-    }
-}
-
-// MARK: - Helper Functions
-
-extension MainRouter {
-    func embedToNav(_ viewController: UIViewController) -> UINavigationController {
-        return UINavigationController(rootViewController: viewController)
     }
 }

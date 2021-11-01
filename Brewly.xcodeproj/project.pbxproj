@@ -19,6 +19,7 @@
 		840D6A43272BFDD9007E4FD7 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A42272BFDD9007E4FD7 /* DetailHistoryViewController.swift */; };
 		840D6A45272BFDE5007E4FD7 /* DetailHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A44272BFDE5007E4FD7 /* DetailHistoryView.swift */; };
 		840D6A47272BFE0E007E4FD7 /* DetailHistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A46272BFE0E007E4FD7 /* DetailHistoryPresenter.swift */; };
+		844F5EF62730046B00989CB3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F5EF52730046B00989CB3 /* MainTabBarController.swift */; };
 		847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E782729895A00539CD2 /* AppDelegate.swift */; };
 		847A4E7B2729895A00539CD2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E7A2729895A00539CD2 /* SceneDelegate.swift */; };
 		847A4E822729895B00539CD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 847A4E812729895B00539CD2 /* Assets.xcassets */; };
@@ -71,6 +72,7 @@
 		840D6A42272BFDD9007E4FD7 /* DetailHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewController.swift; sourceTree = "<group>"; };
 		840D6A44272BFDE5007E4FD7 /* DetailHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryView.swift; sourceTree = "<group>"; };
 		840D6A46272BFE0E007E4FD7 /* DetailHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryPresenter.swift; sourceTree = "<group>"; };
+		844F5EF52730046B00989CB3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		847A4E752729895A00539CD2 /* Brewly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brewly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		847A4E782729895A00539CD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		847A4E7A2729895A00539CD2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				840D6A30272BFA89007E4FD7 /* MainTabBarBuilder.swift */,
+				844F5EF52730046B00989CB3 /* MainTabBarController.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				8493DC29272AD37700FBE8BD /* AuthBuilder.swift in Sources */,
 				840D6A37272BFD3A007E4FD7 /* HistoryView.swift in Sources */,
 				8493DC3C272B003800FBE8BD /* Extension + ViewController.swift in Sources */,
+				844F5EF62730046B00989CB3 /* MainTabBarController.swift in Sources */,
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
 				8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */,
 				840D6A39272BFD4F007E4FD7 /* HistoryPresenter.swift in Sources */,
