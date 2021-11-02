@@ -44,7 +44,7 @@ class HistoryViewController: UIViewController {
     
     private func configureHistoryView() {
         let historyView = HistoryView(detailButtonTapped: {
-            self.presenter.showDetailHistoryView()
+            self.presenter.showDetailHistoryView(with: self)
         })
         addHistoryViewToVC(historyView: historyView)
     }

@@ -9,8 +9,11 @@ import UIKit
 
 protocol MainTabBarBuilderProtocol {
     func createHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController
+    func createBrewModule(router: MainTabBarRouterProtocol) -> UIViewController
+    func createProfileModule(router: MainTabBarRouterProtocol) -> UIViewController
+    
     func createDetailHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createSettingsModule(router: MainTabBarRouterProtocol) -> UIViewController
+    
 }
 
 class MainTabBarBuilder: MainTabBarBuilderProtocol {
@@ -22,6 +25,23 @@ class MainTabBarBuilder: MainTabBarBuilderProtocol {
         return view
     }
     
+    func createBrewModule(router: MainTabBarRouterProtocol) -> UIViewController {
+        let view = BrewViewController()
+        let presenter = BrewPresenter(view: view,
+                                      router: router)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createProfileModule(router: MainTabBarRouterProtocol) -> UIViewController {
+        let view = ProfileViewController()
+        let presenter = ProfilePresenter(view: view,
+                                         router: router)
+        view.presenter = presenter
+        return view
+    }
+    
+    
     func createDetailHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController {
         let view = DetailHistoryViewController()
         let presenter = DetailHistoryPresenter(view: view,
@@ -29,14 +49,5 @@ class MainTabBarBuilder: MainTabBarBuilderProtocol {
         view.presenter = presenter
         return view
     }
-    
-    func createSettingsModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view,
-                                          router: router)
-        view.presenter = presenter
-        return view
-    }
-    
 }
 

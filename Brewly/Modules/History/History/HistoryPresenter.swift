@@ -6,16 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 protocol HistoryPresenterProtocol: AnyObject {
     init(view: HistoryViewProtocol,
          router: MainTabBarRouterProtocol)
     func setHistoryView()
-    func showDetailHistoryView()
+    func showDetailHistoryView(with _vc: UIViewController)
 }
 
 class HistoryPresenter: HistoryPresenterProtocol {
-    
     // MARK: - Properties
     
     weak var view: HistoryViewProtocol?
@@ -35,7 +35,7 @@ class HistoryPresenter: HistoryPresenterProtocol {
         self.view?.setHistoryView()
     }
     
-    func showDetailHistoryView() {
-        self.router.showDetailHistory()
+    func showDetailHistoryView(with _vc: UIViewController) {
+        self.router.showDetailHistory(with: _vc)
     }
 }

@@ -8,7 +8,34 @@
 import UIKit
 
 enum TabBarItemType {
+    case history
+    case brew
+    case profile
     
+    var type: UITabBarItem {
+        switch self {
+        case .history:
+            return UITabBarItem(
+                title: "History",
+                image: UIImage(systemName: "clock")!,
+                selectedImage: UIImage(systemName: "clock.fill")!
+            )
+            
+        case .brew:
+            return UITabBarItem(
+                title: "Brew",
+                image: UIImage(systemName: "cup.and.saucer")!,
+                selectedImage: UIImage(systemName: "cup.and.saucer.fill")!
+            )
+            
+        case .profile:
+            return UITabBarItem(
+                title: "Profile",
+                image: UIImage(systemName: "person")!,
+                selectedImage: UIImage(systemName: "person.fill")!
+            )
+        }
+    }
 }
 
 
@@ -24,20 +51,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - External Functions
     
-    func configureTabBar(with _vcArray: [UIViewController]) {
-        viewControllers = _vcArray.map { vc in
-            vc.tabBarItem = {
-                let title = "История"
-                let image = UIImage(systemName: "clock")!
-                let selectedImage = UIImage(systemName: "clock.fill")!
-                let item = UITabBarItem(title: title, image: image, selectedImage: selectedImage)
-                return item
-            }()
-            
-            
-            let nav = embedToNav(vc)
-            
-            
+    func configureTabBar(with _vcArray: [(vc: UIViewController, tabBarItemType: TabBarItemType)]) {
+        viewControllers = _vcArray.map { item in
+            item.vc.tabBarItem = item.tabBarItemType.type
+            let nav = embedToNav(item.vc)
             
             return nav
         }
@@ -56,7 +73,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         tabBar.unselectedItemTintColor = .gray
         tabBar.tintColor = .label
     }
-        
+    
     // MARK: - Helper Functions
     
     private func embedToNav(_ viewController: UIViewController) -> UINavigationController {
@@ -70,13 +87,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func isControllersTypeEqual(firstController: UIViewController, secondController: UIViewController) -> Bool {
-        guard let firstVC = extractViewControllerIfItIsNav(viewController: firstController),
-              let secondVC = extractViewControllerIfItIsNav(viewController: secondController) else { return false }
+        guard let firstVC = extractFirstViewControllerIfItIsNav(viewController: firstController),
+              let secondVC = extractFirstViewControllerIfItIsNav(viewController: secondController) else { return false }
         
         return type(of: firstVC) == type(of: secondVC)
     }
     
-    private func extractViewControllerIfItIsNav(viewController: UIViewController) -> UIViewController? {
+    private func extractFirstViewControllerIfItIsNav(viewController: UIViewController) -> UIViewController? {
         guard let vc = viewController as? UINavigationController else {
             return viewController
         }
@@ -84,6 +101,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         return vc.viewControllers.first
     }
     
-
+    
 }
 

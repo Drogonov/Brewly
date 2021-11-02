@@ -1,5 +1,5 @@
 //
-//  SettingsPresenter.swift
+//  ProfilePresenter.swift
 //  Brewly
 //
 //  Created by Anton Vlezko on 29.10.2021.
@@ -7,22 +7,22 @@
 
 import Foundation
 
-protocol SettingsPresenterProtocol: AnyObject {
-    init(view: SettingsViewProtocol,
+protocol ProfilePresenterProtocol: AnyObject {
+    init(view: ProfileViewProtocol,
          router: MainTabBarRouterProtocol)
-    func setSettingsView()
+    func setProfileView()
 }
 
-class SettingsPresenter: SettingsPresenterProtocol {
+class ProfilePresenter: ProfilePresenterProtocol {
     
     // MARK: - Properties
     
-    weak var view: SettingsViewProtocol?
+    weak var view: ProfileViewProtocol?
     var router: MainTabBarRouterProtocol
         
     // MARK: - Init
 
-    required init(view: SettingsViewProtocol,
+    required init(view: ProfileViewProtocol,
                   router: MainTabBarRouterProtocol) {
         self.view = view
         self.router = router
@@ -30,7 +30,7 @@ class SettingsPresenter: SettingsPresenterProtocol {
     
     // MARK: - Protocol Functions
 
-    func setSettingsView() {
-        self.view?.setSettingsView()
+    func setProfileView() {
+        self.view?.setProfileView()
     }
 }

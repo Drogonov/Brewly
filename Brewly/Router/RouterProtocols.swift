@@ -46,5 +46,5 @@ protocol MainTabBarRouterProtocol: Router {
     var mainTabBarBuilder: MainTabBarBuilderProtocol { get set }
     
     func showMainTabBar()
-    func showDetailHistory()
+    func showDetailHistory(with _vc: UIViewController)
 }

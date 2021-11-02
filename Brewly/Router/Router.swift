@@ -72,14 +72,22 @@ extension MainRouter: MainRouterProtocol {
 extension MainRouter: MainTabBarRouterProtocol {
     func showMainTabBar() {
         let historyController = mainTabBarBuilder.createHistoryModule(router: self)
-        let settingsController = mainTabBarBuilder.createSettingsModule(router: self)
-        tabBarController.configureTabBar(with: [historyController, settingsController])
+        let brewController = mainTabBarBuilder.createBrewModule(router: self)
+        let profileController = mainTabBarBuilder.createProfileModule(router: self)
+        
+        let vcArray: [(vc: UIViewController, tabBarItemType: TabBarItemType)] = [
+            (vc: historyController, tabBarItemType: .history),
+            (vc: brewController, tabBarItemType: .brew),
+            (vc: profileController, tabBarItemType: .profile)
+        ]
+        
+        tabBarController.configureTabBar(with: vcArray)
         self.window?.rootViewController = tabBarController
     }
     
-    func showDetailHistory() {
+    func showDetailHistory(with _vc: UIViewController) {
         let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
-        guard let navController = tabBarController.getNavController(with: HistoryViewController()) else { return }
+        guard let navController = tabBarController.getNavController(with: _vc) else { return }
         navController.pushViewController(detailViewController, animated: true)
     }
 }
