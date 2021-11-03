@@ -70,6 +70,8 @@ extension MainRouter: MainRouterProtocol {
 // MARK: - MainTabBarRouterProtocol
 
 extension MainRouter: MainTabBarRouterProtocol {
+
+    
     func showMainTabBar() {
         let historyController = mainTabBarBuilder.createHistoryModule(router: self)
         let brewController = mainTabBarBuilder.createBrewModule(router: self)
@@ -89,6 +91,18 @@ extension MainRouter: MainTabBarRouterProtocol {
         let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
         guard let navController = tabBarController.getNavController(with: _vc) else { return }
         navController.pushViewController(detailViewController, animated: true)
+    }
+    
+    func showBrewConfiguration(with _vc: UIViewController) {
+        let brewConfigurationViewController = mainTabBarBuilder.createBrewConfigurationModule(router: self)
+        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        navController.pushViewController(brewConfigurationViewController, animated: true)
+    }
+    
+    func showBrewList(with _vc: UIViewController) {
+        let brewListViewController = mainTabBarBuilder.createBrewListModule(router: self)
+        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        navController.pushViewController(brewListViewController, animated: true)
     }
 }
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 protocol BrewViewProtocol: AnyObject {
     func setBrewView()
@@ -27,10 +28,31 @@ class BrewViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         configureNavigationBar()
+        configureBrewView()
     }
     
     private func configureNavigationBar() {
         self.navigationItem.title = "Brew"
+    }
+    
+    private func configureBrewView() {
+        let brewView = BrewView(brewButtonTapped: {
+            self.presenter.showBrewConfigurationView(with: self)
+        })
+        addBrewViewToVC(brewView: brewView)
+    }
+    
+    private func addBrewViewToVC(brewView: BrewView) {
+        let brewCtrl = UIHostingController(rootView: brewView)
+        addChild(brewCtrl)
+        view.addSubview(brewCtrl.view)
+        
+        brewCtrl.view.anchor(
+            top: view.safeAreaLayoutGuide.topAnchor,
+            leading: view.safeAreaLayoutGuide.leftAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            trailing: view.safeAreaLayoutGuide.rightAnchor
+        )
     }
 }
 

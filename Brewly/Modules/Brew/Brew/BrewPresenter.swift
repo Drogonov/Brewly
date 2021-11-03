@@ -5,12 +5,14 @@
 //  Created by Anton Vlezko on 02.11.2021.
 //
 
-import Foundation
+import UIKit
 
 protocol BrewPresenterProtocol: AnyObject {
     init(view: BrewViewProtocol,
          router: MainTabBarRouterProtocol)
     func setBrewView()
+    func showBrewConfigurationView(with _vc: UIViewController)
+
 }
 
 class BrewPresenter: BrewPresenterProtocol {
@@ -32,5 +34,9 @@ class BrewPresenter: BrewPresenterProtocol {
 
     func setBrewView() {
         self.view?.setBrewView()
+    }
+    
+    func showBrewConfigurationView(with _vc: UIViewController) {
+        self.router.showBrewConfiguration(with: _vc)
     }
 }

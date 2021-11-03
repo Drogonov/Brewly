@@ -72,8 +72,17 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     private func configureUI() {
         tabBar.unselectedItemTintColor = .gray
         tabBar.tintColor = .label
+//        tabBar.isTranslucent = true
+                
+//        let blurEffect = UIBlurEffect(style: .light)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = self.tabBar.frame
+//
+//        self.view.addSubview(blurEffectView)
+//        self.view.bringSubviewToFront(tabBar)
+        
     }
-    
+        
     // MARK: - Helper Functions
     
     private func embedToNav(_ viewController: UIViewController) -> UINavigationController {
@@ -87,20 +96,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func isControllersTypeEqual(firstController: UIViewController, secondController: UIViewController) -> Bool {
-        guard let firstVC = extractFirstViewControllerIfItIsNav(viewController: firstController),
-              let secondVC = extractFirstViewControllerIfItIsNav(viewController: secondController) else { return false }
+        guard let firstVC = extractLastViewControllerIfItIsNav(viewController: firstController),
+              let secondVC = extractLastViewControllerIfItIsNav(viewController: secondController) else { return false }
         
         return type(of: firstVC) == type(of: secondVC)
     }
     
-    private func extractFirstViewControllerIfItIsNav(viewController: UIViewController) -> UIViewController? {
+    private func extractLastViewControllerIfItIsNav(viewController: UIViewController) -> UIViewController? {
         guard let vc = viewController as? UINavigationController else {
             return viewController
         }
         
-        return vc.viewControllers.first
+        return vc.viewControllers.last
     }
-    
-    
 }
 
