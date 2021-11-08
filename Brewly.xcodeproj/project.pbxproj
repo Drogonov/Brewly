@@ -52,6 +52,10 @@
 		84B5847F273916B0005EA2A4 /* BrewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B5847E273916B0005EA2A4 /* BrewItemView.swift */; };
 		84B58481273916C2005EA2A4 /* BrewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B58480273916C2005EA2A4 /* BrewItemViewController.swift */; };
 		84B58483273916CC005EA2A4 /* BrewItemPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B58482273916CC005EA2A4 /* BrewItemPresenter.swift */; };
+		84B5848527393635005EA2A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 84B5848427393635005EA2A4 /* GoogleService-Info.plist */; };
+		84B58488273939ED005EA2A4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 84B58487273939ED005EA2A4 /* FirebaseAnalytics */; };
+		84B5848A273939ED005EA2A4 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 84B58489273939ED005EA2A4 /* FirebaseAppCheck */; };
+		84B5848C273939ED005EA2A4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 84B5848B273939ED005EA2A4 /* FirebaseAuth */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +125,7 @@
 		84B5847E273916B0005EA2A4 /* BrewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewItemView.swift; sourceTree = "<group>"; };
 		84B58480273916C2005EA2A4 /* BrewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewItemViewController.swift; sourceTree = "<group>"; };
 		84B58482273916CC005EA2A4 /* BrewItemPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewItemPresenter.swift; sourceTree = "<group>"; };
+		84B5848427393635005EA2A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +133,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84B5848A273939ED005EA2A4 /* FirebaseAppCheck in Frameworks */,
+				84B5848C273939ED005EA2A4 /* FirebaseAuth in Frameworks */,
+				84B58488273939ED005EA2A4 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +300,7 @@
 				847A4E832729895B00539CD2 /* LaunchScreen.storyboard */,
 				847A4E812729895B00539CD2 /* Assets.xcassets */,
 				847A4E862729895B00539CD2 /* Info.plist */,
+				84B5848427393635005EA2A4 /* GoogleService-Info.plist */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -395,6 +404,11 @@
 			dependencies = (
 			);
 			name = Brewly;
+			packageProductDependencies = (
+				84B58487273939ED005EA2A4 /* FirebaseAnalytics */,
+				84B58489273939ED005EA2A4 /* FirebaseAppCheck */,
+				84B5848B273939ED005EA2A4 /* FirebaseAuth */,
+			);
 			productName = Brewly;
 			productReference = 847A4E752729895A00539CD2 /* Brewly.app */;
 			productType = "com.apple.product-type.application";
@@ -467,6 +481,9 @@
 				Base,
 			);
 			mainGroup = 847A4E6C2729895A00539CD2;
+			packageReferences = (
+				84B58486273939ED005EA2A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 847A4E762729895A00539CD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -485,6 +502,7 @@
 			files = (
 				847A4E852729895B00539CD2 /* LaunchScreen.storyboard in Resources */,
 				847A4E822729895B00539CD2 /* Assets.xcassets in Resources */,
+				84B5848527393635005EA2A4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +749,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Drogonov.Brewly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drogonov.brewly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -758,7 +776,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Drogonov.Brewly;
+				PRODUCT_BUNDLE_IDENTIFIER = com.drogonov.brewly;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -902,6 +920,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84B58486273939ED005EA2A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84B58487273939ED005EA2A4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B58486273939ED005EA2A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		84B58489273939ED005EA2A4 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B58486273939ED005EA2A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		84B5848B273939ED005EA2A4 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B58486273939ED005EA2A4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 847A4E6D2729895A00539CD2 /* Project object */;
 }
