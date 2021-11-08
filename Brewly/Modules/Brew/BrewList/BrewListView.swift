@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BrewListView: View {
+    
+    let brewCellTapped: () -> Void
+    
     var body: some View {
         List {
             cellBuilder()
@@ -18,7 +21,7 @@ struct BrewListView: View {
     
     func cellBuilder() -> some View {
         Button(action: {
-            
+            brewCellTapped()
         }, label: {
             HStack {
                 VStack(alignment: .leading) {
@@ -41,6 +44,6 @@ struct BrewListView: View {
 
 struct BrewListView_Previews: PreviewProvider {
     static var previews: some View {
-        BrewListView()
+        BrewListView(brewCellTapped: {})
     }
 }

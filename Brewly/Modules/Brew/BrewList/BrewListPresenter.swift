@@ -36,6 +36,6 @@ class BrewListPresenter: BrewListPresenterProtocol {
     }
     
     func showBrewItemView(with _vc: UIViewController) {
-        
+        router.showBrewItem(with: _vc)
     }
 }

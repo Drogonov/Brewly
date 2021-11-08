@@ -36,7 +36,9 @@ class BrewListViewController: UIViewController {
     }
     
     private func configureBrewListView() {
-        let brewListView = BrewListView()
+        let brewListView = BrewListView(brewCellTapped: {
+            self.presenter.showBrewItemView(with: self)
+        })
         addBrewListViewToVC(brewListView: brewListView)
     }
     
