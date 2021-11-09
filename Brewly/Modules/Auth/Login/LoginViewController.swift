@@ -36,29 +36,39 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     private func configureUI() {
-        view.backgroundColor = .secondarySystemBackground
+        view.backgroundColor = .systemBackground
         configureNavigationBar()
         configureLoginView()
     }
     
     private func configureNavigationBar() {
         self.navigationItem.title = "Login"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            title: "Sign Up",
-            style: .plain,
-            target: self,
-            action: #selector(showSignUp)
-        )
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let color = UIColor(patternImage: UIImage(named: "hologram_1")!)
+        
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: color]
+                
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            title: "Sign Up",
+//            style: .plain,
+//            target: self,
+//            action: #selector(showSignUp)
+//        )
     }
         
     private func configureLoginView() {
-        let loginView = LoginView(loginButtonTapped: {
-            self.presenter.changeFlow(flow: .onboarding)
-        })
+        let loginView = AuthView(
+            option: .login,
+            buttonTappedWithOption: { option in
+                self.presenter.changeFlow(flow: .onboarding)
+            }, changeOptionTapped: {
+                
+            })
         addLoginViewToVC(loginView: loginView)
     }
     
-    private func addLoginViewToVC(loginView: LoginView) {
+    private func addLoginViewToVC(loginView: AuthView) {
         let loginCtrl = UIHostingController(rootView: loginView)
         addChild(loginCtrl)
         view.addSubview(loginCtrl.view)

@@ -40,7 +40,7 @@
 		8493DC1B272AC59A00FBE8BD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */; };
 		8493DC1F272AC5EC00FBE8BD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */; };
 		8493DC21272AD2FC00FBE8BD /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */; };
-		8493DC23272AD30500FBE8BD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC22272AD30500FBE8BD /* LoginView.swift */; };
+		8493DC23272AD30500FBE8BD /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC22272AD30500FBE8BD /* AuthView.swift */; };
 		8493DC25272AD31600FBE8BD /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC24272AD31600FBE8BD /* SignUpPresenter.swift */; };
 		8493DC27272AD33100FBE8BD /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC26272AD33100FBE8BD /* OnboardingPresenter.swift */; };
 		8493DC29272AD37700FBE8BD /* AuthBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC28272AD37700FBE8BD /* AuthBuilder.swift */; };
@@ -113,7 +113,7 @@
 		8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		8493DC22272AD30500FBE8BD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		8493DC22272AD30500FBE8BD /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		8493DC24272AD31600FBE8BD /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
 		8493DC26272AD33100FBE8BD /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		8493DC28272AD37700FBE8BD /* AuthBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBuilder.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 		8493DC1C272AC5A400FBE8BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8493DC22272AD30500FBE8BD /* LoginView.swift */,
+				8493DC22272AD30500FBE8BD /* AuthView.swift */,
 				8493DC18272AC57500FBE8BD /* LoginViewController.swift */,
 				8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */,
 			);
@@ -550,7 +550,7 @@
 				840D6A39272BFD4F007E4FD7 /* HistoryPresenter.swift in Sources */,
 				8493DC27272AD33100FBE8BD /* OnboardingPresenter.swift in Sources */,
 				8493DC3A272B001D00FBE8BD /* Extension + View.swift in Sources */,
-				8493DC23272AD30500FBE8BD /* LoginView.swift in Sources */,
+				8493DC23272AD30500FBE8BD /* AuthView.swift in Sources */,
 				840D6A2E272BE914007E4FD7 /* RouterProtocols.swift in Sources */,
 				84B58483273916CC005EA2A4 /* BrewItemPresenter.swift in Sources */,
 				840D6A43272BFDD9007E4FD7 /* DetailHistoryViewController.swift in Sources */,
