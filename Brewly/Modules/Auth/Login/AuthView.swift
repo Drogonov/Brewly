@@ -82,11 +82,9 @@ struct AuthView: View {
             HStack {
                 option.buttonImage
                     .frame(width: 18, height: 18)
-//                    .foregroundColor(Color(accentColor))
-                    .foregroundColor(Color()
+                    .foregroundColor(buttonTextColor)
 
-                    .padding(.leading, 16)
-                
+                    .padding(.leading, 16)                
                 authButtonText(title: option.title)
                     .foregroundColor(buttonTextColor)
                     .multilineTextAlignment(.leading)
