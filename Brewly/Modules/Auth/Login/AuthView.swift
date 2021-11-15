@@ -7,49 +7,6 @@
 
 import SwiftUI
 
-enum AuthOption {
-    case login
-    case signUp
-}
-
-enum AuthButton {
-    case phone
-    case email
-    case google
-    case facebook
-    case apple
-    
-    var title: String {
-        switch self {
-        case .phone:
-            return "номер телефона"
-        case .email:
-            return "эл. почту"
-        case .google:
-            return "Google"
-        case .facebook:
-            return "Facebook"
-        case .apple:
-            return "Apple"
-        }
-    }
-    
-    var buttonImage: Image {
-        switch self {
-        case .phone:
-            return Image(systemName: "phone")
-        case .email:
-            return Image(systemName: "mail")
-        case .google:
-            return Image(systemName: "g.circle")
-        case .facebook:
-            return Image(systemName: "f.circle")
-        case .apple:
-            return Image(systemName: "applelogo")
-        }
-    }
-}
-
 struct AuthView: View {
     let option: AuthOption
     var buttonTappedWithOption: (AuthButton) -> Void
@@ -74,30 +31,11 @@ struct AuthView: View {
         }
         .padding(.vertical, 32)
     }
-    
-    func authWithButton(option: AuthButton) -> some View {
-        Button {
-            buttonTappedWithOption(option)
-        } label: {
-            HStack {
-                option.buttonImage
-                    .frame(width: 18, height: 18)
-                    .foregroundColor(buttonTextColor)
+}
 
-                    .padding(.leading, 16)                
-                authButtonText(title: option.title)
-                    .foregroundColor(buttonTextColor)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 48)
-            .foregroundColor(Color(UIColor.systemBackground))
-            .background(buttonBackgroundColor)
-            .cornerRadius(8)
-        }
+extension AuthView {
+    func authWithButton(option: AuthButton) -> some View {
+
         .padding(.horizontal, 32)
         .padding(.vertical, 8)
     }
@@ -132,12 +70,44 @@ struct AuthView: View {
                 changeOptionTapped()
             } label: {
                 Text(solutionText)
-                    .foregroundColor(Color(accentColor))
+                    .foregroundColor(.red)
                     .fontWeight(.semibold)
             }
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 32)
+    }
+}
+
+struct ActionButton: View {
+    let foregroundColor: Color
+    let backgroundColor: Color
+    
+    var action: () -> Void
+    
+    var body: some View {
+        Button {
+            action
+        } label: {
+            HStack {
+                option.buttonImage
+                    .frame(width: 18, height: 18)
+                    .foregroundColor(buttonTextColor)
+
+                    .padding(.leading, 16)
+                authButtonText(title: option.title)
+                    .foregroundColor(buttonTextColor)
+                    .multilineTextAlignment(.leading)
+                
+                Spacer()
+                
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .foregroundColor(foregroundColor)
+            .background(backgroundColor)
+            .cornerRadius(8)
+        }
     }
 }
 
