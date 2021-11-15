@@ -5,7 +5,10 @@
 //  Created by Anton Vlezko on 09.11.2021.
 //
 
+import UIKit
 import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 
 protocol FirebaseServiceDelegate {
     func checkIfUserIsLoggedIn(completion: @escaping(Bool) -> Void)
@@ -14,9 +17,6 @@ protocol FirebaseServiceDelegate {
     
     func updateProfileImage(user: User, profileImg: UIImage, completion: @escaping (Bool, String?) -> Void)
     func updateUserFullname(user: User, updatedUsername: String?, completion: @escaping (Bool) -> Void)
-    
-    func fetchMessages(completion: @escaping([Message]) -> Void)
-    func uploadMessage(messageText: String, fromId: String, completion: @escaping(Bool) -> Void)
 }
 
 class FirebaseService: FirebaseServiceDelegate {
@@ -106,41 +106,6 @@ class FirebaseService: FirebaseServiceDelegate {
         }
     }
     
-    // MARK: - Message Delegate Methods
-    
-    func fetchMessages(completion: @escaping ([Message]) -> Void) {
-        var messages = [Message]()
-        dataFetcher.fetchMessagesKeys { (keys) in
-            let group = DispatchGroup()
-            for i in 0..<keys.count {
-                group.enter()
-                self.dataFetcher.fetchMessageData(messageKey: keys[i]) { (message) in
-                    var loadedMessage = message
-                    self.dataFetcher.fetchUserData(uid: message.fromId) { (fromUser) in defer { group.leave() }
-                        loadedMessage.fromName = fromUser.fullname
-                        loadedMessage.imageUrl = fromUser.profileImageUrl
-                        messages.append(loadedMessage)
-                    }
-                }
-            }
-            group.notify(queue: .main) {
-                let sortedMessages = messages.sorted {
-                    $0.creationDate < $1.creationDate
-                }
-                completion(sortedMessages)
-            }
-        }
-    }
-    
-    func uploadMessage(messageText: String, fromId: String, completion: @escaping(Bool) -> Void) {
-        dataUploader.uploadMessage(messageText: messageText, fromId: fromId) { (error, ref) in
-            if let error = error {
-                print("DEBUG: Failed to upload message with error \(error)")
-                completion(false)
-            }
-            completion(true)
-        }
-    }
     
     // MARK: - Helper Functions
             

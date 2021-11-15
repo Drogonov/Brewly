@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 
 struct DB {
     static let REF = Database.database().reference()

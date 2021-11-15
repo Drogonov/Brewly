@@ -23,9 +23,9 @@
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
-          "branch": null,
-          "revision": "839cc6b0cd80b0b8bf81fe9bd82b743b25dc6446",
-          "version": "8.9.1"
+          "branch": "master",
+          "revision": "10f428589265da4ee3dc89116419a01da79771c6",
+          "version": null
         }
       },
       {
