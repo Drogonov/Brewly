@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol LoginPresenterProtocol: AnyObject {
     init(view: LoginViewProtocol,
@@ -14,6 +15,13 @@ protocol LoginPresenterProtocol: AnyObject {
     func setLoginView()
     func showSignUp()
     func changeFlow(flow: FlowCase)
+}
+
+struct AuthViewModel {
+    var option: AuthOption
+    var authButtonText: String
+    var questionText: String
+    var solutionText: String
 }
 
 class LoginPresenter: LoginPresenterProtocol {
@@ -34,6 +42,11 @@ class LoginPresenter: LoginPresenterProtocol {
     // MARK: - Protocol Functions
     
     func setLoginView() {
+//        let option: AuthOption = .login
+//        let authButtonText: String = "Войти через " + option.title
+//        let questionText: String = "Впервые здесь?"
+//        let solutionText: String = "Создать учетную запись"
+        
         self.view?.setLoginView()
     }
     

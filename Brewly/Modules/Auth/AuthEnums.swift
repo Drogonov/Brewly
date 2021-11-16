@@ -5,7 +5,7 @@
 //  Created by Anton Vlezko on 15.11.2021.
 //
 
-import UIKit
+import Foundation
 
 enum AuthOption {
     case login
@@ -34,18 +34,18 @@ enum AuthButton {
         }
     }
     
-    var buttonImage: Image {
+    var buttonImageName: String {
         switch self {
         case .phone:
-            return Image(systemName: "phone")
+            return "phone"
         case .email:
-            return Image(systemName: "mail")
+            return "mail"
         case .google:
-            return Image(systemName: "g.circle")
+            return "g.circle"
         case .facebook:
-            return Image(systemName: "f.circle")
+            return "f.circle"
         case .apple:
-            return Image(systemName: "applelogo")
+            return "applelogo"
         }
     }
 }

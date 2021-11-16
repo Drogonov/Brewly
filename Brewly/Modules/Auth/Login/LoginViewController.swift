@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    var presenter: LoginPresenterProtocol!
+    var presenter: LoginPresenterProtocol?
     
     // MARK: - Lifecycle
 
@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     // MARK: - Selectors
     
     @objc func showSignUp() {
-        presenter.showSignUp()
+        presenter?.showSignUp()
     }
 }
 
@@ -61,7 +61,7 @@ extension LoginViewController {
         let loginView = AuthView(
             option: .login,
             buttonTappedWithOption: { option in
-                self.presenter.changeFlow(flow: .onboarding)
+                self.presenter?.changeFlow(flow: .onboarding)
             }, changeOptionTapped: {
                 
             })
@@ -86,6 +86,6 @@ extension LoginViewController {
 
 extension LoginViewController: LoginViewProtocol {
     func setLoginView() {
-        presenter.setLoginView()
+        presenter?.setLoginView()
     }
 }

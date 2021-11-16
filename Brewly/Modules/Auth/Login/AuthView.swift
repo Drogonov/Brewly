@@ -15,7 +15,7 @@ struct AuthView: View {
     private let buttonTextColor = Color(UIColor.systemBackground)
     private let buttonBackgroundColor = Color(UIColor.label)
     private let accentColor = UIColor(patternImage: UIImage(named: "hologram_1")!)
-
+    
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -35,24 +35,34 @@ struct AuthView: View {
 
 extension AuthView {
     func authWithButton(option: AuthButton) -> some View {
-
-        .padding(.horizontal, 32)
-        .padding(.vertical, 8)
+        ActionButton(
+            foregroundColor: buttonTextColor,
+            backgroundColor: buttonBackgroundColor,
+            action: {
+                buttonTappedWithOption(option)
+            },
+            content: {
+                Image(systemName: option.buttonImageName)
+                Text(authButtonText(title: option.title))
+            }
+        )
+            .padding(.horizontal, 32)
+            .padding(.vertical, 8)
     }
     
-    func authButtonText(title: String) -> Text {
+    func authButtonText(title: String) -> String {
         switch option {
         case .login:
-            return Text("Войти через " + title)
+            return "Войти через " + title
         case .signUp:
-            return Text("Зарегистрироваться через " + title)
+            return "Зарегистрироваться через " + title
         }
     }
     
     func changeOptionText() -> some View {
         var questionText: String
         var solutionText: String
-
+        
         switch option {
         case .login:
             questionText = "Впервые здесь?"
@@ -76,38 +86,6 @@ extension AuthView {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 32)
-    }
-}
-
-struct ActionButton: View {
-    let foregroundColor: Color
-    let backgroundColor: Color
-    
-    var action: () -> Void
-    
-    var body: some View {
-        Button {
-            action
-        } label: {
-            HStack {
-                option.buttonImage
-                    .frame(width: 18, height: 18)
-                    .foregroundColor(buttonTextColor)
-
-                    .padding(.leading, 16)
-                authButtonText(title: option.title)
-                    .foregroundColor(buttonTextColor)
-                    .multilineTextAlignment(.leading)
-                
-                Spacer()
-                
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 48)
-            .foregroundColor(foregroundColor)
-            .background(backgroundColor)
-            .cornerRadius(8)
-        }
     }
 }
 
