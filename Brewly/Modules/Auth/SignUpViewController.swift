@@ -25,8 +25,20 @@ class SignUpViewController: UIViewController {
         configureUI()
     }
     
+    // MARK: - Selectors
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == .right {
+            self.presenter?.showLogin()
+        }
+    }
+}
+
+// MARK: - Configure UI
+
+extension SignUpViewController {
     private func configureUI() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor.backgroundColor
         configureNavigationBar()
         presenter?.setSignUpView()
     }
@@ -35,28 +47,34 @@ class SignUpViewController: UIViewController {
         self.navigationItem.title = "Sign Up"
     }
     
-    private func configureSignUpView(with _model: AuthViewModel) {
-        let signUpView = AuthView(
+    private func configureView(with _model: AuthViewModel) {
+        let view = AuthView(
             model: _model,
             buttonTappedWithConfig: { config in
-                
+                self.presenter?.authButtonTappedWith(option: _model.option, config: config)
             }, changeOptionTapped: {
                 self.presenter?.showLogin()
             })
-        addSignUpViewToVC(signUpView: signUpView)
+        addToViewController(view)
     }
     
-    private func addSignUpViewToVC(signUpView: AuthView) {
-        let signUpCtrl = UIHostingController(rootView: signUpView)
-        addChild(signUpCtrl)
-        view.addSubview(signUpCtrl.view)
+    private func addToViewController(_ newView: AuthView) {
+        let viewCtrl = UIHostingController(rootView: newView)
+        addChild(viewCtrl)
+        view.addSubview(viewCtrl.view)
         
-        signUpCtrl.view.anchor(
+        viewCtrl.view.anchor(
             top: view.safeAreaLayoutGuide.topAnchor,
             leading: view.safeAreaLayoutGuide.leftAnchor,
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             trailing: view.safeAreaLayoutGuide.rightAnchor
         )
+    }
+    
+    private func configureSwipeGesture() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeRight.direction = .right
+        self.view.addGestureRecognizer(swipeRight)
     }
 }
 
@@ -64,6 +82,6 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: SignUpViewProtocol {
     func setSignUpView(with _model: AuthViewModel) {
-        configureSignUpView(with: _model)
+        configureView(with: _model)
     }
 }

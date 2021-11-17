@@ -12,19 +12,15 @@ struct AuthView: View {
     // MARK: - Properties
     
     let model: AuthViewModel
-    var buttonTappedWithConfig: (AuthButton) -> Void
+    var buttonTappedWithConfig: (AuthButtonConfig) -> Void
     var changeOptionTapped: () -> Void
-    
-    private let buttonTextColor = Color(UIColor.systemBackground)
-    private let buttonBackgroundColor = Color(UIColor.label)
-    private let accentColor = Color(.red)
     
     // MARK: - Construction
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(model.buttonsArray, id: \.self) { config in
-                authWithButton(config: config)
+            ForEach(model.buttonsArray, id: \.id) { buttonModel in
+                authWithButton(with: buttonModel)
             }
             Spacer()
             changeOptionText()
@@ -36,17 +32,17 @@ struct AuthView: View {
 // MARK: - Helper Functions
 
 extension AuthView {
-    func authWithButton(config: AuthButton) -> some View {
+    func authWithButton(with _buttonModel: AuthButtonViewModel) -> some View {
         ActionButton(
-            foregroundColor: buttonTextColor,
-            backgroundColor: buttonBackgroundColor,
+            foregroundColor: Color.actionButtonTextColor,
+            backgroundColor: Color.actionButtonBackgroundColor,
             action: {
-                buttonTappedWithConfig(config)
+                buttonTappedWithConfig(_buttonModel.config)
             },
             content: {
                 HStack {
-                    Image(systemName: config.buttonImageName)
-                    Text(model.option.buttonText + " " + config.title)
+                    Image(systemName: _buttonModel.buttonImageName)
+                    Text(model.authConfigButtonText + " " + _buttonModel.title)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
@@ -66,7 +62,7 @@ extension AuthView {
                 changeOptionTapped()
             } label: {
                 Text(model.solutionText)
-                    .foregroundColor(accentColor)
+                    .foregroundColor(Color.accentColor)
                     .fontWeight(.semibold)
             }
         }
@@ -83,12 +79,13 @@ struct AuthView_Previews: PreviewProvider {
             model: AuthViewModel(
                 option: .signUp,
                 buttonsArray: [
-                    .phone,
-                    .email,
-                    .google,
-                    .facebook,
-                    .apple
+                    AuthButtons.phone,
+                    AuthButtons.email,
+                    AuthButtons.google,
+                    AuthButtons.facebook,
+                    AuthButtons.apple
                 ],
+                authConfigButtonText: "Регистрация через",
                 questionText: "Впервые здесь?",
                 solutionText: "Создать учетную запись"
             ),

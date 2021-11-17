@@ -127,6 +127,11 @@ extension MainRouter: AuthRouterProtocol {
         let signUpViewController = authBuilder.createSignUpModule(router: self)
         navigationController.pushViewController(signUpViewController, animated: true)
     }
+    
+    func showAuthWithEmail(model: AuthWithEmailViewModel) {
+        let authWithEmailViewController = authBuilder.createAuthWithEmailModule(model: model)
+        navigationController.pushViewController(authWithEmailViewController, animated: true)
+    }
 }
 
 // MARK: - AuthRouterProtocol

@@ -34,6 +34,7 @@ protocol AuthRouterProtocol: Router {
     
     func showLogin()
     func showSignUp()
+    func showAuthWithEmail(model: AuthWithEmailViewModel)
     func popViewController()
 }
 
