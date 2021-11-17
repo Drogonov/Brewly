@@ -17,13 +17,6 @@ protocol LoginPresenterProtocol: AnyObject {
     func changeFlow(flow: FlowCase)
 }
 
-struct AuthViewModel {
-    var option: AuthOption
-    var authButtonText: String
-    var questionText: String
-    var solutionText: String
-}
-
 class LoginPresenter: LoginPresenterProtocol {
     
     // MARK: - Properties
@@ -42,12 +35,20 @@ class LoginPresenter: LoginPresenterProtocol {
     // MARK: - Protocol Functions
     
     func setLoginView() {
-//        let option: AuthOption = .login
-//        let authButtonText: String = "Войти через " + option.title
-//        let questionText: String = "Впервые здесь?"
-//        let solutionText: String = "Создать учетную запись"
+        let model = AuthViewModel(
+            option: .login,
+            buttonsArray: [
+                .phone,
+                .email,
+                .google,
+                .facebook,
+                .apple
+            ],
+            questionText: "Впервые здесь?",
+            solutionText: "Создать учетную запись"
+        )
         
-        self.view?.setLoginView()
+        self.view?.setLoginView(with: model)
     }
     
     func showSignUp() {

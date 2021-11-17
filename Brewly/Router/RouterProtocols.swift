@@ -18,6 +18,7 @@ protocol MainRouterProtocol: Router {
     
     func initialViewController()
     func popToRoot()
+    func popViewController()
     
     init(window: UIWindow?,
          navigationController: UINavigationController,
@@ -33,6 +34,7 @@ protocol AuthRouterProtocol: Router {
     
     func showLogin()
     func showSignUp()
+    func popViewController()
 }
 
 protocol OnboardingRouterProtocol: Router {

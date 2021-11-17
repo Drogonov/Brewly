@@ -9,14 +9,14 @@ import UIKit
 import SwiftUI
 
 protocol SignUpViewProtocol: AnyObject {
-    func setSignUpView()
+    func setSignUpView(with _model: AuthViewModel)
 }
 
 class SignUpViewController: UIViewController {
     
     // MARK: - Properties
 
-    var presenter: SignUpPresenterProtocol!
+    var presenter: SignUpPresenterProtocol?
     
     // MARK: - Lifecycle
     
@@ -28,20 +28,20 @@ class SignUpViewController: UIViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         configureNavigationBar()
-        configureSignUpView()
+        presenter?.setSignUpView()
     }
     
     private func configureNavigationBar() {
         self.navigationItem.title = "Sign Up"
     }
     
-    private func configureSignUpView() {
+    private func configureSignUpView(with _model: AuthViewModel) {
         let signUpView = AuthView(
-            option: .signUp,
-            buttonTappedWithOption: { option in
-                debugPrint(option)
-            }, changeOptionTapped: {
+            model: _model,
+            buttonTappedWithConfig: { config in
                 
+            }, changeOptionTapped: {
+                self.presenter?.showLogin()
             })
         addSignUpViewToVC(signUpView: signUpView)
     }
@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController {
 // MARK: - SignUpViewProtocol
 
 extension SignUpViewController: SignUpViewProtocol {
-    func setSignUpView() {
-        presenter.setSignUpView()
+    func setSignUpView(with _model: AuthViewModel) {
+        configureSignUpView(with: _model)
     }
 }

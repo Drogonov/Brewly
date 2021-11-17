@@ -10,6 +10,15 @@ import Foundation
 enum AuthOption {
     case login
     case signUp
+    
+    var buttonText: String {
+        switch self {
+        case .login:
+            return "Войти через"
+        case .signUp:
+            return "Регистрация через"
+        }
+    }
 }
 
 enum AuthButton {

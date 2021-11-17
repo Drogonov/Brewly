@@ -11,6 +11,7 @@ protocol SignUpPresenterProtocol: AnyObject {
     init(view: SignUpViewProtocol,
          router: AuthRouterProtocol)
     func setSignUpView()
+    func showLogin()
 }
 
 class SignUpPresenter: SignUpPresenterProtocol {
@@ -29,8 +30,24 @@ class SignUpPresenter: SignUpPresenterProtocol {
     }
     
     // MARK: - Protocol Functions
+    
+    func showLogin() {
+        router.popViewController()
+    }
 
     func setSignUpView() {
-        self.view?.setSignUpView()
+        let model = AuthViewModel(
+            option: .signUp,
+            buttonsArray: [
+                .phone,
+                .email,
+                .google,
+                .facebook,
+                .apple
+            ],
+            questionText: "Уже есть аккаунт?",
+            solutionText: "Вход"
+        )
+        self.view?.setSignUpView(with: model)
     }
 }

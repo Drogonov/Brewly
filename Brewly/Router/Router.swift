@@ -55,6 +55,10 @@ extension MainRouter: MainRouterProtocol {
         navigationController.popToRootViewController(animated: true)
     }
     
+    func popViewController() {
+        navigationController.popViewController(animated: true)
+    }
+    
     func goToFlow(flow: FlowCase) {
         switch flow {
         case .auth:

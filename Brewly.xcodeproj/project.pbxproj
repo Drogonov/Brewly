@@ -70,6 +70,7 @@
 		84CDFB4A274234F60006A666 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 84CDFB49274234F60006A666 /* FirebaseStorage */; };
 		84CDFB4C2742374D0006A666 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDFB4B2742374D0006A666 /* OnboardingView.swift */; };
 		84CDFB4E274239ED0006A666 /* AuthEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CDFB4D274239ED0006A666 /* AuthEnums.swift */; };
+		84E352402744E6AC00857289 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3523F2744E6AC00857289 /* AuthViewModel.swift */; };
 		84E43B3E273A5E3C0008E8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E43B3D273A5E3C0008E8AD /* User.swift */; };
 		84E43B41273A5E690008E8AD /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E43B40273A5E690008E8AD /* DB.swift */; };
 		84E43B43273A5EB50008E8AD /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E43B42273A5EB50008E8AD /* DataFetcher.swift */; };
@@ -148,6 +149,7 @@
 		84B5848427393635005EA2A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		84CDFB4B2742374D0006A666 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		84CDFB4D274239ED0006A666 /* AuthEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEnums.swift; sourceTree = "<group>"; };
+		84E3523F2744E6AC00857289 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		84E43B3D273A5E3C0008E8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84E43B40273A5E690008E8AD /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		84E43B42273A5EB50008E8AD /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
@@ -369,7 +371,9 @@
 				8493DC1C272AC5A400FBE8BD /* Login */,
 				8493DC1D272AC5B600FBE8BD /* SignUp */,
 				8493DC28272AD37700FBE8BD /* AuthBuilder.swift */,
+				8493DC22272AD30500FBE8BD /* AuthView.swift */,
 				84CDFB4D274239ED0006A666 /* AuthEnums.swift */,
+				84E3523F2744E6AC00857289 /* AuthViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -410,7 +414,6 @@
 		8493DC1C272AC5A400FBE8BD /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				8493DC22272AD30500FBE8BD /* AuthView.swift */,
 				8493DC18272AC57500FBE8BD /* LoginViewController.swift */,
 				8493DC20272AD2FB00FBE8BD /* LoginPresenter.swift */,
 			);
@@ -645,6 +648,7 @@
 				84391B4A2731A34300B77E39 /* BrewListPresenter.swift in Sources */,
 				844F5EF62730046B00989CB3 /* MainTabBarController.swift in Sources */,
 				84391B38273182DE00B77E39 /* BrewView.swift in Sources */,
+				84E352402744E6AC00857289 /* AuthViewModel.swift in Sources */,
 				8471D010273126F300A28728 /* BrewViewController.swift in Sources */,
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
 				84E43B3E273A5E3C0008E8AD /* User.swift in Sources */,

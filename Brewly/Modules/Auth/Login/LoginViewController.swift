@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol LoginViewProtocol: AnyObject {
-    func setLoginView()
+    func setLoginView(with _model: AuthViewModel)
 }
 
 class LoginViewController: UIViewController {
@@ -24,12 +24,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
-    // MARK: - Selectors
-    
-    @objc func showSignUp() {
-        presenter?.showSignUp()
-    }
 }
 
 // MARK: - Configure UI
@@ -38,7 +32,7 @@ extension LoginViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         configureNavigationBar()
-        configureLoginView()
+        presenter?.setLoginView()
     }
     
     private func configureNavigationBar() {
@@ -48,22 +42,15 @@ extension LoginViewController {
         let color = UIColor(patternImage: UIImage(named: "hologram_1")!)
         
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: color]
-                
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
-//            title: "Sign Up",
-//            style: .plain,
-//            target: self,
-//            action: #selector(showSignUp)
-//        )
     }
         
-    private func configureLoginView() {
+    private func configureLoginView(with _model: AuthViewModel) {
         let loginView = AuthView(
-            option: .login,
-            buttonTappedWithOption: { option in
-                self.presenter?.changeFlow(flow: .onboarding)
-            }, changeOptionTapped: {
+            model: _model,
+            buttonTappedWithConfig: { config in
                 
+            }, changeOptionTapped: {
+                self.presenter?.showSignUp()
             })
         addLoginViewToVC(loginView: loginView)
     }
@@ -85,7 +72,7 @@ extension LoginViewController {
 // MARK: - LoginViewProtocol
 
 extension LoginViewController: LoginViewProtocol {
-    func setLoginView() {
-        presenter?.setLoginView()
+    func setLoginView(with _model: AuthViewModel) {
+        configureLoginView(with: _model)
     }
 }

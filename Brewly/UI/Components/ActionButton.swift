@@ -30,6 +30,8 @@ struct ActionButton<Content: View>: View {
         self.content = content()
     }
     
+    // MARK: - Construction
+    
     var body: some View {
         Button {
             action()
@@ -45,6 +47,8 @@ struct ActionButton<Content: View>: View {
         }
     }
 }
+
+// MARK: - ActionButton_Previews
 
 struct ActionButton_Previews: PreviewProvider {
     static var previews: some View {
