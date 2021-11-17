@@ -38,10 +38,8 @@ extension LoginViewController {
     private func configureNavigationBar() {
         self.navigationItem.title = "Login"
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let color = UIColor(patternImage: UIImage(named: "hologram_1")!)
-        
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: color]
+//        let color = UIColor(patternImage: UIImage(named: "hologram_1")!)
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.red]
     }
         
     private func configureLoginView(with _model: AuthViewModel) {
