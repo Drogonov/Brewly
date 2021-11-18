@@ -10,30 +10,40 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-protocol FirebaseServiceDelegate {
+protocol FirebaseServiceProtocol {
     func checkIfUserIsLoggedIn(completion: @escaping(Bool) -> Void)
     func signOut(completion: @escaping(Bool) -> Void)
     func fetchUserData(completion: @escaping(User) -> Void)
     
     func updateProfileImage(user: User, profileImg: UIImage, completion: @escaping (Bool, String?) -> Void)
     func updateUserFullname(user: User, updatedUsername: String?, completion: @escaping (Bool) -> Void)
+    
+    func connectionCheck(completion: @escaping(Bool) -> Void)
 }
 
-class FirebaseService: FirebaseServiceDelegate {
+class FirebaseService {
     
     // MARK: - Properties
     
-    let dataUploader: DataUploaderDelegate
-    let dataFetcher: DataFetcherDelegate
+    let dataUploader: DataUploaderProtocol
+    let dataFetcher: DataFetcherProtocol
     
-    // MARK: - Init
+    // MARK: - Construction
     
-    init(dataUploader: DataUploaderDelegate = DataUploader(), dataFetcher: DataFetcherDelegate = DataFetcher()) {
+    init(
+        dataUploader: DataUploaderProtocol,
+        dataFetcher: DataFetcherProtocol
+    ) {
         self.dataUploader = dataUploader
         self.dataFetcher = dataFetcher
     }
+}
+
+// MARK: - FirebaseServiceProtocol
+
+extension FirebaseService: FirebaseServiceProtocol {
     
-    // MARK: - Delegate Methods
+    // MARK: - Read UserData Protocol Methods
     
     func checkIfUserIsLoggedIn(completion: @escaping (Bool) -> Void) {
         var wasCheckSuccessful = true
@@ -57,6 +67,13 @@ class FirebaseService: FirebaseServiceDelegate {
         }
     }
     
+    func fetchUserData(completion: @escaping (User) -> Void) {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        self.dataFetcher.fetchUserData(uid: currentUid) { user in
+            completion(user)
+        }
+    }
+    
     func connectionCheck(completion: @escaping(Bool) -> Void) {
         let connectedRef = Database.database().reference(withPath: ".info/connected")
         connectedRef.observe(.value, with: { (snapshot) in
@@ -69,14 +86,7 @@ class FirebaseService: FirebaseServiceDelegate {
         })
     }
     
-    func fetchUserData(completion: @escaping (User) -> Void) {
-        guard let currentUid = Auth.auth().currentUser?.uid else { return }
-        self.dataFetcher.fetchUserData(uid: currentUid) { user in
-            completion(user)
-        }
-    }
-    
-    // MARK: - Update UserData Delegate Methods
+    // MARK: - Update UserData Protocol Methods
     
     func updateProfileImage(user: User, profileImg: UIImage, completion: @escaping (Bool, String?) -> Void) {
         guard let uploadData = profileImg.jpegData(compressionQuality: 0.3) else { return }
@@ -90,7 +100,7 @@ class FirebaseService: FirebaseServiceDelegate {
             }
         }
     }
-        
+    
     func updateUserFullname(user: User, updatedUsername: String?, completion: @escaping (Bool) -> Void) {
         var wasUpdateSuccessful = true
         guard let fullname = updatedUsername else { return }
@@ -105,10 +115,11 @@ class FirebaseService: FirebaseServiceDelegate {
             completion(wasUpdateSuccessful)
         }
     }
+}
+// MARK: - Helper Functions
+
+extension FirebaseService {
     
-    
-    // MARK: - Helper Functions
-            
     private func uploadProfileImage(uid: String, uploadData: Data, filename: String, completion: @escaping(Bool, String?) -> Void) {
         var wasImageUploaded = true
         let storageRef = Storage.storage().reference().child("profile_images").child(filename)
@@ -118,7 +129,7 @@ class FirebaseService: FirebaseServiceDelegate {
                 print("DEBUG: Failed to upload image to Firebase Storage with error", error.localizedDescription)
                 completion(wasImageUploaded, nil)
             }
-
+            
             storageRef.downloadURL(completion: { (downloadURL, error) in
                 guard let profileImageUrl = downloadURL?.absoluteString else {
                     wasImageUploaded = false

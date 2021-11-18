@@ -54,7 +54,9 @@ extension AuthWithEmailViewController {
     private func configureView(with _model: AuthWithEmailViewModel) {
         let view = AuthWithEmailView(
             model: _model,
-            authButtonTapped: { userName, email, password in }
+            authButtonTapped: { userName, email, password in
+                self.presenter?.signUp(userName: userName, email: email, password: password)
+            }
         )
         addToViewController(view)
     }

@@ -7,11 +7,11 @@
 
 import Firebase
 
-protocol DataFetcherDelegate {
+protocol DataFetcherProtocol {
     func fetchUserData(uid: String, completion: @escaping(User) -> Void)
 }
 
-class DataFetcher: DataFetcherDelegate {
+class DataFetcher: DataFetcherProtocol {
     func fetchUserData(uid: String, completion: @escaping (User) -> Void) {
         DB.REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
             guard let dictionary = snapshot.value as? [String: Any] else { return }

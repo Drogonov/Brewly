@@ -7,25 +7,26 @@
 
 import Firebase
 
-protocol AuthServiceDelegate {
+protocol AuthServiceProtocol {
     func handleLogin(email: String, password: String, completion: @escaping(Bool) -> Void)
     func handleSignUp(email: String, password: String, completion: @escaping(Bool) -> Void)
 }
 
-class AuthService: AuthServiceDelegate {
+class AuthService {
     
     // MARK: - Properties
     
-    private let dataUploader: DataUploaderDelegate
+    private let dataUploader: DataUploaderProtocol
     
     // MARK: - Init
     
-    init(dataUploader: DataUploaderDelegate = DataUploader()) {
+    init(dataUploader: DataUploaderProtocol) {
         self.dataUploader = dataUploader
     }
-    
-    // MARK: - Delegate Methods
-        
+}
+
+// MARK: - AuthServiceProtocol
+extension AuthService: AuthServiceProtocol {
     func handleLogin(email: String, password: String, completion: @escaping(Bool) -> Void) {
         var wasAuthSuccessful = true
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in

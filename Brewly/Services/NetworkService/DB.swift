@@ -11,5 +11,4 @@ import FirebaseDatabase
 struct DB {
     static let REF = Database.database().reference()
     static let REF_USERS = REF.child("users")
-    static let REF_MESSAGES = REF.child("messages")
 }

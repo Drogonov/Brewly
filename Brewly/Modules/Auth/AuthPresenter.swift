@@ -9,8 +9,11 @@ import Foundation
 import SwiftUI
 
 protocol LoginPresenterProtocol: AnyObject {
-    init(loginView: LoginViewProtocol,
-         router: AuthRouterProtocol)
+    init(
+        loginView: LoginViewProtocol,
+        router: AuthRouterProtocol,
+        authService: AuthServiceProtocol
+    )
     func setLoginView()
     func showSignUp()
     func changeFlow(flow: FlowCase)
@@ -18,8 +21,11 @@ protocol LoginPresenterProtocol: AnyObject {
 }
 
 protocol SignUpPresenterProtocol: AnyObject {
-    init(signUpView: SignUpViewProtocol,
-         router: AuthRouterProtocol)
+    init(
+        signUpView: SignUpViewProtocol,
+        router: AuthRouterProtocol,
+        authService: AuthServiceProtocol
+    )
     func setSignUpView()
     func showLogin()
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig)
@@ -32,17 +38,26 @@ class AuthPresenter {
     weak var loginView: LoginViewProtocol?
     weak var signUpView: SignUpViewProtocol?
     var router: AuthRouterProtocol
+    var authService: AuthServiceProtocol
     
-    required init(loginView: LoginViewProtocol,
-                  router: AuthRouterProtocol) {
+    required init(
+        loginView: LoginViewProtocol,
+        router: AuthRouterProtocol,
+        authService: AuthServiceProtocol
+    ) {
         self.loginView = loginView
         self.router = router
+        self.authService = authService
     }
     
-    required init(signUpView: SignUpViewProtocol,
-                  router: AuthRouterProtocol) {
+    required init(
+        signUpView: SignUpViewProtocol,
+        router: AuthRouterProtocol,
+        authService: AuthServiceProtocol
+    ) {
         self.signUpView = signUpView
         self.router = router
+        self.authService = authService
     }
     
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig) {
@@ -122,7 +137,7 @@ extension AuthPresenter {
     private func showAuthWithEmail(with _option: AuthOption) {
         let navigationTitle: String
         let authButtonText: String
-
+        
         switch _option {
         case .login:
             navigationTitle = "Вход"
