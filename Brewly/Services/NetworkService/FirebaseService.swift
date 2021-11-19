@@ -10,7 +10,7 @@ import Firebase
 import FirebaseDatabase
 import FirebaseStorage
 
-protocol FirebaseServiceProtocol {
+protocol FirebaseServiceProtocol: AnyObject {
     func checkIfUserIsLoggedIn(completion: @escaping(Bool) -> Void)
     func signOut(completion: @escaping(Bool) -> Void)
     func fetchUserData(completion: @escaping(User) -> Void)
@@ -29,6 +29,11 @@ class FirebaseService {
     let dataFetcher: DataFetcherProtocol
     
     // MARK: - Construction
+    
+//    required init() {
+//        self.dataUploader = DataUploader()
+//        self.dataFetcher = DataFetcher()
+//    }
     
     init(
         dataUploader: DataUploaderProtocol,

@@ -8,12 +8,18 @@
 import Foundation
 
 protocol AuthWithEmailPresenterProtocol: AnyObject {
-    init(view: AuthWithEmailViewProtocol,
-         model: AuthWithEmailViewModel)
+    init(
+        view: AuthWithEmailViewProtocol,
+        router: AuthRouterProtocol,
+        model: AuthWithEmailViewModel,
+        authService: AuthServiceProtocol
+    )
     func setAuthWithEmailView()
-    func signUp(userName: String,
-                email: String,
-                password: String)
+    func authWithData(
+        fullname: String,
+        email: String,
+        password: String
+    )
 }
 
 class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
@@ -21,17 +27,22 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
     // MARK: - Properties
     
     weak var view: AuthWithEmailViewProtocol?
+    var router: AuthRouterProtocol
     var model: AuthWithEmailViewModel
-    let authService = AuthService(dataUploader: DataUploader())
+    var authService: AuthServiceProtocol
     
     // MARK: - Construction
     
     required init(
         view: AuthWithEmailViewProtocol,
-        model: AuthWithEmailViewModel
+        router: AuthRouterProtocol,
+        model: AuthWithEmailViewModel,
+        authService: AuthServiceProtocol
     ) {
         self.view = view
+        self.router = router
         self.model = model
+        self.authService = authService
     }
     
     // MARK: - Protocol Functions
@@ -40,12 +51,29 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
         self.view?.setAuthWithEmailView(with: model)
     }
     
-    func signUp(userName: String,
-                email: String,
-                password: String) {
-        authService.handleSignUp(email: email,
-                                 password: password) { wasUserSignUp in
-            debugPrint(wasUserSignUp)
+    func authWithData(
+        fullname: String,
+        email: String,
+        password: String
+    ) {
+        switch model.option {
+        case .login:
+            authService.handleLogin(
+                email: email,
+                password: password,
+                completion: { wasLoginSuccessful in
+                    debugPrint(wasLoginSuccessful)
+                }
+            )
+        case .signUp:
+            authService.handleSignUp(
+                fullname: fullname,
+                email: email,
+                password: password,
+                completion: { wasSignUpSuccessful in
+                    debugPrint(wasSignUpSuccessful)
+                }
+            )
         }
     }
 }

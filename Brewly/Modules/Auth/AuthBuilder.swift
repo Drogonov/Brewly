@@ -10,7 +10,10 @@ import UIKit
 protocol AuthModuleBuilderProtocol {
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController
-    func createAuthWithEmailModule(model: AuthWithEmailViewModel) -> UIViewController
+    func createAuthWithEmailModule(
+        router: AuthRouterProtocol,
+        model: AuthWithEmailViewModel
+    ) -> UIViewController
 }
 
 class AuthModuleBuilder: AuthModuleBuilderProtocol {
@@ -38,11 +41,17 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
         return view
     }
     
-    func createAuthWithEmailModule(model: AuthWithEmailViewModel) -> UIViewController {
+    func createAuthWithEmailModule(
+        router: AuthRouterProtocol,
+        model: AuthWithEmailViewModel
+    ) -> UIViewController {
         let view = AuthWithEmailViewController()
+        let authService = AuthService(dataUploader: DataUploader())
         let presenter = AuthWithEmailPresenter(
             view: view,
-            model: model
+            router: router,
+            model: model,
+            authService: authService
         )
         view.presenter = presenter
         return view

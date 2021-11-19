@@ -7,9 +7,9 @@
 
 import Firebase
 
-protocol AuthServiceProtocol {
+protocol AuthServiceProtocol: AnyObject {
     func handleLogin(email: String, password: String, completion: @escaping(Bool) -> Void)
-    func handleSignUp(email: String, password: String, completion: @escaping(Bool) -> Void)
+    func handleSignUp(fullname: String, email: String, password: String, completion: @escaping(Bool) -> Void)
 }
 
 class AuthService {
@@ -40,7 +40,7 @@ extension AuthService: AuthServiceProtocol {
         }
     }
     
-    func handleSignUp(email: String, password: String, completion: @escaping(Bool) -> Void) {
+    func handleSignUp(fullname: String, email: String, password: String, completion: @escaping(Bool) -> Void) {
         var wasSignUpSuccessful = true
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
@@ -51,7 +51,10 @@ extension AuthService: AuthServiceProtocol {
             }
             
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email] as [String : Any]
+            let values = [
+                "email": email,
+                "fullname" : fullname
+            ] as [String : Any]
             
             self.dataUploader.updateUserValues(uid: uid, values: values) { (err, ref) in
                 if let error = error {

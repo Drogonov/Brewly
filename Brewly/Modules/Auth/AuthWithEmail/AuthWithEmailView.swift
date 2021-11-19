@@ -13,7 +13,7 @@ struct AuthWithEmailView: View {
     
     // MARK: - Properties
     
-    @State private var userName: String = ""
+    @State private var fullname: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
     
@@ -41,11 +41,11 @@ extension AuthWithEmailView {
                 HStack {
                     Image(systemName: "person")
                         .foregroundColor(Color.primaryTextColor)
-                    .frame(width: 32)
+                        .frame(width: 32)
                     
                     TextField(
                         "userName",
-                        text: $userName,
+                        text: $fullname,
                         prompt: Text("Имя")
                     )
                 }
@@ -55,13 +55,14 @@ extension AuthWithEmailView {
                 Image(systemName: "mail")
                     .foregroundColor(Color.primaryTextColor)
                     .frame(width: 32)
-                    .keyboardType(.emailAddress)
                 
                 TextField(
                     "email",
                     text: $email,
                     prompt: Text("Почта")
                 )
+                    .keyboardType(.emailAddress)
+                
             }
             
             HStack {
@@ -84,7 +85,7 @@ extension AuthWithEmailView {
             backgroundColor: Color.actionButtonBackgroundColor,
             action: {
                 authButtonTapped(
-                    userName,
+                    fullname,
                     email,
                     password
                 )

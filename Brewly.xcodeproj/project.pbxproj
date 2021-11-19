@@ -22,6 +22,8 @@
 		84264DDB27458C2200CFBF7D /* AuthWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84264DDA27458C2200CFBF7D /* AuthWithEmailViewController.swift */; };
 		84264DDD27458C3300CFBF7D /* AuthWithEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84264DDC27458C3300CFBF7D /* AuthWithEmailPresenter.swift */; };
 		842DF8322743866300275554 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DF8312743866300275554 /* ActionButton.swift */; };
+		84309B912747BBD400CB1023 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84309B902747BBD400CB1023 /* UserSettings.swift */; };
+		84309B942747C27500CB1023 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84309B932747C27500CB1023 /* UserSettings.swift */; };
 		84391B38273182DE00B77E39 /* BrewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B37273182DE00B77E39 /* BrewView.swift */; };
 		84391B3E2731968600B77E39 /* BrewConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B3D2731968600B77E39 /* BrewConfigurationView.swift */; };
 		84391B402731969B00B77E39 /* BrewConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B3F2731969B00B77E39 /* BrewConfigurationViewController.swift */; };
@@ -114,6 +116,8 @@
 		84264DDA27458C2200CFBF7D /* AuthWithEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithEmailViewController.swift; sourceTree = "<group>"; };
 		84264DDC27458C3300CFBF7D /* AuthWithEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithEmailPresenter.swift; sourceTree = "<group>"; };
 		842DF8312743866300275554 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		84309B902747BBD400CB1023 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		84309B932747C27500CB1023 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		84391B37273182DE00B77E39 /* BrewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewView.swift; sourceTree = "<group>"; };
 		84391B3D2731968600B77E39 /* BrewConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationView.swift; sourceTree = "<group>"; };
 		84391B3F2731969B00B77E39 /* BrewConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationViewController.swift; sourceTree = "<group>"; };
@@ -272,6 +276,14 @@
 				842DF8312743866300275554 /* ActionButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		84309B922747C26500CB1023 /* CRUDService */ = {
+			isa = PBXGroup;
+			children = (
+				84309B932747C27500CB1023 /* UserSettings.swift */,
+			);
+			path = CRUDService;
 			sourceTree = "<group>";
 		};
 		84391B39273195F400B77E39 /* Brew */ = {
@@ -451,6 +463,7 @@
 		84E43B3B273A5E020008E8AD /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84309B922747C26500CB1023 /* CRUDService */,
 				84E43B3F273A5E570008E8AD /* NetworkService */,
 			);
 			path = Services;
@@ -460,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				84E43B3D273A5E3C0008E8AD /* User.swift */,
+				84309B902747BBD400CB1023 /* UserSettings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -639,6 +653,7 @@
 				84E43B49273A5F010008E8AD /* FirebaseService.swift in Sources */,
 				840D6A37272BFD3A007E4FD7 /* HistoryView.swift in Sources */,
 				84391B482731A32E00B77E39 /* BrewListViewController.swift in Sources */,
+				84309B942747C27500CB1023 /* UserSettings.swift in Sources */,
 				84E43B47273A5EE00008E8AD /* AuthService.swift in Sources */,
 				8493DC3C272B003800FBE8BD /* Extension + ViewController.swift in Sources */,
 				84264DD52745764B00CFBF7D /* AuthWithEmailView.swift in Sources */,
@@ -649,6 +664,7 @@
 				84E352402744E6AC00857289 /* AuthViewModel.swift in Sources */,
 				8471D010273126F300A28728 /* BrewViewController.swift in Sources */,
 				84264DDD27458C3300CFBF7D /* AuthWithEmailPresenter.swift in Sources */,
+				84309B912747BBD400CB1023 /* UserSettings.swift in Sources */,
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
 				84E43B3E273A5E3C0008E8AD /* User.swift in Sources */,
 				8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */,

@@ -37,8 +37,8 @@ class AuthPresenter {
     
     weak var loginView: LoginViewProtocol?
     weak var signUpView: SignUpViewProtocol?
-    var router: AuthRouterProtocol
     var authService: AuthServiceProtocol
+    var router: AuthRouterProtocol
     
     required init(
         loginView: LoginViewProtocol,
