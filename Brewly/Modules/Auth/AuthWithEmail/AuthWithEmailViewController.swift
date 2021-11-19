@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 
-protocol AuthWithEmailViewProtocol: AnyObject {
+protocol AuthWithEmailViewProtocol: BaseViewLoader {
     func setAuthWithEmailView(with _model: AuthWithEmailViewModel)
 }
 
-class AuthWithEmailViewController: UIViewController {
+class AuthWithEmailViewController: BaseViewController {
     
     // MARK: - Properties
 
@@ -27,7 +27,7 @@ class AuthWithEmailViewController: UIViewController {
     
     // MARK: - Selectors
     
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    @objc override func handleSwipeRightGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
             self.navigationController?.popViewController(animated: true)
         }
@@ -39,18 +39,9 @@ class AuthWithEmailViewController: UIViewController {
 extension AuthWithEmailViewController {
     private func configureUI() {
         view.backgroundColor = UIColor.systemGroupedBackground
-        configureKeyboard()
         presenter?.setAuthWithEmailView()
     }
-    
-    private func configureNavigationBar(with _title: String) {
-        self.navigationItem.title = _title
-    }
-    
-    private func configureKeyboard() {
-        self.hideKeyboardWhenTappedAround()
-    }
-    
+            
     private func configureView(with _model: AuthWithEmailViewModel) {
         let view = AuthWithEmailView(
             model: _model,
@@ -58,26 +49,7 @@ extension AuthWithEmailViewController {
                 self.presenter?.authWithData(fullname: fullname, email: email, password: password)
             }
         )
-        addToViewController(view)
-    }
-    
-    private func addToViewController(_ newView: AuthWithEmailView) {
-        let viewCtrl = UIHostingController(rootView: newView)
-        addChild(viewCtrl)
-        view.addSubview(viewCtrl.view)
-        
-        viewCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
-    }
-    
-    private func configureSwipeGesture() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
+        addMainViewToViewController(view)
     }
 }
 
@@ -86,6 +58,6 @@ extension AuthWithEmailViewController {
 extension AuthWithEmailViewController: AuthWithEmailViewProtocol {
     func setAuthWithEmailView(with _model: AuthWithEmailViewModel) {
         configureView(with: _model)
-        configureNavigationBar(with: _model.navigationTitle)
+        setNavigationBarTitle(with: _model.navigationTitle)
     }
 }

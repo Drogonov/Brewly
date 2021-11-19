@@ -9,18 +9,35 @@ import UIKit
 import Firebase
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    
     var window: UIWindow?
     
+    @Inject var userSettingsService: UserSettingsService
+    @Inject var firebaseService: FirebaseService
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: scene)
         window?.makeKeyAndVisible()
-        
-        let loadingCase: FlowCase = .onboarding
-        let router = MainRouter(window: window, flowCase: loadingCase)
-        router.initialViewController()
+                
+        setFlowCase()
+        MainRouter(window: window).initialViewController()
+    }
+    
+    func setFlowCase() {
+        firebaseService.checkIfUserIsLoggedIn { (checkWasSuccessful) in
+            var settings = self.userSettingsService.loadUserSettings()
+            debugPrint("DEBUG: checkWasSuccessful \(checkWasSuccessful), onboarding \(settings.shouldShowOnboarding)")
+            debugPrint("DEBUG: current user \(String(describing: Auth.auth().currentUser))")
+            switch (checkWasSuccessful, settings.shouldShowOnboarding) {
+            case (true, true):
+                settings.flowCase = .onboarding
+            case (true, false):
+                settings.flowCase = .mainTabBar
+            default:
+                settings.flowCase = .auth
+            }
+            self.userSettingsService.saveUserSetting(with: settings)
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

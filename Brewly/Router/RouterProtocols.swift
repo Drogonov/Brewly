@@ -14,7 +14,6 @@ protocol Router {
 
 protocol MainRouterProtocol: Router {
     var window: UIWindow? { get set }
-    var flowCase: FlowCase { get set }
     
     func initialViewController()
     func popToRoot()
@@ -23,7 +22,6 @@ protocol MainRouterProtocol: Router {
     init(window: UIWindow?,
          navigationController: UINavigationController,
          tabBarController: MainTabBarController,
-         flowCase: FlowCase,
          authBuilder: AuthModuleBuilderProtocol,
          onboardingBuilder: OnboardingModuleBuilderProtocol,
          mainTabBarBuilder: MainTabBarBuilderProtocol)
@@ -34,6 +32,7 @@ protocol AuthRouterProtocol: Router {
     
     func showLogin()
     func showSignUp()
+    func routeToApp()
     func showAuthWithEmail(model: AuthWithEmailViewModel)
     func popViewController()
 }

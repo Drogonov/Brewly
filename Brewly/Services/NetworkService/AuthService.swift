@@ -12,13 +12,15 @@ protocol AuthServiceProtocol: AnyObject {
     func handleSignUp(fullname: String, email: String, password: String, completion: @escaping(Bool) -> Void)
 }
 
-class AuthService {
+class AuthService: Injectable {
     
     // MARK: - Properties
     
     private let dataUploader: DataUploaderProtocol
     
-    // MARK: - Init
+    // MARK: - Construction
+    
+    required init() { self.dataUploader = DataUploader() }
     
     init(dataUploader: DataUploaderProtocol) {
         self.dataUploader = dataUploader

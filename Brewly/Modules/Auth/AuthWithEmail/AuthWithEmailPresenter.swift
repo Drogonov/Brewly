@@ -56,13 +56,19 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
         email: String,
         password: String
     ) {
+        view?.showLoader()
         switch model.option {
         case .login:
             authService.handleLogin(
                 email: email,
                 password: password,
                 completion: { wasLoginSuccessful in
-                    debugPrint(wasLoginSuccessful)
+                    self.view?.hideLoader()
+                    if wasLoginSuccessful == true {
+                        self.router.routeToApp()
+                    } else {
+                        
+                    }
                 }
             )
         case .signUp:
@@ -71,7 +77,12 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
                 email: email,
                 password: password,
                 completion: { wasSignUpSuccessful in
-                    debugPrint(wasSignUpSuccessful)
+                    self.view?.hideLoader()
+                    if wasSignUpSuccessful == true {
+                        self.router.routeToApp()
+                    } else {
+                        
+                    }
                 }
             )
         }

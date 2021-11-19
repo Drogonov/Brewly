@@ -17,9 +17,10 @@ protocol AuthModuleBuilderProtocol {
 }
 
 class AuthModuleBuilder: AuthModuleBuilderProtocol {
+    @Inject var authService: AuthService
+    
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController {
         let view = LoginViewController()
-        let authService = AuthService(dataUploader: DataUploader())
         let presenter = AuthPresenter(
             loginView: view,
             router: router,
@@ -31,7 +32,6 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
         let view = SignUpViewController()
-        let authService = AuthService(dataUploader: DataUploader())
         let presenter = AuthPresenter(
             signUpView: view,
             router: router,
@@ -46,7 +46,6 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
         model: AuthWithEmailViewModel
     ) -> UIViewController {
         let view = AuthWithEmailViewController()
-        let authService = AuthService(dataUploader: DataUploader())
         let presenter = AuthWithEmailPresenter(
             view: view,
             router: router,

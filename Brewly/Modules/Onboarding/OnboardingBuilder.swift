@@ -12,11 +12,14 @@ protocol OnboardingModuleBuilderProtocol {
 }
 
 class OnboardingModuleBuilder: OnboardingModuleBuilderProtocol {
+    @Inject var userSettingsService: UserSettingsService
+
     func createOnboardingModule(router: OnboardingRouterProtocol) -> UIViewController {
         let view = OnboardingViewController()
         let presenter = OnboardingPresenter(view: view,
                                             router: router)
         view.presenter = presenter
+        userSettingsService.onboardingWasShown()
         return view
     }
 }

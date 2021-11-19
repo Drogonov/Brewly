@@ -1,5 +1,5 @@
 //
-//  UserSettings.swift
+//  UserSettingsService.swift
 //  Brewly
 //
 //  Created by Anton Vlezko on 19.11.2021.
@@ -15,12 +15,12 @@ protocol UserSettingsServiceProtocol {
     func saveUserSetting(with _settings: UserSettings)
 }
 
-class UserSettingsService {
+class UserSettingsService: Injectable {
     
     // MARK: - Properties
-
+    
     private let userSettingKey = "userSettings"
-
+    
     // MARK: - Construction
     
     init() {}
@@ -55,7 +55,10 @@ extension UserSettingsService: UserSettingsServiceProtocol {
     }
     
     func setDefaultUserSetting() -> UserSettings {
-        let userSettings = UserSettings(shouldShowOnboarding: true)
+        let userSettings = UserSettings(
+            flowCase: .mainTabBar,
+            shouldShowOnboarding: true
+        )
         saveUserSetting(with: userSettings)
         return userSettings
     }

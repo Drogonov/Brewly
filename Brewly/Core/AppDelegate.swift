@@ -10,6 +10,8 @@ import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    private let manager = DependencyManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         

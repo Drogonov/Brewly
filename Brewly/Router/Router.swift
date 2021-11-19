@@ -11,12 +11,11 @@ class MainRouter {
     
     // MARK: - Properties
     
+    @Inject var userSettingsService: UserSettingsService
+    
     var window: UIWindow?
     var navigationController: UINavigationController
     var tabBarController: MainTabBarController
-    
-    var flowCase: FlowCase
-    
     var authBuilder: AuthModuleBuilderProtocol
     var onboardingBuilder: OnboardingModuleBuilderProtocol
     var mainTabBarBuilder: MainTabBarBuilderProtocol
@@ -27,7 +26,6 @@ class MainRouter {
         window: UIWindow?,
         navigationController: UINavigationController = UINavigationController(),
         tabBarController: MainTabBarController = MainTabBarController(),
-        flowCase: FlowCase,
         authBuilder: AuthModuleBuilderProtocol = AuthModuleBuilder(),
         onboardingBuilder: OnboardingModuleBuilderProtocol = OnboardingModuleBuilder(),
         mainTabBarBuilder: MainTabBarBuilderProtocol = MainTabBarBuilder()
@@ -35,9 +33,6 @@ class MainRouter {
         self.window = window
         self.navigationController = navigationController
         self.tabBarController = tabBarController
-        
-        self.flowCase = flowCase
-        
         self.authBuilder = authBuilder
         self.onboardingBuilder = onboardingBuilder
         self.mainTabBarBuilder = mainTabBarBuilder
@@ -48,7 +43,8 @@ class MainRouter {
 
 extension MainRouter: MainRouterProtocol {
     func initialViewController() {
-        goToFlow(flow: flowCase)
+        let flow = userSettingsService.loadUserSettings()
+        goToFlow(flow: flow.flowCase)
     }
     
     func popToRoot() {
@@ -60,6 +56,10 @@ extension MainRouter: MainRouterProtocol {
     }
     
     func goToFlow(flow: FlowCase) {
+        var settings = userSettingsService.loadUserSettings()
+        settings.flowCase = flow
+        userSettingsService.saveUserSetting(with: settings)
+        
         switch flow {
         case .auth:
             showLogin()
@@ -134,6 +134,15 @@ extension MainRouter: AuthRouterProtocol {
             model: model
         )
         navigationController.pushViewController(authWithEmailViewController, animated: true)
+    }
+    
+    func routeToApp() {
+        let settings = userSettingsService.loadUserSettings()
+        if settings.shouldShowOnboarding {
+            goToFlow(flow: .onboarding)
+        } else {
+            goToFlow(flow: .mainTabBar)
+        }
     }
 }
 

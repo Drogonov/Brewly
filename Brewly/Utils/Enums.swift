@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FlowCase {
+enum FlowCase: Codable {
     case auth
     case onboarding
     case mainTabBar

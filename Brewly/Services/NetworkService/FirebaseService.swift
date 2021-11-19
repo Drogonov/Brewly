@@ -21,7 +21,7 @@ protocol FirebaseServiceProtocol: AnyObject {
     func connectionCheck(completion: @escaping(Bool) -> Void)
 }
 
-class FirebaseService {
+class FirebaseService: Injectable {
     
     // MARK: - Properties
     
@@ -30,10 +30,10 @@ class FirebaseService {
     
     // MARK: - Construction
     
-//    required init() {
-//        self.dataUploader = DataUploader()
-//        self.dataFetcher = DataFetcher()
-//    }
+    required init() {
+        self.dataUploader = DataUploader()
+        self.dataFetcher = DataFetcher()
+    }
     
     init(
         dataUploader: DataUploaderProtocol,
@@ -53,9 +53,9 @@ extension FirebaseService: FirebaseServiceProtocol {
     func checkIfUserIsLoggedIn(completion: @escaping (Bool) -> Void) {
         var wasCheckSuccessful = true
         if Auth.auth().currentUser?.uid == nil {
+            wasCheckSuccessful = false
             completion(wasCheckSuccessful)
         } else {
-            wasCheckSuccessful = false
             completion(wasCheckSuccessful)
         }
     }

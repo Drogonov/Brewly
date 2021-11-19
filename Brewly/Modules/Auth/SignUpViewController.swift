@@ -12,7 +12,7 @@ protocol SignUpViewProtocol: AnyObject {
     func setSignUpView(with _model: AuthViewModel)
 }
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
     
     // MARK: - Properties
 
@@ -27,7 +27,7 @@ class SignUpViewController: UIViewController {
     
     // MARK: - Selectors
     
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    @objc override func handleSwipeRightGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .right {
             self.presenter?.showLogin()
         }
@@ -38,15 +38,10 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController {
     private func configureUI() {
-        view.backgroundColor = UIColor.backgroundColor
-        configureNavigationBar()
+        setNavigationBarTitle(with: "Sign Up")
         presenter?.setSignUpView()
     }
-    
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Sign Up"
-    }
-    
+
     private func configureView(with _model: AuthViewModel) {
         let view = AuthView(
             model: _model,
@@ -55,26 +50,7 @@ extension SignUpViewController {
             }, changeOptionTapped: {
                 self.presenter?.showLogin()
             })
-        addToViewController(view)
-    }
-    
-    private func addToViewController(_ newView: AuthView) {
-        let viewCtrl = UIHostingController(rootView: newView)
-        addChild(viewCtrl)
-        view.addSubview(viewCtrl.view)
-        
-        viewCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
-    }
-    
-    private func configureSwipeGesture() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeRight.direction = .right
-        self.view.addGestureRecognizer(swipeRight)
+        addMainViewToViewController(view)
     }
 }
 

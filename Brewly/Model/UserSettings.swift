@@ -8,5 +8,6 @@
 import Foundation
 
 struct UserSettings: Codable {
+    var flowCase: FlowCase
     var shouldShowOnboarding: Bool
 }

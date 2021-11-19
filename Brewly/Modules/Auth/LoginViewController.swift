@@ -12,7 +12,7 @@ protocol LoginViewProtocol: AnyObject {
     func setLoginView(with _model: AuthViewModel)
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     // MARK: - Properties
     
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
     
     // MARK: - Selectors
     
-    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+    @objc override func handleSwipeLeftGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .left {
             self.presenter?.showSignUp()
         }
@@ -38,19 +38,10 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     private func configureUI() {
-        view.backgroundColor = UIColor.backgroundColor
-        configureNavigationBar()
-        configureSwipeGesture()
+        setNavigationBarTitle(with: "Login")
         presenter?.setLoginView()
     }
-    
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Login"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.tintColor = UIColor.primaryTextColor
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.accentColor]
-    }
-        
+            
     private func configureView(with _model: AuthViewModel) {
         let view = AuthView(
             model: _model,
@@ -59,26 +50,7 @@ extension LoginViewController {
             }, changeOptionTapped: {
                 self.presenter?.showSignUp()
             })
-        addToViewController(view)
-    }
-    
-    private func addToViewController(_ newView: AuthView) {
-        let viewCtrl = UIHostingController(rootView: newView)
-        addChild(viewCtrl)
-        view.addSubview(viewCtrl.view)
-        
-        viewCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
-    }
-    
-    private func configureSwipeGesture() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
-        swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeLeft)
+        addMainViewToViewController(view)
     }
 }
 
