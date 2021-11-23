@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40F57519028A2AE93B4D558E /* Pods_Brewly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B47BC6D98FCCA08DCB4BBB6 /* Pods_Brewly.framework */; };
 		840D6A2C272BDF0C007E4FD7 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A2B272BDF0C007E4FD7 /* Enums.swift */; };
 		840D6A2E272BE914007E4FD7 /* RouterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A2D272BE914007E4FD7 /* RouterProtocols.swift */; };
 		840D6A31272BFA89007E4FD7 /* MainTabBarBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A30272BFA89007E4FD7 /* MainTabBarBuilder.swift */; };
@@ -46,6 +45,11 @@
 		847A4E902729895B00539CD2 /* BrewlyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E8F2729895B00539CD2 /* BrewlyTests.swift */; };
 		847A4E9A2729895B00539CD2 /* BrewlyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E992729895B00539CD2 /* BrewlyUITests.swift */; };
 		847A4E9C2729895B00539CD2 /* BrewlyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847A4E9B2729895B00539CD2 /* BrewlyUITestsLaunchTests.swift */; };
+		84845E3C274D427D005F97D5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 84845E3B274D427D005F97D5 /* FirebaseAuth */; };
+		84845E3E274D427D005F97D5 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 84845E3D274D427D005F97D5 /* FirebaseDatabase */; };
+		84845E40274D427D005F97D5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 84845E3F274D427D005F97D5 /* FirebaseFirestore */; };
+		84845E42274D427D005F97D5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 84845E41274D427D005F97D5 /* FirebaseStorage */; };
+		84845E48274D44A1005F97D5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 84845E47274D44A1005F97D5 /* GoogleSignIn */; };
 		8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC18272AC57500FBE8BD /* LoginViewController.swift */; };
 		8493DC1B272AC59A00FBE8BD /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */; };
 		8493DC1F272AC5EC00FBE8BD /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8493DC1E272AC5EC00FBE8BD /* OnboardingViewController.swift */; };
@@ -91,8 +95,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B47BC6D98FCCA08DCB4BBB6 /* Pods_Brewly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brewly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3307FF0A65AF1157A3B5B904 /* Pods-Brewly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brewly.debug.xcconfig"; path = "Target Support Files/Pods-Brewly/Pods-Brewly.debug.xcconfig"; sourceTree = "<group>"; };
 		840D6A2B272BDF0C007E4FD7 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		840D6A2D272BE914007E4FD7 /* RouterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocols.swift; sourceTree = "<group>"; };
 		840D6A30272BFA89007E4FD7 /* MainTabBarBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarBuilder.swift; sourceTree = "<group>"; };
@@ -159,7 +161,6 @@
 		84E43B44273A5EC80008E8AD /* DataUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUploader.swift; sourceTree = "<group>"; };
 		84E43B46273A5EE00008E8AD /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84E43B48273A5F010008E8AD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
-		EE7550441D31DB07BB16E525 /* Pods-Brewly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brewly.release.xcconfig"; path = "Target Support Files/Pods-Brewly/Pods-Brewly.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +168,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40F57519028A2AE93B4D558E /* Pods_Brewly.framework in Frameworks */,
+				84845E3E274D427D005F97D5 /* FirebaseDatabase in Frameworks */,
+				84845E42274D427D005F97D5 /* FirebaseStorage in Frameworks */,
+				84845E3C274D427D005F97D5 /* FirebaseAuth in Frameworks */,
+				84845E40274D427D005F97D5 /* FirebaseFirestore in Frameworks */,
+				84845E48274D44A1005F97D5 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +193,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		03296AB8E50069226FBF99D0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0B47BC6D98FCCA08DCB4BBB6 /* Pods_Brewly.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		840D6A2F272BE935007E4FD7 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,8 +331,6 @@
 				847A4E8E2729895B00539CD2 /* BrewlyTests */,
 				847A4E982729895B00539CD2 /* BrewlyUITests */,
 				847A4E762729895A00539CD2 /* Products */,
-				8E3DFF5C9F71B2BAE1B9488E /* Pods */,
-				03296AB8E50069226FBF99D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -494,15 +489,6 @@
 			path = NetworkService;
 			sourceTree = "<group>";
 		};
-		8E3DFF5C9F71B2BAE1B9488E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3307FF0A65AF1157A3B5B904 /* Pods-Brewly.debug.xcconfig */,
-				EE7550441D31DB07BB16E525 /* Pods-Brewly.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -510,17 +496,22 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 847A4E9F2729895B00539CD2 /* Build configuration list for PBXNativeTarget "Brewly" */;
 			buildPhases = (
-				DB9B4DCECA5356307DEF82C0 /* [CP] Check Pods Manifest.lock */,
 				847A4E712729895A00539CD2 /* Sources */,
 				847A4E722729895A00539CD2 /* Frameworks */,
 				847A4E732729895A00539CD2 /* Resources */,
-				1D250EE51768D511D8279ADF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Brewly;
+			packageProductDependencies = (
+				84845E3B274D427D005F97D5 /* FirebaseAuth */,
+				84845E3D274D427D005F97D5 /* FirebaseDatabase */,
+				84845E3F274D427D005F97D5 /* FirebaseFirestore */,
+				84845E41274D427D005F97D5 /* FirebaseStorage */,
+				84845E47274D44A1005F97D5 /* GoogleSignIn */,
+			);
 			productName = Brewly;
 			productReference = 847A4E752729895A00539CD2 /* Brewly.app */;
 			productType = "com.apple.product-type.application";
@@ -593,6 +584,10 @@
 				Base,
 			);
 			mainGroup = 847A4E6C2729895A00539CD2;
+			packageReferences = (
+				84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				84845E46274D44A0005F97D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 847A4E762729895A00539CD2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -630,48 +625,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		1D250EE51768D511D8279ADF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Brewly/Pods-Brewly-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Brewly/Pods-Brewly-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Brewly/Pods-Brewly-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB9B4DCECA5356307DEF82C0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Brewly-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		847A4E712729895A00539CD2 /* Sources */ = {
@@ -900,7 +853,6 @@
 		};
 		847A4EA02729895B00539CD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3307FF0A65AF1157A3B5B904 /* Pods-Brewly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -928,7 +880,6 @@
 		};
 		847A4EA12729895B00539CD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE7550441D31DB07BB16E525 /* Pods-Brewly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1090,6 +1041,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		84845E46274D44A0005F97D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		84845E3B274D427D005F97D5 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		84845E3D274D427D005F97D5 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		84845E3F274D427D005F97D5 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		84845E41274D427D005F97D5 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84845E3A274D427D005F97D5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		84845E47274D44A1005F97D5 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84845E46274D44A0005F97D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 847A4E6D2729895A00539CD2 /* Project object */;
 }

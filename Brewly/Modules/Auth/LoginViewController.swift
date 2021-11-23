@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Firebase
 import GoogleSignIn
 
 protocol LoginViewProtocol: AnyObject {
@@ -20,12 +21,6 @@ class LoginViewController: BaseViewController {
     var presenter: LoginPresenterProtocol?
     
     // MARK: - Lifecycle
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        GIDSignIn.sharedInstance().delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +43,7 @@ extension LoginViewController {
         setNavigationBarTitle(with: "Login")
         presenter?.setLoginView()
     }
-            
+    
     private func configureView(with _model: AuthViewModel) {
         let view = AuthView(
             model: _model,
@@ -69,41 +64,59 @@ extension LoginViewController: LoginViewProtocol {
     }
 }
 
-extension LoginViewController: GIDSignInDelegate {
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print("Failed to sign in with error:", error)
-            return
-        }
-        guard let authentication = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+extension LoginViewController {
+    func configureGID() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
         
-        Auth.auth().signIn(with: credential) { (result, error) in
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+            
             if let error = error {
-                print("Failed to sign in and retrieve data with error:", error)
+                // ...
                 return
             }
             
-            guard let uid = result?.user.uid else { return }
-            guard let email = result?.user.email else { return }
-            guard let username = result?.user.displayName else { return }
-            guard let photoURL = result?.user.photoURL else { return }
+            guard let authentication = user?.authentication,
+                  let idToken = authentication.idToken
+            else {
+                return
+            }
             
-            let photoURLString = photoURL.absoluteString
+            let credential = GoogleAuthProvider.credential(
+                withIDToken: idToken,
+                accessToken: authentication.accessToken
+            )
             
-            let values = ["email": email,
-                          "fullname": username,
-                          "profileImageUrl": photoURLString] as [String : Any]
-            
-            Service.shared.updateUserValues(uid: uid, values: values) { (err, ref) in
+            Auth.auth().signIn(with: credential) { (result, error) in
                 if let error = error {
-                    print("Failed to upload data to server GIDSignIn with error:", error)
+                    print("Failed to sign in and retrieve data with error:", error)
                     return
                 }
-                self.delegate?.userLoginVC(self)
-                self.dismiss(animated: true, completion: nil)
+                
+                guard let uid = result?.user.uid else { return }
+                guard let email = result?.user.email else { return }
+                guard let username = result?.user.displayName else { return }
+                guard let photoURL = result?.user.photoURL else { return }
+                
+                let photoURLString = photoURL.absoluteString
+                
+                let values = ["email": email,
+                              "fullname": username,
+                              "profileImageUrl": photoURLString] as [String : Any]
+                
+                
+                Service.shared.updateUserValues(uid: uid, values: values) { (err, ref) in
+                    if let error = error {
+                        print("Failed to upload data to server GIDSignIn with error:", error)
+                        return
+                    }
+                    self.delegate?.userLoginVC(self)
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
 }
-
