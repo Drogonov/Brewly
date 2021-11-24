@@ -101,8 +101,8 @@ extension MainRouter: MainTabBarRouterProtocol {
         navController.pushViewController(brewConfigurationViewController, animated: true)
     }
     
-    func showBrewList(with vc: UIViewController) {
-        let brewListViewController = mainTabBarBuilder.createBrewListModule(router: self)
+    func showBrewList(with model: BrewConfigurationModel, and vc: UIViewController) {
+        let brewListViewController = mainTabBarBuilder.createBrewListModule(router: self, model: model)
         guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewListViewController, animated: true)
     }

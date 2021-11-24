@@ -51,6 +51,6 @@ protocol MainTabBarRouterProtocol: Router {
     func showMainTabBar()
     func showDetailHistory(with vc: UIViewController)
     func showBrewConfiguration(with vc: UIViewController)
-    func showBrewList(with vc: UIViewController)
+    func showBrewList(with model: BrewConfigurationModel, and vc: UIViewController)
     func showBrewItem(with vc: UIViewController)
 }

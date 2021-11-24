@@ -12,8 +12,8 @@ struct BrewConfigurationView: View {
     @State private var amountOfSamples: Int?
     @State private var comment: String = ""
     
-    let createBrewTapped: () -> Void
-
+    let createBrewTapped: (String, Int, String) -> Void
+    
     var body: some View {
         let bindingAmountOfSamples = Binding<String>(
             get: { self.amountOfSamples?.numberToString ?? "" },
@@ -22,23 +22,32 @@ struct BrewConfigurationView: View {
         
         VStack(spacing: 32) {
             List {
-                TextField("cappingName",
-                          text: $cappingName,
-                          prompt: Text("Capping Name"))
+                TextField(
+                    "cappingName",
+                    text: $cappingName,
+                    prompt: Text("Capping Name")
+                )
                 
-                TextField("amountOfSamples",
-                          text: bindingAmountOfSamples,
-                          prompt: Text("Amount of Samples"))
+                TextField(
+                    "amountOfSamples",
+                    text: bindingAmountOfSamples,
+                    prompt: Text("Amount of Samples")
+                )
                     .keyboardType(.numberPad)
                 
-                TextField("comment",
-                          text: $comment,
-                          prompt: Text("Comment"))
-                            
+                TextField(
+                    "comment",
+                    text: $comment,
+                    prompt: Text("Comment")
+                )
             }
-                        
+            
             Button {
-                createBrewTapped()
+                createBrewTapped(
+                    cappingName,
+                    amountOfSamples ?? 1,
+                    comment
+                )
             } label: {
                 Text("Lets brew!")
                     .frame(maxWidth: .infinity)
@@ -55,6 +64,6 @@ struct BrewConfigurationView: View {
 
 struct BrewConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        BrewConfigurationView(createBrewTapped: {})
+        BrewConfigurationView(createBrewTapped: {_,_,_ in })
     }
 }

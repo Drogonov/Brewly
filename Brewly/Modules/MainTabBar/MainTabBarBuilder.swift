@@ -14,7 +14,7 @@ protocol MainTabBarBuilderProtocol {
     
     func createDetailHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController
     func createBrewConfigurationModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createBrewListModule(router: MainTabBarRouterProtocol) -> UIViewController
+    func createBrewListModule(router: MainTabBarRouterProtocol, model: BrewConfigurationModel) -> UIViewController
     func createBrewItemModule(router: MainTabBarRouterProtocol) -> UIViewController
     
 }
@@ -56,9 +56,13 @@ class MainTabBarBuilder: MainTabBarBuilderProtocol {
         return view
     }
     
-    func createBrewListModule(router: MainTabBarRouterProtocol) -> UIViewController {
+    func createBrewListModule(router: MainTabBarRouterProtocol, model: BrewConfigurationModel) -> UIViewController {
         let view = BrewListViewController()
-        let presenter = BrewListPresenter(view: view, router: router)
+        let presenter = BrewListPresenter(
+            view: view,
+            router: router,
+            model: model
+        )
         view.presenter = presenter
         return view
     }

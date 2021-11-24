@@ -11,7 +11,7 @@ protocol BrewPresenterProtocol: AnyObject {
     init(view: BrewViewProtocol,
          router: MainTabBarRouterProtocol)
     func setBrewView()
-    func showBrewConfigurationView(with _vc: UIViewController)
+    func showBrewConfigurationView(with vc: UIViewController)
 
 }
 
@@ -36,7 +36,7 @@ class BrewPresenter: BrewPresenterProtocol {
         self.view?.setBrewView()
     }
     
-    func showBrewConfigurationView(with _vc: UIViewController) {
-        self.router.showBrewConfiguration(with: _vc)
+    func showBrewConfigurationView(with vc: UIViewController) {
+        self.router.showBrewConfiguration(with: vc)
     }
 }

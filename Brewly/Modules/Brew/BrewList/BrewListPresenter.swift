@@ -9,7 +9,8 @@ import UIKit
 
 protocol BrewListPresenterProtocol: AnyObject {
     init(view: BrewListViewProtocol,
-         router: MainTabBarRouterProtocol)
+         router: MainTabBarRouterProtocol,
+         model: BrewConfigurationModel)
     func setBrewListView()
     func showBrewItemView(with _vc: UIViewController)
 }
@@ -20,13 +21,18 @@ class BrewListPresenter: BrewListPresenterProtocol {
     
     weak var view: BrewListViewProtocol?
     var router: MainTabBarRouterProtocol
+    var model: BrewConfigurationModel
         
     // MARK: - Init
 
-    required init(view: BrewListViewProtocol,
-                  router: MainTabBarRouterProtocol) {
+    required init(
+        view: BrewListViewProtocol,
+        router: MainTabBarRouterProtocol,
+        model: BrewConfigurationModel
+    ) {
         self.view = view
         self.router = router
+        self.model = model
     }
     
     // MARK: - Protocol Functions

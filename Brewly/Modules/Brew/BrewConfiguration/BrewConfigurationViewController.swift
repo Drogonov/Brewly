@@ -15,7 +15,7 @@ protocol BrewConfigurationViewProtocol: AnyObject {
 class BrewConfigurationViewController: BaseViewController {
     
     // MARK: - Properties
-        
+    
     var presenter: BrewConfigurationPresenterProtocol!
     
     // MARK: - Lifecycle
@@ -34,9 +34,16 @@ extension BrewConfigurationViewController {
     }
     
     private func configureView() {
-        let view = BrewConfigurationView(createBrewTapped: {
-            self.presenter.showBrewListView(with: self)
-        })
+        let view = BrewConfigurationView(
+            createBrewTapped: { cappingName, amountOfSamples, comment in
+                let tuple: (
+                    cappingName: String, amountOfSamples: Int, comment: String
+                ) = (
+                    cappingName, amountOfSamples, comment
+                )
+                self.presenter.showBrewListView(with: tuple, and: self)
+            }
+        )
         addMainViewToViewController(view)
     }
 }

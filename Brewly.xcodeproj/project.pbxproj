@@ -71,6 +71,7 @@
 		84D5D91F274E74F700C6091B /* AuthWithOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5D91E274E74F700C6091B /* AuthWithOTPView.swift */; };
 		84D5D921274E750900C6091B /* AuthWithOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5D920274E750900C6091B /* AuthWithOTPViewController.swift */; };
 		84D5D923274E751700C6091B /* AuthWithOTPPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5D922274E751700C6091B /* AuthWithOTPPresenter.swift */; };
+		84D5D925274E82F300C6091B /* BrewConfigurationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */; };
 		84E352402744E6AC00857289 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3523F2744E6AC00857289 /* AuthViewModel.swift */; };
 		84E43B3E273A5E3C0008E8AD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E43B3D273A5E3C0008E8AD /* User.swift */; };
 		84E43B41273A5E690008E8AD /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E43B40273A5E690008E8AD /* DB.swift */; };
@@ -160,6 +161,7 @@
 		84D5D91E274E74F700C6091B /* AuthWithOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithOTPView.swift; sourceTree = "<group>"; };
 		84D5D920274E750900C6091B /* AuthWithOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithOTPViewController.swift; sourceTree = "<group>"; };
 		84D5D922274E751700C6091B /* AuthWithOTPPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithOTPPresenter.swift; sourceTree = "<group>"; };
+		84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationModel.swift; sourceTree = "<group>"; };
 		84E3523F2744E6AC00857289 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		84E43B3D273A5E3C0008E8AD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		84E43B40273A5E690008E8AD /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				84391B3A2731960200B77E39 /* BrewConfiguration */,
 				84391B3B2731961600B77E39 /* BrewList */,
 				84B5847D2739167C005EA2A4 /* BrewItem */,
+				84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */,
 			);
 			path = Brew;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				84391B38273182DE00B77E39 /* BrewView.swift in Sources */,
 				84E352402744E6AC00857289 /* AuthViewModel.swift in Sources */,
 				8471D010273126F300A28728 /* BrewViewController.swift in Sources */,
+				84D5D925274E82F300C6091B /* BrewConfigurationModel.swift in Sources */,
 				84264DDD27458C3300CFBF7D /* AuthWithEmailPresenter.swift in Sources */,
 				84309B912747BBD400CB1023 /* UserSettings.swift in Sources */,
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
