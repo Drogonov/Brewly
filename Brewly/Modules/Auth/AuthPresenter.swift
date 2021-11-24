@@ -17,7 +17,7 @@ protocol LoginPresenterProtocol: AnyObject {
     func setLoginView()
     func showSignUp()
     func changeFlow(flow: FlowCase)
-    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig)
+    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController)
 }
 
 protocol SignUpPresenterProtocol: AnyObject {
@@ -28,7 +28,7 @@ protocol SignUpPresenterProtocol: AnyObject {
     )
     func setSignUpView()
     func showLogin()
-    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig)
+    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController)
 }
 
 class AuthPresenter {
@@ -60,14 +60,14 @@ class AuthPresenter {
         self.authService = authService
     }
     
-    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig) {
+    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController) {
         switch config {
         case .phone:
             debugPrint(config)
         case .email:
             showAuthWithEmail(with: option)
         case .google:
-            debugPrint(config)
+            showGoogleSignIn(with: viewController)
         case .facebook:
             debugPrint(config)
         case .apple:
@@ -153,5 +153,15 @@ extension AuthPresenter {
             authButtonText: authButtonText
         )
         router.showAuthWithEmail(model: model)
+    }
+    
+    func showGoogleSignIn(with viewController: BaseViewController) {
+        authService.handleGoogleSignUp(viewController: viewController) { wasAuthSuccessful in
+            if wasAuthSuccessful {
+                self.router.routeToApp()
+            } else {
+                debugPrint("DEBUG: wasAuthSuccessful \(wasAuthSuccessful)")
+            }
+        }
     }
 }

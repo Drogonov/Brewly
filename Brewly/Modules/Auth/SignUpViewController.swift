@@ -46,7 +46,7 @@ extension SignUpViewController {
         let view = AuthView(
             model: _model,
             buttonTappedWithConfig: { config in
-                self.presenter?.authButtonTappedWith(option: _model.option, config: config)
+                self.presenter?.authButtonTappedWith(option: _model.option, config: config, viewController: self)
             }, changeOptionTapped: {
                 self.presenter?.showLogin()
             })

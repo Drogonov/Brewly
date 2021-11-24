@@ -62,9 +62,9 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
             authService.handleLogin(
                 email: email,
                 password: password,
-                completion: { wasLoginSuccessful in
+                completion: { wasAuthSuccessful in
                     self.view?.hideLoader()
-                    if wasLoginSuccessful == true {
+                    if wasAuthSuccessful == true {
                         self.router.routeToApp()
                     } else {
                         
@@ -76,9 +76,9 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
                 fullname: fullname,
                 email: email,
                 password: password,
-                completion: { wasSignUpSuccessful in
+                completion: { wasAuthSuccessful in
                     self.view?.hideLoader()
-                    if wasSignUpSuccessful == true {
+                    if wasAuthSuccessful == true {
                         self.router.routeToApp()
                     } else {
                         
