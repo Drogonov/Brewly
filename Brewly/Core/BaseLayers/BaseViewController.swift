@@ -38,8 +38,8 @@ class BaseViewController: UIViewController {
 
     // MARK: - Open methods
         
-    func setNavigationBarTitle(with _title: String) {
-        self.navigationItem.title = _title
+    func setNavigationBarTitle(with title: String) {
+        self.navigationItem.title = title
     }
     
     func addMainViewToViewController<T: View>(_ newView: T) {

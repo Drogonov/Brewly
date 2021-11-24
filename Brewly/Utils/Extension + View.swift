@@ -8,17 +8,19 @@
 import UIKit
 
 extension UIView {
-        
-    func anchor(top: NSLayoutYAxisAnchor? = nil,
-                leading: NSLayoutXAxisAnchor? = nil,
-                bottom: NSLayoutYAxisAnchor? = nil,
-                trailing: NSLayoutXAxisAnchor? = nil,
-                paddingTop: CGFloat = 0,
-                paddingLeft: CGFloat = 0,
-                paddingBottom: CGFloat = 0,
-                paddingRight: CGFloat = 0,
-                width: CGFloat? = nil,
-                height: CGFloat? = nil) {
+    
+    func anchor(
+        top: NSLayoutYAxisAnchor? = nil,
+        leading: NSLayoutXAxisAnchor? = nil,
+        bottom: NSLayoutYAxisAnchor? = nil,
+        trailing: NSLayoutXAxisAnchor? = nil,
+        paddingTop: CGFloat = 0,
+        paddingLeft: CGFloat = 0,
+        paddingBottom: CGFloat = 0,
+        paddingRight: CGFloat = 0,
+        width: CGFloat? = nil,
+        height: CGFloat? = nil
+    ) {
         
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -52,9 +54,12 @@ extension UIView {
         centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    func centerY(inView view: UIView, leftAnchor: NSLayoutXAxisAnchor? = nil,
-                 paddingLeft: CGFloat = 0, constant: CGFloat = 0) {
-        
+    func centerY(
+        inView view: UIView,
+        leftAnchor: NSLayoutXAxisAnchor? = nil,
+        paddingLeft: CGFloat = 0,
+        constant: CGFloat = 0
+    ) {
         translatesAutoresizingMaskIntoConstraints = false
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
         

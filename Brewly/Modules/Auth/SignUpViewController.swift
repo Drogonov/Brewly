@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol SignUpViewProtocol: AnyObject {
-    func setSignUpView(with _model: AuthViewModel)
+    func setSignUpView(with model: AuthViewModel)
 }
 
 class SignUpViewController: BaseViewController {
@@ -42,11 +42,11 @@ extension SignUpViewController {
         presenter?.setSignUpView()
     }
 
-    private func configureView(with _model: AuthViewModel) {
+    private func configureView(with model: AuthViewModel) {
         let view = AuthView(
-            model: _model,
+            model: model,
             buttonTappedWithConfig: { config in
-                self.presenter?.authButtonTappedWith(option: _model.option, config: config, viewController: self)
+                self.presenter?.authButtonTappedWith(option: model.option, config: config, viewController: self)
             }, changeOptionTapped: {
                 self.presenter?.showLogin()
             })
@@ -57,7 +57,7 @@ extension SignUpViewController {
 // MARK: - SignUpViewProtocol
 
 extension SignUpViewController: SignUpViewProtocol {
-    func setSignUpView(with _model: AuthViewModel) {
-        configureView(with: _model)
+    func setSignUpView(with model: AuthViewModel) {
+        configureView(with: model)
     }
 }

@@ -34,6 +34,7 @@ protocol AuthRouterProtocol: Router {
     func showSignUp()
     func routeToApp()
     func showAuthWithEmail(model: AuthWithEmailViewModel)
+    func showAuthWithOTP(model: AuthWithOTPViewModel)
     func popViewController()
 }
 
@@ -48,8 +49,8 @@ protocol MainTabBarRouterProtocol: Router {
     var mainTabBarBuilder: MainTabBarBuilderProtocol { get set }
     
     func showMainTabBar()
-    func showDetailHistory(with _vc: UIViewController)
-    func showBrewConfiguration(with _vc: UIViewController)
-    func showBrewList(with _vc: UIViewController)
-    func showBrewItem(with _vc: UIViewController)
+    func showDetailHistory(with vc: UIViewController)
+    func showBrewConfiguration(with vc: UIViewController)
+    func showBrewList(with vc: UIViewController)
+    func showBrewItem(with vc: UIViewController)
 }

@@ -89,27 +89,27 @@ extension MainRouter: MainTabBarRouterProtocol {
         self.window?.rootViewController = tabBarController
     }
     
-    func showDetailHistory(with _vc: UIViewController) {
+    func showDetailHistory(with vc: UIViewController) {
         let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
-        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(detailViewController, animated: true)
     }
     
-    func showBrewConfiguration(with _vc: UIViewController) {
+    func showBrewConfiguration(with vc: UIViewController) {
         let brewConfigurationViewController = mainTabBarBuilder.createBrewConfigurationModule(router: self)
-        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewConfigurationViewController, animated: true)
     }
     
-    func showBrewList(with _vc: UIViewController) {
+    func showBrewList(with vc: UIViewController) {
         let brewListViewController = mainTabBarBuilder.createBrewListModule(router: self)
-        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewListViewController, animated: true)
     }
     
-    func showBrewItem(with _vc: UIViewController) {
+    func showBrewItem(with vc: UIViewController) {
         let brewItemViewController = mainTabBarBuilder.createBrewItemModule(router: self)
-        guard let navController = tabBarController.getNavController(with: _vc) else { return }
+        guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewItemViewController, animated: true)
     }
 }
@@ -134,6 +134,14 @@ extension MainRouter: AuthRouterProtocol {
             model: model
         )
         navigationController.pushViewController(authWithEmailViewController, animated: true)
+    }
+    
+    func showAuthWithOTP(model: AuthWithOTPViewModel) {
+        let authWithOTPViewController = authBuilder.createAuthWithOTPModule(
+            router: self,
+            model: model
+        )
+        navigationController.pushViewController(authWithOTPViewController, animated: true)
     }
     
     func routeToApp() {

@@ -67,7 +67,7 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
                     if wasAuthSuccessful == true {
                         self.router.routeToApp()
                     } else {
-                        
+                        debugPrint("DEBUG: wasAuthSuccessful \(wasAuthSuccessful)")
                     }
                 }
             )
@@ -81,7 +81,7 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
                     if wasAuthSuccessful == true {
                         self.router.routeToApp()
                     } else {
-                        
+                        debugPrint("DEBUG: wasAuthSuccessful \(wasAuthSuccessful)")
                     }
                 }
             )

@@ -1,23 +1,22 @@
 //
-//  AuthWithEmailView.swift
+//  AuthWithOTPView.swift
 //  Brewly
 //
-//  Created by Anton Vlezko on 17.11.2021.
+//  Created by Anton Vlezko on 24.11.2021.
 //
 
 import Foundation
 import SwiftUI
 
-struct AuthWithEmailView: View {
+struct AuthWithOTPView: View {
     
     // MARK: - Properties
     
-    @State private var fullname: String = ""
-    @State private var email: String = ""
+    @State private var phone: String = ""
     @State private var password: String = ""
     
-    let model: AuthWithEmailViewModel
-    var authButtonTapped: (String, String, String) -> Void
+    let model: AuthWithOTPViewModel
+    var authButtonTapped: (String, String) -> Void
     
     // MARK: - Construction
     
@@ -33,32 +32,18 @@ struct AuthWithEmailView: View {
 
 // MARK: - Helper Functions
 
-extension AuthWithEmailView {
+extension AuthWithOTPView {
     func textInputList() -> some View {
         List {
-            if model.option == .signUp {
-                HStack {
-                    Image(systemName: "person")
-                        .foregroundColor(Color.primaryTextColor)
-                        .frame(width: 32)
-                    
-                    TextField(
-                        "userName",
-                        text: $fullname,
-                        prompt: Text("Имя")
-                    )
-                }
-            }
-            
             HStack {
-                Image(systemName: "mail")
+                Image(systemName: "phone")
                     .foregroundColor(Color.primaryTextColor)
                     .frame(width: 32)
                 
                 TextField(
-                    "email",
-                    text: $email,
-                    prompt: Text("Почта")
+                    "phone",
+                    text: $phone,
+                    prompt: Text("Телефон")
                 )
                     .keyboardType(.emailAddress)
                 
@@ -84,8 +69,7 @@ extension AuthWithEmailView {
             backgroundColor: Color.actionButtonBackgroundColor,
             action: {
                 authButtonTapped(
-                    fullname,
-                    email,
+                    phone,
                     password
                 )
             },
@@ -101,15 +85,15 @@ extension AuthWithEmailView {
 
 // MARK: - AuthView_Previews
 
-struct AuthWithEmail_Previews: PreviewProvider {
+struct AuthWithOTPView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthWithEmailView(
-            model: AuthWithEmailViewModel(
+        AuthWithOTPView(
+            model: AuthWithOTPViewModel(
                 option: .signUp,
                 navigationTitle: "Регистрация",
                 authButtonText: "Зарегистрироваться"
             ),
-            authButtonTapped: {_, _, _ in }
+            authButtonTapped: {_, _ in }
         )
     }
 }

@@ -12,7 +12,7 @@ protocol UserSettingsServiceProtocol {
     func shouldOnboardingBeShown() -> Bool
     func loadUserSettings() -> UserSettings
     func setDefaultUserSetting() -> UserSettings
-    func saveUserSetting(with _settings: UserSettings)
+    func saveUserSetting(with settings: UserSettings)
 }
 
 class UserSettingsService: Injectable {
@@ -63,7 +63,7 @@ extension UserSettingsService: UserSettingsServiceProtocol {
         return userSettings
     }
     
-    func saveUserSetting(with _settings: UserSettings) {
-        UserDefaults.standard.set(try? PropertyListEncoder().encode(_settings), forKey: userSettingKey)
+    func saveUserSetting(with settings: UserSettings) {
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(settings), forKey: userSettingKey)
     }
 }

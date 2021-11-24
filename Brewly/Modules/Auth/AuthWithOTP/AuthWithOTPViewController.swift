@@ -1,22 +1,22 @@
 //
-//  AuthWithEmailViewController.swift
+//  AuthWithOTPViewController.swift
 //  Brewly
 //
-//  Created by Anton Vlezko on 17.11.2021.
+//  Created by Anton Vlezko on 24.11.2021.
 //
 
 import UIKit
 import SwiftUI
 
-protocol AuthWithEmailViewProtocol: BaseViewLoader {
-    func setAuthWithEmailView(with model: AuthWithEmailViewModel)
+protocol AuthWithOTPViewProtocol: BaseViewLoader {
+    func setAuthWithOTPView(with model: AuthWithOTPViewModel)
 }
 
-class AuthWithEmailViewController: BaseViewController {
+class AuthWithOTPViewController: BaseViewController {
     
     // MARK: - Properties
 
-    var presenter: AuthWithEmailPresenterProtocol?
+    var presenter: AuthWithOTPPresenterProtocol?
     
     // MARK: - Lifecycle
     
@@ -36,17 +36,17 @@ class AuthWithEmailViewController: BaseViewController {
 
 // MARK: - Configure UI
 
-extension AuthWithEmailViewController {
+extension AuthWithOTPViewController {
     private func configureUI() {
         view.backgroundColor = UIColor.systemGroupedBackground
-        presenter?.setAuthWithEmailView()
+        presenter?.setAuthWithOTPView()
     }
             
-    private func configureView(with model: AuthWithEmailViewModel) {
-        let view = AuthWithEmailView(
+    private func configureView(with model: AuthWithOTPViewModel) {
+        let view = AuthWithOTPView(
             model: model,
-            authButtonTapped: { fullname, email, password in
-                self.presenter?.authWithData(fullname: fullname, email: email, password: password)
+            authButtonTapped: { phone, password in
+                self.presenter?.authWithData(phone: phone, password: password)
             }
         )
         addMainViewToViewController(view)
@@ -55,8 +55,8 @@ extension AuthWithEmailViewController {
 
 // MARK: - SignUpViewProtocol
 
-extension AuthWithEmailViewController: AuthWithEmailViewProtocol {
-    func setAuthWithEmailView(with model: AuthWithEmailViewModel) {
+extension AuthWithOTPViewController: AuthWithOTPViewProtocol {
+    func setAuthWithOTPView(with model: AuthWithOTPViewModel) {
         configureView(with: model)
         setNavigationBarTitle(with: model.navigationTitle)
     }

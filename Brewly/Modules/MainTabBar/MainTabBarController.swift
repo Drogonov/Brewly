@@ -51,17 +51,18 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - External Functions
     
-    func configureTabBar(with _vcArray: [(vc: UIViewController, tabBarItemType: TabBarItemType)]) {
-        viewControllers = _vcArray.map { item in
+    func configureTabBar(with vcArray: [(vc: UIViewController, tabBarItemType: TabBarItemType)]) {
+        viewControllers = vcArray.map { item in
             item.vc.tabBarItem = item.tabBarItemType.type
             let nav = embedToNav(item.vc)
             
             return nav
         }
+        selectedIndex = 1
     }
     
-    func getNavController<T: UIViewController>(with _viewController: T) -> UINavigationController? {
-        guard let index = getIndexOfEmbedeWithNavVC(with: _viewController),
+    func getNavController<T: UIViewController>(with viewController: T) -> UINavigationController? {
+        guard let index = getIndexOfEmbedeWithNavVC(with: viewController),
               let nav = viewControllers?[index] as? UINavigationController else { return nil }
         
         return nav
@@ -89,9 +90,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
         return UINavigationController(rootViewController: viewController)
     }
     
-    private func getIndexOfEmbedeWithNavVC(with _viewController: UIViewController) -> Int? {
+    private func getIndexOfEmbedeWithNavVC(with viewController: UIViewController) -> Int? {
         viewControllers?.firstIndex(where: {
-            isControllersTypeEqual(firstController: $0, secondController: _viewController)
+            isControllersTypeEqual(firstController: $0, secondController: viewController)
         })
     }
     

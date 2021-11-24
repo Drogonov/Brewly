@@ -32,17 +32,17 @@ struct AuthView: View {
 // MARK: - Helper Functions
 
 extension AuthView {
-    func authWithButton(with _buttonModel: AuthButtonViewModel) -> some View {
+    func authWithButton(with buttonModel: AuthButtonViewModel) -> some View {
         ActionButton(
             foregroundColor: Color.actionButtonTextColor,
             backgroundColor: Color.actionButtonBackgroundColor,
             action: {
-                buttonTappedWithConfig(_buttonModel.config)
+                buttonTappedWithConfig(buttonModel.config)
             },
             content: {
                 HStack {
-                    Image(systemName: _buttonModel.buttonImageName)
-                    Text(model.authConfigButtonText + " " + _buttonModel.title)
+                    Image(systemName: buttonModel.buttonImageName)
+                    Text(model.authConfigButtonText + " " + buttonModel.title)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }

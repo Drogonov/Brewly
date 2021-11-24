@@ -18,12 +18,14 @@ enum NotificationConfiguration {
 }
 
 extension UIViewController {
-    func configureAddModelAlert(title: String,
-                                message: String? = nil,
-                                textFieldNamePlaceholder: String? = nil,
-                                textFieldActionText: String? = nil,
-                                rejectActionText: String? = nil,
-                                completion: @escaping(NotificationConfiguration, String?) -> Void) {
+    func configureAddModelAlert(
+        title: String,
+        message: String? = nil,
+        textFieldNamePlaceholder: String? = nil,
+        textFieldActionText: String? = nil,
+        rejectActionText: String? = nil,
+        completion: @escaping(NotificationConfiguration, String?) -> Void
+    ) {
         var vagetableName: String?
         let alert = UIAlertController(title: title,
                                       message: message,
@@ -44,7 +46,7 @@ extension UIViewController {
                 completion(.textField, vagetableName)
             }
         }))
-                        
+        
         // reject action
         alert.addAction(UIAlertAction(title: rejectActionText,
                                       style: .destructive,
@@ -61,7 +63,7 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -69,33 +71,33 @@ extension UIViewController {
     func animateWithKeyboard(
         notification: NSNotification,
         animations: ((_ keyboardFrame: CGRect) -> Void)?) {
-        // Extract the duration of the keyboard animation
-        let durationKey = UIResponder.keyboardAnimationDurationUserInfoKey
-        let duration = notification.userInfo![durationKey] as! Double
-        
-        // Extract the final frame of the keyboard
-        let frameKey = UIResponder.keyboardFrameEndUserInfoKey
-        let keyboardFrameValue = notification.userInfo![frameKey] as! NSValue
-        
-        // Extract the curve of the iOS keyboard animation
-        let curveKey = UIResponder.keyboardAnimationCurveUserInfoKey
-        let curveValue = notification.userInfo![curveKey] as! Int
-        let curve = UIView.AnimationCurve(rawValue: curveValue)!
-
-        // Create a property animator to manage the animation
-        let animator = UIViewPropertyAnimator(
-            duration: duration,
-            curve: curve
-        ) {
-            // Perform the necessary animation layout updates
-            animations?(keyboardFrameValue.cgRectValue)
+            // Extract the duration of the keyboard animation
+            let durationKey = UIResponder.keyboardAnimationDurationUserInfoKey
+            let duration = notification.userInfo![durationKey] as! Double
             
-            // Required to trigger NSLayoutConstraint changes
-            // to animate
-            self.view?.layoutIfNeeded()
+            // Extract the final frame of the keyboard
+            let frameKey = UIResponder.keyboardFrameEndUserInfoKey
+            let keyboardFrameValue = notification.userInfo![frameKey] as! NSValue
+            
+            // Extract the curve of the iOS keyboard animation
+            let curveKey = UIResponder.keyboardAnimationCurveUserInfoKey
+            let curveValue = notification.userInfo![curveKey] as! Int
+            let curve = UIView.AnimationCurve(rawValue: curveValue)!
+            
+            // Create a property animator to manage the animation
+            let animator = UIViewPropertyAnimator(
+                duration: duration,
+                curve: curve
+            ) {
+                // Perform the necessary animation layout updates
+                animations?(keyboardFrameValue.cgRectValue)
+                
+                // Required to trigger NSLayoutConstraint changes
+                // to animate
+                self.view?.layoutIfNeeded()
+            }
+            
+            // Start the animation
+            animator.startAnimation()
         }
-        
-        // Start the animation
-        animator.startAnimation()
-    }
 }

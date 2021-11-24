@@ -28,6 +28,12 @@ struct AuthWithEmailViewModel {
     let authButtonText: String
 }
 
+struct AuthWithOTPViewModel {
+    let option: AuthOption
+    let navigationTitle: String
+    let authButtonText: String
+}
+
 struct AuthButtons {
     static let phone = AuthButtonViewModel(
         config: .phone,

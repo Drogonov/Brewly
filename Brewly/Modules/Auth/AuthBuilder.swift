@@ -14,6 +14,10 @@ protocol AuthModuleBuilderProtocol {
         router: AuthRouterProtocol,
         model: AuthWithEmailViewModel
     ) -> UIViewController
+    func createAuthWithOTPModule(
+        router: AuthRouterProtocol,
+        model: AuthWithOTPViewModel
+    ) -> UIViewController
 }
 
 class AuthModuleBuilder: AuthModuleBuilderProtocol {
@@ -47,6 +51,21 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     ) -> UIViewController {
         let view = AuthWithEmailViewController()
         let presenter = AuthWithEmailPresenter(
+            view: view,
+            router: router,
+            model: model,
+            authService: authService
+        )
+        view.presenter = presenter
+        return view
+    }
+    
+    func createAuthWithOTPModule(
+        router: AuthRouterProtocol,
+        model: AuthWithOTPViewModel
+    ) -> UIViewController {
+        let view = AuthWithOTPViewController()
+        let presenter = AuthWithOTPPresenter(
             view: view,
             router: router,
             model: model,

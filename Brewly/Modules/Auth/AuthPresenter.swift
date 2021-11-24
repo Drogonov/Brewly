@@ -63,7 +63,7 @@ class AuthPresenter {
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController) {
         switch config {
         case .phone:
-            debugPrint(config)
+            showAuthWithOTP(with: option)
         case .email:
             showAuthWithEmail(with: option)
         case .google:
@@ -134,11 +134,33 @@ extension AuthPresenter: SignUpPresenterProtocol {
 // MARK: - Helper Functions
 
 extension AuthPresenter {
-    private func showAuthWithEmail(with _option: AuthOption) {
+    func showAuthWithOTP(with option: AuthOption) {
         let navigationTitle: String
         let authButtonText: String
         
-        switch _option {
+        switch option {
+        case .login:
+            navigationTitle = "Вход"
+            authButtonText = "Войти"
+        case .signUp:
+            navigationTitle = "Регистрация"
+            authButtonText = "Зарегистрироваться"
+        }
+        
+        let model = AuthWithOTPViewModel(
+            option: option,
+            navigationTitle: navigationTitle,
+            authButtonText: authButtonText
+        )
+        router.showAuthWithOTP(model: model)
+        
+    }
+    
+    private func showAuthWithEmail(with option: AuthOption) {
+        let navigationTitle: String
+        let authButtonText: String
+        
+        switch option {
         case .login:
             navigationTitle = "Вход"
             authButtonText = "Войти"
@@ -148,7 +170,7 @@ extension AuthPresenter {
         }
         
         let model = AuthWithEmailViewModel(
-            option: _option,
+            option: option,
             navigationTitle: navigationTitle,
             authButtonText: authButtonText
         )
