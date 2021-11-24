@@ -12,7 +12,7 @@ protocol BrewViewProtocol: AnyObject {
     func setBrewView()
 }
 
-class BrewViewController: UIViewController {
+class BrewViewController: BaseViewController {
     
     // MARK: - Properties
         
@@ -24,35 +24,20 @@ class BrewViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
+}
+
+// MARK: - Configure UI
+
+extension BrewViewController {
     private func configureUI() {
-        view.backgroundColor = .systemBackground
-        configureNavigationBar()
-        configureBrewView()
+        presenter?.setBrewView()
     }
     
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Brew"
-    }
-    
-    private func configureBrewView() {
-        let brewView = BrewView(brewButtonTapped: {
+    private func configureView(with model: AuthViewModel) {
+        let view = BrewView(brewButtonTapped: {
             self.presenter.showBrewConfigurationView(with: self)
         })
-        addBrewViewToVC(brewView: brewView)
-    }
-    
-    private func addBrewViewToVC(brewView: BrewView) {
-        let brewCtrl = UIHostingController(rootView: brewView)
-        addChild(brewCtrl)
-        view.addSubview(brewCtrl.view)
-        
-        brewCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
+        addMainViewToViewController(view)
     }
 }
 
@@ -60,6 +45,7 @@ class BrewViewController: UIViewController {
 
 extension BrewViewController: BrewViewProtocol {
     func setBrewView() {
+        setNavigationBarTitle(with: "Brew")
         presenter.setBrewView()
     }
 }

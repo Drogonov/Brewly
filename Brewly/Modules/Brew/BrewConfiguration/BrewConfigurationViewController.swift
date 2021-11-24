@@ -12,7 +12,7 @@ protocol BrewConfigurationViewProtocol: AnyObject {
     func setBrewConfigurationView()
 }
 
-class BrewConfigurationViewController: UIViewController {
+class BrewConfigurationViewController: BaseViewController {
     
     // MARK: - Properties
         
@@ -24,35 +24,20 @@ class BrewConfigurationViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
+}
+
+// MARK: - Configure UI
+
+extension BrewConfigurationViewController {
     private func configureUI() {
-        view.backgroundColor = .systemBackground
-        configureNavigationBar()
-        configureBrewConfigurationView()
+        presenter?.setBrewConfigurationView()
     }
     
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Brew"
-    }
-    
-    private func configureBrewConfigurationView() {
-        let brewConfigurationView = BrewConfigurationView(createBrewTapped: {
+    private func configureView() {
+        let view = BrewConfigurationView(createBrewTapped: {
             self.presenter.showBrewListView(with: self)
         })
-        addBrewConfigurationViewToVC(brewConfigurationView: brewConfigurationView)
-    }
-    
-    private func addBrewConfigurationViewToVC(brewConfigurationView: BrewConfigurationView) {
-        let brewConfigurationCtrl = UIHostingController(rootView: brewConfigurationView)
-        addChild(brewConfigurationCtrl)
-        view.addSubview(brewConfigurationCtrl.view)
-        
-        brewConfigurationCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
+        addMainViewToViewController(view)
     }
 }
 
@@ -60,6 +45,7 @@ class BrewConfigurationViewController: UIViewController {
 
 extension BrewConfigurationViewController: BrewConfigurationViewProtocol {
     func setBrewConfigurationView() {
-        presenter.setBrewConfigurationView()
+        setNavigationBarTitle(with: "Brew Configuration")
+        configureView()
     }
 }

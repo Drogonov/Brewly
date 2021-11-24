@@ -12,7 +12,7 @@ protocol BrewListViewProtocol: AnyObject {
     func setBrewListView()
 }
 
-class BrewListViewController: UIViewController {
+class BrewListViewController: BaseViewController {
     
     // MARK: - Properties
         
@@ -24,35 +24,21 @@ class BrewListViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
     }
-    
+}
+
+// MARK: - Configure UI
+
+extension BrewListViewController {
     private func configureUI() {
-        view.backgroundColor = .systemBackground
-        configureNavigationBar()
-        configureBrewListView()
+        setNavigationBarTitle(with: "Brew List")
+        presenter.setBrewListView()
     }
     
-    private func configureNavigationBar() {
-        self.navigationItem.title = "Brew List"
-    }
-    
-    private func configureBrewListView() {
-        let brewListView = BrewListView(brewCellTapped: {
+    private func configureView() {
+        let view = BrewListView(brewCellTapped: {
             self.presenter.showBrewItemView(with: self)
         })
-        addBrewListViewToVC(brewListView: brewListView)
-    }
-    
-    private func addBrewListViewToVC(brewListView: BrewListView) {
-        let brewListCtrl = UIHostingController(rootView: brewListView)
-        addChild(brewListCtrl)
-        view.addSubview(brewListCtrl.view)
-        
-        brewListCtrl.view.anchor(
-            top: view.safeAreaLayoutGuide.topAnchor,
-            leading: view.safeAreaLayoutGuide.leftAnchor,
-            bottom: view.safeAreaLayoutGuide.bottomAnchor,
-            trailing: view.safeAreaLayoutGuide.rightAnchor
-        )
+        addMainViewToViewController(view)
     }
 }
 
@@ -60,6 +46,6 @@ class BrewListViewController: UIViewController {
 
 extension BrewListViewController: BrewListViewProtocol {
     func setBrewListView() {
-        presenter.setBrewListView()
+        configureView()
     }
 }
