@@ -18,7 +18,6 @@ protocol AuthPresenterProtocol: AnyObject {
     func setAuthView()
     func showLogin()
     func showSignUp()
-    func swipeRight()
     func swipeLeft()
     func changeFlow(flow: FlowCase)
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController)
@@ -59,16 +58,10 @@ extension AuthPresenter: AuthPresenterProtocol {
     func showSignUp() {
         router.showSignUp()
     }
-    
-    func swipeRight() {
-        if model.option == .login {
-            router.showSignUp()
-        }
-    }
-    
+        
     func swipeLeft() {
         if model.option == .signUp {
-            router.showLogin()
+            showLogin()
         }
     }
     

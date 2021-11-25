@@ -32,12 +32,6 @@ class AuthViewController: BaseViewController {
             self.presenter?.swipeLeft()
         }
     }
-    
-    @objc override func handleSwipeRightGesture(gesture: UISwipeGestureRecognizer) -> Void  {
-        if gesture.direction == .right {
-            self.presenter?.swipeRight()
-        }
-    }
 }
 
 // MARK: - Configure UI
