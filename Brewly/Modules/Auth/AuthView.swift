@@ -34,8 +34,6 @@ struct AuthView: View {
 extension AuthView {
     func authWithButton(with buttonModel: AuthButtonViewModel) -> some View {
         ActionButton(
-            foregroundColor: Color.actionButtonTextColor,
-            backgroundColor: Color.actionButtonBackgroundColor,
             action: {
                 buttonTappedWithConfig(buttonModel.config)
             },
@@ -77,7 +75,7 @@ struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView(
             model: AuthViewModel(
-                title: "Login",
+                navigationTitle: "Login",
                 option: .signUp,
                 buttonsArray: [
                     AuthButtons.phone,

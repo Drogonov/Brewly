@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol BrewViewProtocol: AnyObject {
-    func setBrewView()
+    func setBrewView(with model: BrewViewModel)
 }
 
 class BrewViewController: BaseViewController {
@@ -33,8 +33,9 @@ extension BrewViewController {
         presenter?.setBrewView()
     }
     
-    private func configureView() {
-        let view = BrewView(brewButtonTapped: {
+    private func configureView(with model: BrewViewModel) {
+        let view = BrewView(brewButtonText: model.brewButtonText,
+                            brewButtonTapped: {
             self.presenter?.showBrewConfigurationView(with: self)
         })
         addMainViewToViewController(view)
@@ -44,8 +45,8 @@ extension BrewViewController {
 // MARK: - BrewViewProtocol
 
 extension BrewViewController: BrewViewProtocol {
-    func setBrewView() {
-        setNavigationBarTitle(with: "Brew")
-        configureView()
+    func setBrewView(with model: BrewViewModel) {
+        setNavigationBarTitle(with: model.navigationTitle)
+        configureView(with: model)
     }
 }

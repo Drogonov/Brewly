@@ -19,8 +19,8 @@ struct ActionButton<Content: View>: View {
     let backgroundColor: Color
     
     init(
-        foregroundColor: Color = .white,
-        backgroundColor: Color = .black,
+        foregroundColor: Color = Color.actionButtonTextColor,
+        backgroundColor: Color = Color.actionButtonBackgroundColor,
         action: @escaping () -> Void,
         @ViewBuilder content: () -> Content
     ) {

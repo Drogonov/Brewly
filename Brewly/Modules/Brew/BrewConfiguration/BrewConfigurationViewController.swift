@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol BrewConfigurationViewProtocol: AnyObject {
-    func setBrewConfigurationView()
+    func setBrewConfigurationView(navigationTitle: String)
 }
 
 class BrewConfigurationViewController: BaseViewController {
@@ -30,6 +30,7 @@ class BrewConfigurationViewController: BaseViewController {
 
 extension BrewConfigurationViewController {
     private func configureUI() {
+        view.backgroundColor = UIColor.systemGroupedBackground
         presenter?.setBrewConfigurationView()
     }
     
@@ -51,8 +52,8 @@ extension BrewConfigurationViewController {
 // MARK: - BrewConfigurationViewProtocol
 
 extension BrewConfigurationViewController: BrewConfigurationViewProtocol {
-    func setBrewConfigurationView() {
-        setNavigationBarTitle(with: "Brew Configuration")
+    func setBrewConfigurationView(navigationTitle: String) {
+        setNavigationBarTitle(with: navigationTitle)
         configureView()
     }
 }

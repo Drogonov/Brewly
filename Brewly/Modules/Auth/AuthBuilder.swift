@@ -25,7 +25,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController {
         let model = AuthViewModel(
-            title: "Login",
+            navigationTitle: "Login",
             option: .login,
             buttonsArray: [
                 AuthButtons.phone,
@@ -52,7 +52,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
         let model = AuthViewModel(
-            title: "Sign Up",
+            navigationTitle: "Sign Up",
             option: .signUp,
             buttonsArray: [
                 AuthButtons.phone,

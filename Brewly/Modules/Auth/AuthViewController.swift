@@ -66,7 +66,7 @@ extension AuthViewController {
 
 extension AuthViewController: AuthViewProtocol {
     func setAuthView(with model: AuthViewModel) {
-        setNavigationBarTitle(with: model.title)
+        setNavigationBarTitle(with: model.navigationTitle)
         configureView(with: model)
     }
 }

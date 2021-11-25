@@ -80,8 +80,6 @@ extension AuthWithEmailView {
     
     func authButton() -> some View {
         ActionButton(
-            foregroundColor: Color.actionButtonTextColor,
-            backgroundColor: Color.actionButtonBackgroundColor,
             action: {
                 authButtonTapped(
                     fullname,

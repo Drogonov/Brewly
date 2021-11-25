@@ -8,70 +8,30 @@
 import UIKit
 
 protocol MainTabBarBuilderProtocol {
-    func createHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createBrewModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createProfileModule(router: MainTabBarRouterProtocol) -> UIViewController
+    var historyBuilder: HistoryBuilderProtocol { get set }
+    var brewBuilder: BrewBuilderProtocol { get set }
+    var profileBuilder: ProfileBuilderProtocol { get set }
     
-    func createDetailHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createBrewConfigurationModule(router: MainTabBarRouterProtocol) -> UIViewController
-    func createBrewListModule(router: MainTabBarRouterProtocol, model: BrewConfigurationModel) -> UIViewController
-    func createBrewItemModule(router: MainTabBarRouterProtocol) -> UIViewController
-    
+    init(
+        historyBuilder: HistoryBuilderProtocol,
+        brewBuilder: BrewBuilderProtocol,
+        profileBuilder: ProfileBuilderProtocol
+    )
 }
 
 class MainTabBarBuilder: MainTabBarBuilderProtocol {
-    func createHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = HistoryViewController()
-        let presenter = HistoryPresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
-    }
+    var historyBuilder: HistoryBuilderProtocol
+    var brewBuilder: BrewBuilderProtocol
+    var profileBuilder: ProfileBuilderProtocol
     
-    func createBrewModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = BrewViewController()
-        let presenter = BrewPresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
-    }
-    
-    func createProfileModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = ProfileViewController()
-        let presenter = ProfilePresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
-    }
-    
-    
-    func createDetailHistoryModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = DetailHistoryViewController()
-        let presenter = DetailHistoryPresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
-    }
-    
-    func createBrewConfigurationModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = BrewConfigurationViewController()
-        let presenter = BrewConfigurationPresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
-    }
-    
-    func createBrewListModule(router: MainTabBarRouterProtocol, model: BrewConfigurationModel) -> UIViewController {
-        let view = BrewListViewController()
-        let presenter = BrewListPresenter(
-            view: view,
-            router: router,
-            model: model
-        )
-        view.presenter = presenter
-        return view
-    }
-    
-    func createBrewItemModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let view = BrewItemViewController()
-        let presenter = BrewItemPresenter(view: view, router: router)
-        view.presenter = presenter
-        return view
+    required init(
+        historyBuilder: HistoryBuilderProtocol = HistoryBuilder(),
+        brewBuilder: BrewBuilderProtocol = BrewBuilder(),
+        profileBuilder: ProfileBuilderProtocol = ProfileBuilder()
+    ) {
+        self.historyBuilder = historyBuilder
+        self.brewBuilder = brewBuilder
+        self.profileBuilder = profileBuilder
     }
 }
 

@@ -75,9 +75,9 @@ extension MainRouter: MainRouterProtocol {
 
 extension MainRouter: MainTabBarRouterProtocol {
     func showMainTabBar() {
-        let historyController = mainTabBarBuilder.createHistoryModule(router: self)
-        let brewController = mainTabBarBuilder.createBrewModule(router: self)
-        let profileController = mainTabBarBuilder.createProfileModule(router: self)
+        let historyController = mainTabBarBuilder.historyBuilder.createHistoryModule(router: self)
+        let brewController = mainTabBarBuilder.brewBuilder.createBrewModule(router: self)
+        let profileController = mainTabBarBuilder.profileBuilder.createProfileModule(router: self)
         
         let vcArray: [(vc: UIViewController, tabBarItemType: TabBarItemType)] = [
             (vc: historyController, tabBarItemType: .history),
@@ -90,25 +90,25 @@ extension MainRouter: MainTabBarRouterProtocol {
     }
     
     func showDetailHistory(with vc: UIViewController) {
-        let detailViewController = mainTabBarBuilder.createDetailHistoryModule(router: self)
+        let detailViewController = mainTabBarBuilder.historyBuilder.createDetailHistoryModule(router: self)
         guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(detailViewController, animated: true)
     }
     
     func showBrewConfiguration(with vc: UIViewController) {
-        let brewConfigurationViewController = mainTabBarBuilder.createBrewConfigurationModule(router: self)
+        let brewConfigurationViewController = mainTabBarBuilder.brewBuilder.createBrewConfigurationModule(router: self)
         guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewConfigurationViewController, animated: true)
     }
     
     func showBrewList(with model: BrewConfigurationModel, and vc: UIViewController) {
-        let brewListViewController = mainTabBarBuilder.createBrewListModule(router: self, model: model)
+        let brewListViewController = mainTabBarBuilder.brewBuilder.createBrewListModule(router: self, model: model)
         guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewListViewController, animated: true)
     }
     
     func showBrewItem(with vc: UIViewController) {
-        let brewItemViewController = mainTabBarBuilder.createBrewItemModule(router: self)
+        let brewItemViewController = mainTabBarBuilder.brewBuilder.createBrewItemModule(router: self)
         guard let navController = tabBarController.getNavController(with: vc) else { return }
         navController.pushViewController(brewItemViewController, animated: true)
     }

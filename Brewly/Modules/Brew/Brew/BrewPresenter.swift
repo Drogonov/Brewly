@@ -8,11 +8,14 @@
 import UIKit
 
 protocol BrewPresenterProtocol: AnyObject {
-    init(view: BrewViewProtocol,
-         router: MainTabBarRouterProtocol)
+    init(
+        view: BrewViewProtocol,
+        router: MainTabBarRouterProtocol,
+        model: BrewViewModel
+    )
     func setBrewView()
     func showBrewConfigurationView(with vc: UIViewController)
-
+    
 }
 
 class BrewPresenter: BrewPresenterProtocol {
@@ -21,19 +24,24 @@ class BrewPresenter: BrewPresenterProtocol {
     
     weak var view: BrewViewProtocol?
     var router: MainTabBarRouterProtocol
-        
+    var model: BrewViewModel
+    
     // MARK: - Init
-
-    required init(view: BrewViewProtocol,
-                  router: MainTabBarRouterProtocol) {
+    
+    required init(
+        view: BrewViewProtocol,
+        router: MainTabBarRouterProtocol,
+        model: BrewViewModel
+    ) {
         self.view = view
         self.router = router
+        self.model = model
     }
     
     // MARK: - Protocol Functions
-
+    
     func setBrewView() {
-        self.view?.setBrewView()
+        self.view?.setBrewView(with: model)
     }
     
     func showBrewConfigurationView(with vc: UIViewController) {

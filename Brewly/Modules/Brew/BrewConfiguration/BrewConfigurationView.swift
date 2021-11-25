@@ -17,7 +17,7 @@ struct BrewConfigurationView: View {
     var body: some View {
         let bindingAmountOfSamples = Binding<String>(
             get: { self.amountOfSamples?.numberToString ?? "" },
-            set: { self.amountOfSamples = $0.stringToNumber ?? 0 }
+            set: { self.amountOfSamples = $0.stringToNumber }
         )
         
         VStack(spacing: 32) {
@@ -34,6 +34,7 @@ struct BrewConfigurationView: View {
                     prompt: Text("Amount of Samples")
                 )
                     .keyboardType(.numberPad)
+
                 
                 TextField(
                     "comment",

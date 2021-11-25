@@ -37,7 +37,7 @@ class BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
     // MARK: - Protocol Functions
     
     func setBrewConfigurationView() {
-        self.view?.setBrewConfigurationView()
+        self.view?.setBrewConfigurationView(navigationTitle: "Brew Configuration")
     }
     
     func showBrewListView(with tuple: (cappingName: String, amountOfSamples: Int, comment: String), and vc: UIViewController) {

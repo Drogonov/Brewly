@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BrewView: View {
     
+    let brewButtonText: String
     let brewButtonTapped: () -> Void
     
     var body: some View {
@@ -21,16 +22,14 @@ struct BrewView: View {
             
             Spacer()
             
-            Button {
-                brewButtonTapped()
-            } label: {
-                Text("Lets brew!")
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(Color(UIColor.label))
-                    .foregroundColor(Color(UIColor.systemBackground))
-                    .cornerRadius(8)
-            }
+            ActionButton(
+                action: {
+                    brewButtonTapped()
+                },
+                content: {
+                    Text(brewButtonText)
+                }
+            )
         }
         .padding(.horizontal, 64)
         .padding(.vertical, 32)
@@ -39,6 +38,9 @@ struct BrewView: View {
 
 struct BrewView_Previews: PreviewProvider {
     static var previews: some View {
-        BrewView(brewButtonTapped: {})
+        BrewView(
+            brewButtonText: "Lets Brew!",
+            brewButtonTapped: {}
+        )
     }
 }
