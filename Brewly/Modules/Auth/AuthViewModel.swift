@@ -8,6 +8,7 @@
 import Foundation
 
 struct AuthViewModel {
+    let title: String
     let option: AuthOption
     let buttonsArray: [AuthButtonViewModel]
     let authConfigButtonText: String

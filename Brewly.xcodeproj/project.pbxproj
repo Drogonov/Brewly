@@ -18,6 +18,7 @@
 		840D6A43272BFDD9007E4FD7 /* DetailHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A42272BFDD9007E4FD7 /* DetailHistoryViewController.swift */; };
 		840D6A45272BFDE5007E4FD7 /* DetailHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A44272BFDE5007E4FD7 /* DetailHistoryView.swift */; };
 		840D6A47272BFE0E007E4FD7 /* DetailHistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D6A46272BFE0E007E4FD7 /* DetailHistoryPresenter.swift */; };
+		8411CA03274F9D78004E2060 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8411CA02274F9D78004E2060 /* AuthViewController.swift */; };
 		84264DD52745764B00CFBF7D /* AuthWithEmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84264DD42745764B00CFBF7D /* AuthWithEmailView.swift */; };
 		84264DDB27458C2200CFBF7D /* AuthWithEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84264DDA27458C2200CFBF7D /* AuthWithEmailViewController.swift */; };
 		84264DDD27458C3300CFBF7D /* AuthWithEmailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84264DDC27458C3300CFBF7D /* AuthWithEmailPresenter.swift */; };
@@ -110,6 +111,7 @@
 		840D6A42272BFDD9007E4FD7 /* DetailHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryViewController.swift; sourceTree = "<group>"; };
 		840D6A44272BFDE5007E4FD7 /* DetailHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryView.swift; sourceTree = "<group>"; };
 		840D6A46272BFE0E007E4FD7 /* DetailHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHistoryPresenter.swift; sourceTree = "<group>"; };
+		8411CA02274F9D78004E2060 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		84264DD42745764B00CFBF7D /* AuthWithEmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithEmailView.swift; sourceTree = "<group>"; };
 		84264DDA27458C2200CFBF7D /* AuthWithEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithEmailViewController.swift; sourceTree = "<group>"; };
 		84264DDC27458C3300CFBF7D /* AuthWithEmailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthWithEmailPresenter.swift; sourceTree = "<group>"; };
@@ -406,8 +408,9 @@
 				84CDFB4D274239ED0006A666 /* AuthEnums.swift */,
 				84E3523F2744E6AC00857289 /* AuthViewModel.swift */,
 				8493DC20272AD2FB00FBE8BD /* AuthPresenter.swift */,
-				8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */,
+				8411CA02274F9D78004E2060 /* AuthViewController.swift */,
 				8493DC18272AC57500FBE8BD /* LoginViewController.swift */,
+				8493DC1A272AC59A00FBE8BD /* SignUpViewController.swift */,
 				84D5D91D274E725700C6091B /* AuthWithOTP */,
 				84264DD92745872600CFBF7D /* AuthWithEmail */,
 			);
@@ -681,6 +684,7 @@
 				847A4E792729895A00539CD2 /* AppDelegate.swift in Sources */,
 				84E43B3E273A5E3C0008E8AD /* User.swift in Sources */,
 				8493DC19272AC57500FBE8BD /* LoginViewController.swift in Sources */,
+				8411CA03274F9D78004E2060 /* AuthViewController.swift in Sources */,
 				84391B42273196AF00B77E39 /* BrewConfigurationPresenter.swift in Sources */,
 				84264DDB27458C2200CFBF7D /* AuthWithEmailViewController.swift in Sources */,
 				840D6A39272BFD4F007E4FD7 /* HistoryPresenter.swift in Sources */,

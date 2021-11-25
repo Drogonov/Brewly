@@ -77,6 +77,7 @@ struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView(
             model: AuthViewModel(
+                title: "Login",
                 option: .signUp,
                 buttonsArray: [
                     AuthButtons.phone,

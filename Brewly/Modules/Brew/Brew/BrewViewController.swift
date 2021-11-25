@@ -16,7 +16,7 @@ class BrewViewController: BaseViewController {
     
     // MARK: - Properties
         
-    var presenter: BrewPresenterProtocol!
+    var presenter: BrewPresenterProtocol?
     
     // MARK: - Lifecycle
     
@@ -33,9 +33,9 @@ extension BrewViewController {
         presenter?.setBrewView()
     }
     
-    private func configureView(with model: AuthViewModel) {
+    private func configureView() {
         let view = BrewView(brewButtonTapped: {
-            self.presenter.showBrewConfigurationView(with: self)
+            self.presenter?.showBrewConfigurationView(with: self)
         })
         addMainViewToViewController(view)
     }
@@ -46,6 +46,6 @@ extension BrewViewController {
 extension BrewViewController: BrewViewProtocol {
     func setBrewView() {
         setNavigationBarTitle(with: "Brew")
-        presenter.setBrewView()
+        configureView()
     }
 }

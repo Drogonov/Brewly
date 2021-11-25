@@ -24,10 +24,26 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     @Inject var authService: AuthService
     
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController {
-        let view = LoginViewController()
+        let model = AuthViewModel(
+            title: "Login",
+            option: .login,
+            buttonsArray: [
+                AuthButtons.phone,
+                AuthButtons.email,
+                AuthButtons.google,
+                AuthButtons.facebook,
+                AuthButtons.apple
+            ],
+            authConfigButtonText: "Войти через",
+            questionText: "Впервые здесь?",
+            solutionText: "Создать учетную запись"
+        )
+        
+        let view = AuthViewController()
         let presenter = AuthPresenter(
-            loginView: view,
+            view: view,
             router: router,
+            model: model,
             authService: authService)
         
         view.presenter = presenter
@@ -35,10 +51,26 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     }
     
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
-        let view = SignUpViewController()
+        let model = AuthViewModel(
+            title: "Sign Up",
+            option: .signUp,
+            buttonsArray: [
+                AuthButtons.phone,
+                AuthButtons.email,
+                AuthButtons.google,
+                AuthButtons.facebook,
+                AuthButtons.apple
+            ],
+            authConfigButtonText: "Регистрация через",
+            questionText: "Уже есть аккаунт?",
+            solutionText: "Вход"
+        )
+        
+        let view = AuthViewController()
         let presenter = AuthPresenter(
-            signUpView: view,
+            view: view,
             router: router,
+            model: model,
             authService: authService
         )
         view.presenter = presenter

@@ -8,26 +8,19 @@
 import Foundation
 import SwiftUI
 
-protocol LoginPresenterProtocol: AnyObject {
+protocol AuthPresenterProtocol: AnyObject {
     init(
-        loginView: LoginViewProtocol,
+        view: AuthViewProtocol,
         router: AuthRouterProtocol,
+        model: AuthViewModel,
         authService: AuthServiceProtocol
     )
-    func setLoginView()
-    func showSignUp()
-    func changeFlow(flow: FlowCase)
-    func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController)
-}
-
-protocol SignUpPresenterProtocol: AnyObject {
-    init(
-        signUpView: SignUpViewProtocol,
-        router: AuthRouterProtocol,
-        authService: AuthServiceProtocol
-    )
-    func setSignUpView()
+    func setAuthView()
     func showLogin()
+    func showSignUp()
+    func swipeRight()
+    func swipeLeft()
+    func changeFlow(flow: FlowCase)
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController)
 }
 
@@ -35,29 +28,52 @@ class AuthPresenter {
     
     // MARK: - Properties
     
-    weak var loginView: LoginViewProtocol?
-    weak var signUpView: SignUpViewProtocol?
+    weak var view: AuthViewProtocol?
     var authService: AuthServiceProtocol
     var router: AuthRouterProtocol
-    
+    var model: AuthViewModel
+        
     required init(
-        loginView: LoginViewProtocol,
+        view: AuthViewProtocol,
         router: AuthRouterProtocol,
+        model: AuthViewModel,
         authService: AuthServiceProtocol
     ) {
-        self.loginView = loginView
+        self.view = view
         self.router = router
+        self.model = model
         self.authService = authService
     }
+}
+// MARK: - AuthPresenterProtocol
+
+extension AuthPresenter: AuthPresenterProtocol {
+    func setAuthView() {
+        self.view?.setAuthView(with: model)
+    }
     
-    required init(
-        signUpView: SignUpViewProtocol,
-        router: AuthRouterProtocol,
-        authService: AuthServiceProtocol
-    ) {
-        self.signUpView = signUpView
-        self.router = router
-        self.authService = authService
+    func showLogin() {
+        router.popViewController()
+    }
+        
+    func showSignUp() {
+        router.showSignUp()
+    }
+    
+    func swipeRight() {
+        if model.option == .login {
+            router.showSignUp()
+        }
+    }
+    
+    func swipeLeft() {
+        if model.option == .signUp {
+            router.showLogin()
+        }
+    }
+    
+    func changeFlow(flow: FlowCase) {
+        router.goToFlow(flow: flow)
     }
     
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController) {
@@ -73,61 +89,6 @@ class AuthPresenter {
         case .apple:
             debugPrint(config)
         }
-    }
-}
-
-// MARK: - LoginPresenterProtocol
-
-extension AuthPresenter: LoginPresenterProtocol {
-    func setLoginView() {
-        let model = AuthViewModel(
-            option: .login,
-            buttonsArray: [
-                AuthButtons.phone,
-                AuthButtons.email,
-                AuthButtons.google,
-                AuthButtons.facebook,
-                AuthButtons.apple
-            ],
-            authConfigButtonText: "Войти через",
-            questionText: "Впервые здесь?",
-            solutionText: "Создать учетную запись"
-        )
-        
-        self.loginView?.setLoginView(with: model)
-    }
-    
-    func showSignUp() {
-        router.showSignUp()
-    }
-    
-    func changeFlow(flow: FlowCase) {
-        router.goToFlow(flow: flow)
-    }
-}
-
-// MARK: - SignUpPresenterProtocol
-
-extension AuthPresenter: SignUpPresenterProtocol {
-    func showLogin() {
-        router.popViewController()
-    }
-    
-    func setSignUpView() {
-        let model = AuthViewModel(
-            option: .signUp,
-            buttonsArray: [
-                AuthButtons.phone,
-                AuthButtons.email,
-                AuthButtons.google,
-                AuthButtons.facebook,
-                AuthButtons.apple
-            ],
-            authConfigButtonText: "Регистрация через",
-            questionText: "Уже есть аккаунт?",
-            solutionText: "Вход"
-        )
-        self.signUpView?.setSignUpView(with: model)
     }
 }
 
