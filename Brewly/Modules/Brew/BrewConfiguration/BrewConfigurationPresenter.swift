@@ -10,8 +10,7 @@ import UIKit
 protocol BrewConfigurationPresenterProtocol: AnyObject {
     init(
         view: BrewConfigurationViewProtocol,
-        router: MainTabBarRouterProtocol,
-        viewModel: BrewConfigurationViewModel
+        router: MainTabBarRouterProtocol
     )
     func setBrewConfigurationView()
     func showBrewListView(
@@ -22,29 +21,31 @@ protocol BrewConfigurationPresenterProtocol: AnyObject {
     )
 }
 
-class BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
+class BrewConfigurationPresenter {
+    
+    // MARK: - Services
     
     // MARK: - Properties
     
     weak var view: BrewConfigurationViewProtocol?
     var router: MainTabBarRouterProtocol
-    var viewModel: BrewConfigurationViewModel
     
     // MARK: - Init
     
     required init(
         view: BrewConfigurationViewProtocol,
-        router: MainTabBarRouterProtocol,
-        viewModel: BrewConfigurationViewModel
+        router: MainTabBarRouterProtocol
     ) {
         self.view = view
         self.router = router
-        self.viewModel = viewModel
     }
-    
-    // MARK: - Protocol Functions
-    
+}
+
+// MARK: - BrewConfigurationPresenterProtocol
+
+extension BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
     func setBrewConfigurationView() {
+        let viewModel = configureViewModel()
         self.view?.setBrewConfigurationView(with: viewModel)
     }
     
@@ -55,5 +56,16 @@ class BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
             comment: tuple.comment
         )
         self.router.showBrewList(with: model, and: vc)
+    }
+}
+
+// MARK: - Helper Functions
+
+extension BrewConfigurationPresenter {
+    func configureViewModel() -> BrewConfigurationViewModel {
+        return BrewConfigurationViewModel(
+            navigationTitle: "Brew Configuration",
+            brewConfigurationButtonText: "Let's Brew!"
+        )
     }
 }

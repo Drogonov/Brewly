@@ -12,8 +12,7 @@ protocol AuthPresenterProtocol: AnyObject {
     init(
         view: AuthViewProtocol,
         router: AuthRouterProtocol,
-        viewModel: AuthViewModel,
-        authService: AuthServiceProtocol
+        model: AuthModel
     )
     func setAuthView()
     func showLogin()
@@ -25,29 +24,31 @@ protocol AuthPresenterProtocol: AnyObject {
 
 class AuthPresenter {
     
+    // MARK: - Services
+    
+    @Inject var authService: AuthService
+    
     // MARK: - Properties
     
     weak var view: AuthViewProtocol?
-    var authService: AuthServiceProtocol
     var router: AuthRouterProtocol
-    var viewModel: AuthViewModel
-        
+    var model: AuthModel
+    
     required init(
         view: AuthViewProtocol,
         router: AuthRouterProtocol,
-        viewModel: AuthViewModel,
-        authService: AuthServiceProtocol
+        model: AuthModel
     ) {
         self.view = view
         self.router = router
-        self.viewModel = viewModel
-        self.authService = authService
+        self.model = model
     }
 }
 // MARK: - AuthPresenterProtocol
 
 extension AuthPresenter: AuthPresenterProtocol {
     func setAuthView() {
+        let viewModel = configureViewModel()
         self.view?.setAuthView(with: viewModel)
     }
     
@@ -60,7 +61,7 @@ extension AuthPresenter: AuthPresenterProtocol {
     }
         
     func swipeLeft() {
-        if viewModel.option == .signUp {
+        if model.option == .signUp {
             showLogin()
         }
     }
@@ -72,9 +73,9 @@ extension AuthPresenter: AuthPresenterProtocol {
     func authButtonTappedWith(option: AuthOption, config: AuthButtonConfig, viewController: BaseViewController) {
         switch config {
         case .phone:
-            showAuthWithOTP(with: option)
+            showAuthWithOTP()
         case .email:
-            showAuthWithEmail(with: option)
+            showAuthWithEmail()
         case .google:
             showGoogleSignIn(with: viewController)
         case .facebook:
@@ -88,46 +89,46 @@ extension AuthPresenter: AuthPresenterProtocol {
 // MARK: - Helper Functions
 
 extension AuthPresenter {
-    func showAuthWithOTP(with option: AuthOption) {
-        let navigationTitle: String
-        let authButtonText: String
-        
-        switch option {
+    func configureViewModel() -> AuthViewModel {
+        switch model.option {
         case .login:
-            navigationTitle = "Вход"
-            authButtonText = "Войти"
+            return AuthViewModel(
+                navigationTitle: "Login",
+                option: .login,
+                buttonsArray: [
+                    AuthButtons.phone,
+                    AuthButtons.email,
+                    AuthButtons.google,
+                    AuthButtons.facebook,
+                    AuthButtons.apple
+                ],
+                authConfigButtonText: "Войти через",
+                questionText: "Впервые здесь?",
+                solutionText: "Создать учетную запись"
+            )
         case .signUp:
-            navigationTitle = "Регистрация"
-            authButtonText = "Зарегистрироваться"
+            return AuthViewModel(
+                navigationTitle: "Sign Up",
+                option: .signUp,
+                buttonsArray: [
+                    AuthButtons.phone,
+                    AuthButtons.email,
+                    AuthButtons.google,
+                    AuthButtons.facebook,
+                    AuthButtons.apple
+                ],
+                authConfigButtonText: "Регистрация через",
+                questionText: "Уже есть аккаунт?",
+                solutionText: "Вход"
+            )
         }
-        
-        let model = AuthWithOTPViewModel(
-            option: option,
-            navigationTitle: navigationTitle,
-            authButtonText: authButtonText
-        )
-        router.showAuthWithOTP(model: model)
-        
     }
     
-    private func showAuthWithEmail(with option: AuthOption) {
-        let navigationTitle: String
-        let authButtonText: String
-        
-        switch option {
-        case .login:
-            navigationTitle = "Вход"
-            authButtonText = "Войти"
-        case .signUp:
-            navigationTitle = "Регистрация"
-            authButtonText = "Зарегистрироваться"
-        }
-        
-        let model = AuthWithEmailViewModel(
-            option: option,
-            navigationTitle: navigationTitle,
-            authButtonText: authButtonText
-        )
+    func showAuthWithOTP() {
+        router.showAuthWithOTP(model: model)
+    }
+    
+    private func showAuthWithEmail() {
         router.showAuthWithEmail(model: model)
     }
     

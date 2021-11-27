@@ -16,35 +16,25 @@ protocol BrewBuilderProtocol {
 
 class BrewBuilder: BrewBuilderProtocol {
     func createBrewModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let viewModel = BrewViewModel(
-            navigationTitle: "Brew",
-            brewButtonText: "Let's Brew!"
-        )
         let view = BrewViewController()
         let presenter = BrewPresenter(
             view: view,
-            router: router,
-            viewModel: viewModel
+            router: router
         )
         view.presenter = presenter
         return view
     }
     
     func createBrewConfigurationModule(router: MainTabBarRouterProtocol) -> UIViewController {
-        let viewModel = BrewConfigurationViewModel(
-            navigationTitle: "Brew Configuration",
-            brewConfigurationButtonText: "Let's Brew!"
-        )
         let view = BrewConfigurationViewController()
         let presenter = BrewConfigurationPresenter(
             view: view,
-            router: router,
-            viewModel: viewModel
+            router: router
         )
         view.presenter = presenter
         return view
     }
-    
+        
     func createBrewListModule(router: MainTabBarRouterProtocol, model: BrewConfigurationModel) -> UIViewController {
         let view = BrewListViewController()
         let presenter = BrewListPresenter(

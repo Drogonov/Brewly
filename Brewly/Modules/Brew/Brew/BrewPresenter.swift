@@ -10,41 +10,53 @@ import UIKit
 protocol BrewPresenterProtocol: AnyObject {
     init(
         view: BrewViewProtocol,
-        router: MainTabBarRouterProtocol,
-        viewModel: BrewViewModel
+        router: MainTabBarRouterProtocol
     )
     func setBrewView()
     func showBrewConfigurationView(with vc: UIViewController)
     
 }
 
-class BrewPresenter: BrewPresenterProtocol {
+class BrewPresenter {
     
+    // MARK: - Services
+
     // MARK: - Properties
     
     weak var view: BrewViewProtocol?
     var router: MainTabBarRouterProtocol
-    var viewModel: BrewViewModel
     
-    // MARK: - Init
+    // MARK: - Construction
     
     required init(
         view: BrewViewProtocol,
-        router: MainTabBarRouterProtocol,
-        viewModel: BrewViewModel
+        router: MainTabBarRouterProtocol
     ) {
         self.view = view
         self.router = router
-        self.viewModel = viewModel
     }
-    
-    // MARK: - Protocol Functions
-    
+}
+
+// MARK: - BrewPresenterProtocol
+
+extension BrewPresenter: BrewPresenterProtocol {
     func setBrewView() {
+        let viewModel = configureViewModel()
         self.view?.setBrewView(with: viewModel)
     }
     
     func showBrewConfigurationView(with vc: UIViewController) {
         self.router.showBrewConfiguration(with: vc)
+    }
+}
+
+// MARK: - Helper Functions
+
+extension BrewPresenter {
+    func configureViewModel() -> BrewViewModel {
+        return BrewViewModel(
+            navigationTitle: "Brew",
+            brewButtonText: "Let's Brew!"
+        )
     }
 }

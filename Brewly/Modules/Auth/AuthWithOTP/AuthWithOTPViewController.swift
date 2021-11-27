@@ -46,7 +46,7 @@ extension AuthWithOTPViewController {
         let view = AuthWithOTPView(
             viewModel: viewModel,
             authButtonTapped: { phone, password in
-                self.presenter?.authWithData(phone: phone, password: password)
+                self.presenter?.authWithData(with: (phone: phone, password: password))
             }
         )
         addMainViewToViewController(view)

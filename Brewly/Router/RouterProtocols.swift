@@ -33,8 +33,8 @@ protocol AuthRouterProtocol: Router {
     func showLogin()
     func showSignUp()
     func routeToApp()
-    func showAuthWithEmail(model: AuthWithEmailViewModel)
-    func showAuthWithOTP(model: AuthWithOTPViewModel)
+    func showAuthWithEmail(model: AuthModel)
+    func showAuthWithOTP(model: AuthModel)
     func popViewController()
 }
 

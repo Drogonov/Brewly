@@ -12,81 +12,49 @@ protocol AuthModuleBuilderProtocol {
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController
     func createAuthWithEmailModule(
         router: AuthRouterProtocol,
-        viewModel: AuthWithEmailViewModel
+        model: AuthModel
     ) -> UIViewController
     func createAuthWithOTPModule(
         router: AuthRouterProtocol,
-        viewModel: AuthWithOTPViewModel
+        model: AuthModel
     ) -> UIViewController
 }
 
 class AuthModuleBuilder: AuthModuleBuilderProtocol {
-    @Inject var authService: AuthService
     
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController {
-        let viewModel = AuthViewModel(
-            navigationTitle: "Login",
-            option: .login,
-            buttonsArray: [
-                AuthButtons.phone,
-                AuthButtons.email,
-                AuthButtons.google,
-                AuthButtons.facebook,
-                AuthButtons.apple
-            ],
-            authConfigButtonText: "Войти через",
-            questionText: "Впервые здесь?",
-            solutionText: "Создать учетную запись"
-        )
-        
+        let model = AuthModel(option: .login)
         let view = AuthViewController()
         let presenter = AuthPresenter(
             view: view,
             router: router,
-            viewModel: viewModel,
-            authService: authService)
-        
+            model: model
+        )
         view.presenter = presenter
         return view
     }
     
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
-        let viewModel = AuthViewModel(
-            navigationTitle: "Sign Up",
-            option: .signUp,
-            buttonsArray: [
-                AuthButtons.phone,
-                AuthButtons.email,
-                AuthButtons.google,
-                AuthButtons.facebook,
-                AuthButtons.apple
-            ],
-            authConfigButtonText: "Регистрация через",
-            questionText: "Уже есть аккаунт?",
-            solutionText: "Вход"
-        )
-        
+        let model = AuthModel(option: .signUp)
         let view = AuthViewController()
         let presenter = AuthPresenter(
             view: view,
             router: router,
-            viewModel: viewModel,
-            authService: authService
+            model: model
         )
         view.presenter = presenter
         return view
     }
-    
+        
     func createAuthWithEmailModule(
         router: AuthRouterProtocol,
-        viewModel: AuthWithEmailViewModel
+        model: AuthModel
     ) -> UIViewController {
         let view = AuthWithEmailViewController()
         let presenter = AuthWithEmailPresenter(
             view: view,
             router: router,
-            viewModel: viewModel,
-            authService: authService
+            model: model
         )
         view.presenter = presenter
         return view
@@ -94,14 +62,13 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createAuthWithOTPModule(
         router: AuthRouterProtocol,
-        viewModel: AuthWithOTPViewModel
+        model: AuthModel
     ) -> UIViewController {
         let view = AuthWithOTPViewController()
         let presenter = AuthWithOTPPresenter(
             view: view,
             router: router,
-            viewModel: viewModel,
-            authService: authService
+            model: model
         )
         view.presenter = presenter
         return view

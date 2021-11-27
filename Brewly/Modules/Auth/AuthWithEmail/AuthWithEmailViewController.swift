@@ -15,7 +15,7 @@ protocol AuthWithEmailViewProtocol: BaseViewLoader {
 class AuthWithEmailViewController: BaseViewController {
     
     // MARK: - Properties
-
+    
     var presenter: AuthWithEmailPresenterProtocol?
     
     // MARK: - Lifecycle
@@ -41,12 +41,18 @@ extension AuthWithEmailViewController {
         view.backgroundColor = UIColor.systemGroupedBackground
         presenter?.setAuthWithEmailView()
     }
-            
+    
     private func configureView(with viewModel: AuthWithEmailViewModel) {
         let view = AuthWithEmailView(
             viewModel: viewModel,
             authButtonTapped: { fullname, email, password in
-                self.presenter?.authWithData(fullname: fullname, email: email, password: password)
+                self.presenter?.authWithData(
+                    with: (
+                        fullname: fullname,
+                        email: email,
+                        password: password
+                    )
+                )
             }
         )
         addMainViewToViewController(view)

@@ -56,7 +56,7 @@ struct BrewConfigurationView: View {
                 }
             )
         }
-        .padding(.bottom, 32)
+        .padding(.vertical, 32)
     }
 }
 

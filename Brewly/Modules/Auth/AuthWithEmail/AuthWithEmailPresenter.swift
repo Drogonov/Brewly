@@ -11,57 +11,50 @@ protocol AuthWithEmailPresenterProtocol: AnyObject {
     init(
         view: AuthWithEmailViewProtocol,
         router: AuthRouterProtocol,
-        viewModel: AuthWithEmailViewModel,
-        authService: AuthServiceProtocol
+        model: AuthModel
     )
     func setAuthWithEmailView()
-    func authWithData(
-        fullname: String,
-        email: String,
-        password: String
-    )
+    func authWithData(with tuple: (fullname: String, email: String, password: String))
 }
 
 class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
+    
+    // MARK: - Services
+    
+    @Inject var authService: AuthService
     
     // MARK: - Properties
     
     weak var view: AuthWithEmailViewProtocol?
     var router: AuthRouterProtocol
-    var viewModel: AuthWithEmailViewModel
-    var authService: AuthServiceProtocol
+    var model: AuthModel
     
     // MARK: - Construction
     
     required init(
         view: AuthWithEmailViewProtocol,
         router: AuthRouterProtocol,
-        viewModel: AuthWithEmailViewModel,
-        authService: AuthServiceProtocol
+        model: AuthModel
     ) {
         self.view = view
         self.router = router
-        self.viewModel = viewModel
-        self.authService = authService
+        self.model = model
     }
     
     // MARK: - Protocol Functions
     
     func setAuthWithEmailView() {
+        let viewModel = configureViewModel()
         self.view?.setAuthWithEmailView(with: viewModel)
     }
     
-    func authWithData(
-        fullname: String,
-        email: String,
-        password: String
-    ) {
+    func authWithData(with tuple: (fullname: String, email: String, password: String)) {
         view?.showLoader()
-        switch viewModel.option {
+        switch model.option {
         case .login:
             authService.handleLogin(
-                email: email,
-                password: password,
+                email: tuple.email,
+                password: tuple.password,
                 completion: { wasAuthSuccessful in
                     self.view?.hideLoader()
                     if wasAuthSuccessful == true {
@@ -73,9 +66,9 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
             )
         case .signUp:
             authService.handleSignUp(
-                fullname: fullname,
-                email: email,
-                password: password,
+                fullname: tuple.fullname,
+                email: tuple.email,
+                password: tuple.password,
                 completion: { wasAuthSuccessful in
                     self.view?.hideLoader()
                     if wasAuthSuccessful == true {
@@ -86,5 +79,29 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
                 }
             )
         }
+    }
+}
+
+// MARK: - Helper Functions
+
+extension AuthWithEmailPresenter {
+    func configureViewModel() -> AuthWithEmailViewModel {
+        let navigationTitle: String
+        let authButtonText: String
+        
+        switch model.option {
+        case .login:
+            navigationTitle = "Вход"
+            authButtonText = "Войти"
+        case .signUp:
+            navigationTitle = "Регистрация"
+            authButtonText = "Зарегистрироваться"
+        }
+        
+        return AuthWithEmailViewModel(
+            option: model.option,
+            navigationTitle: navigationTitle,
+            authButtonText: authButtonText
+        )
     }
 }

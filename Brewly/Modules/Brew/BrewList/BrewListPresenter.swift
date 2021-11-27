@@ -2,31 +2,35 @@
 //  BrewListPresenter.swift
 //  Brewly
 //
-//  Created by Anton Vlezko on 02.11.2021.
+//  Created by Anton Vlezko on 27.11.2021.
+//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 protocol BrewListPresenterProtocol: AnyObject {
-    init(view: BrewListViewProtocol,
-         router: MainTabBarRouterProtocol,
-         model: BrewConfigurationModel)
-    func setBrewListView()
-    func showBrewItemView(with _vc: UIViewController)
+    init(
+        view: BrewListViewControllerProtocol,
+        router: MainTabBarRouterProtocol,
+        model: BrewConfigurationModel
+    )
+    func setView()
+    func brewCellTapped(with viewController: UIViewController)
 }
 
-class BrewListPresenter: BrewListPresenterProtocol {
+class BrewListPresenter {
     
     // MARK: - Properties
     
-    weak var view: BrewListViewProtocol?
+    weak var view: BrewListViewControllerProtocol?
     var router: MainTabBarRouterProtocol
     var model: BrewConfigurationModel
-        
-    // MARK: - Init
-
+    
+    // MARK: - Construction
+    
     required init(
-        view: BrewListViewProtocol,
+        view: BrewListViewControllerProtocol,
         router: MainTabBarRouterProtocol,
         model: BrewConfigurationModel
     ) {
@@ -34,14 +38,25 @@ class BrewListPresenter: BrewListPresenterProtocol {
         self.router = router
         self.model = model
     }
-    
-    // MARK: - Protocol Functions
+}
 
-    func setBrewListView() {
-        self.view?.setBrewListView()
+// MARK: - BrewListPresenterProtocol
+
+extension BrewListPresenter: BrewListPresenterProtocol {
+    func setView() {
+        let viewModel = configureViewModel()
+        self.view?.setView(with: viewModel)
     }
     
-    func showBrewItemView(with _vc: UIViewController) {
-        router.showBrewItem(with: _vc)
+    func brewCellTapped(with viewController: UIViewController) {
+        router.showBrewItem(with: viewController)
+    }
+}
+
+extension BrewListPresenter {
+    func configureViewModel() -> BrewListViewModel {
+        return BrewListViewModel(
+            navigationTitle: "Brew List"
+        )
     }
 }

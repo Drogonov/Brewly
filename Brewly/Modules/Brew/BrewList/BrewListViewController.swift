@@ -2,21 +2,22 @@
 //  BrewListViewController.swift
 //  Brewly
 //
-//  Created by Anton Vlezko on 02.11.2021.
+//  Created by Anton Vlezko on 27.11.2021.
+//  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
 //
 
 import UIKit
-import SwiftUI
 
-protocol BrewListViewProtocol: AnyObject {
-    func setBrewListView()
+protocol BrewListViewControllerProtocol: AnyObject {
+    func setView(with viewModel: BrewListViewModel)
+    
 }
 
 class BrewListViewController: BaseViewController {
     
     // MARK: - Properties
-        
-    var presenter: BrewListPresenterProtocol!
+    
+    var presenter: BrewListPresenterProtocol?
     
     // MARK: - Lifecycle
     
@@ -30,22 +31,24 @@ class BrewListViewController: BaseViewController {
 
 extension BrewListViewController {
     private func configureUI() {
-        setNavigationBarTitle(with: "Brew List")
-        presenter.setBrewListView()
+        presenter?.setView()
     }
     
-    private func configureView() {
-        let view = BrewListView(brewCellTapped: {
-            self.presenter.showBrewItemView(with: self)
-        })
+    private func configureView(with viewModel: BrewListViewModel) {
+        let view = BrewListView(
+            brewCellTapped: {
+                self.presenter?.brewCellTapped(with: self)
+            }
+        )
         addMainViewToViewController(view)
     }
 }
 
-// MARK: - BrewConfigurationViewProtocol
+// MARK: - BrewViewProtocol
 
-extension BrewListViewController: BrewListViewProtocol {
-    func setBrewListView() {
-        configureView()
+extension BrewListViewController: BrewListViewControllerProtocol {
+    func setView(with viewModel: BrewListViewModel) {
+        setNavigationBarTitle(with: viewModel.navigationTitle)
+        configureView(with: viewModel)
     }
 }

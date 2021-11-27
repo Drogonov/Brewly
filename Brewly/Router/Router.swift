@@ -118,28 +118,28 @@ extension MainRouter: MainTabBarRouterProtocol {
 
 extension MainRouter: AuthRouterProtocol {
     func showLogin() {
-        let loginViewController = authBuilder.createLoginModule(router: self)
-        navigationController.viewControllers = [loginViewController]
+        let authViewController = authBuilder.createLoginModule(router: self)
+        navigationController.viewControllers = [authViewController]
         window?.rootViewController = navigationController
     }
     
     func showSignUp() {
-        let signUpViewController = authBuilder.createSignUpModule(router: self)
-        navigationController.pushViewController(signUpViewController, animated: true)
+        let authViewController = authBuilder.createSignUpModule(router: self)
+        navigationController.pushViewController(authViewController, animated: true)
     }
     
-    func showAuthWithEmail(model: AuthWithEmailViewModel) {
+    func showAuthWithEmail(model: AuthModel) {
         let authWithEmailViewController = authBuilder.createAuthWithEmailModule(
             router: self,
-                    viewModel: model
+            model: model
         )
         navigationController.pushViewController(authWithEmailViewController, animated: true)
     }
     
-    func showAuthWithOTP(model: AuthWithOTPViewModel) {
+    func showAuthWithOTP(model: AuthModel) {
         let authWithOTPViewController = authBuilder.createAuthWithOTPModule(
             router: self,
-                    viewModel: model
+            model: model
         )
         navigationController.pushViewController(authWithOTPViewController, animated: true)
     }
