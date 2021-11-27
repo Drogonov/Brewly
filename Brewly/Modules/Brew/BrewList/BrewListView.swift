@@ -9,16 +9,25 @@ import SwiftUI
 
 struct BrewListView: View {
     
+    // MARK: - Properties
+    
+    let cellsAmount: Int
     let brewCellTapped: () -> Void
+    
+    // MARK: - Construction
     
     var body: some View {
         List {
-            cellBuilder()
-            cellBuilder()
-            cellBuilder()
+            ForEach(cellsAmount) { _ in
+                cellBuilder()
+            }
         }
     }
-    
+}
+
+// MARK: - Helper Functions
+
+extension BrewListView {
     func cellBuilder() -> some View {
         Button(action: {
             brewCellTapped()

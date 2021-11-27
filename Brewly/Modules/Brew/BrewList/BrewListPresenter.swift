@@ -56,7 +56,8 @@ extension BrewListPresenter: BrewListPresenterProtocol {
 extension BrewListPresenter {
     func configureViewModel() -> BrewListViewModel {
         return BrewListViewModel(
-            navigationTitle: "Brew List"
+            navigationTitle: "Brew List",
+            cellsAmount: model.amountOfSamples
         )
     }
 }

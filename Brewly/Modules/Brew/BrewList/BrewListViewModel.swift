@@ -10,4 +10,5 @@ import Foundation
 
 struct BrewListViewModel {
     let navigationTitle: String
+    let cellsAmount: Int
 }
