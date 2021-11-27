@@ -11,7 +11,7 @@ struct AuthView: View {
     
     // MARK: - Properties
     
-    let model: AuthViewModel
+    let viewModel: AuthViewModel
     var buttonTappedWithConfig: (AuthButtonConfig) -> Void
     var changeOptionTapped: () -> Void
     
@@ -19,7 +19,7 @@ struct AuthView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            ForEach(model.buttonsArray, id: \.id) { buttonModel in
+            ForEach(viewModel.buttonsArray, id: \.id) { buttonModel in
                 authWithButton(with: buttonModel)
             }
             Spacer()
@@ -40,7 +40,7 @@ extension AuthView {
             content: {
                 HStack {
                     Image(systemName: buttonModel.buttonImageName)
-                    Text(model.authConfigButtonText + " " + buttonModel.title)
+                    Text(viewModel.authConfigButtonText + " " + buttonModel.title)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
@@ -53,13 +53,13 @@ extension AuthView {
     
     func changeOptionText() -> some View {
         HStack(alignment: .center) {
-            Text(model.questionText)
+            Text(viewModel.questionText)
                 .foregroundColor(.primary)
             
             Button {
                 changeOptionTapped()
             } label: {
-                Text(model.solutionText)
+                Text(viewModel.solutionText)
                     .foregroundColor(Color.accentColor)
                     .fontWeight(.semibold)
             }
@@ -74,7 +74,7 @@ extension AuthView {
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView(
-            model: AuthViewModel(
+            viewModel: AuthViewModel(
                 navigationTitle: "Login",
                 option: .signUp,
                 buttonsArray: [

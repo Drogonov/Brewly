@@ -15,7 +15,7 @@ struct AuthWithOTPView: View {
     @State private var phone: String = ""
     @State private var password: String = ""
     
-    let model: AuthWithOTPViewModel
+    let viewModel: AuthWithOTPViewModel
     var authButtonTapped: (String, String) -> Void
     
     // MARK: - Construction
@@ -72,7 +72,7 @@ extension AuthWithOTPView {
                 )
             },
             content: {
-                Text(model.authButtonText)
+                Text(viewModel.authButtonText)
                     .padding(.horizontal, 8)
             }
         )
@@ -86,7 +86,7 @@ extension AuthWithOTPView {
 struct AuthWithOTPView_Previews: PreviewProvider {
     static var previews: some View {
         AuthWithOTPView(
-            model: AuthWithOTPViewModel(
+            viewModel: AuthWithOTPViewModel(
                 option: .signUp,
                 navigationTitle: "Регистрация",
                 authButtonText: "Зарегистрироваться"

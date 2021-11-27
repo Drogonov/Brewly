@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol BrewConfigurationViewProtocol: AnyObject {
-    func setBrewConfigurationView(navigationTitle: String)
+    func setBrewConfigurationView(with viewModel: BrewConfigurationViewModel)
 }
 
 class BrewConfigurationViewController: BaseViewController {
@@ -34,8 +34,9 @@ extension BrewConfigurationViewController {
         presenter?.setBrewConfigurationView()
     }
     
-    private func configureView() {
+    private func configureView(with viewModel: BrewConfigurationViewModel) {
         let view = BrewConfigurationView(
+            brewConfigurationButtonText: viewModel.brewConfigurationButtonText,
             createBrewTapped: { cappingName, amountOfSamples, comment in
                 let tuple: (
                     cappingName: String, amountOfSamples: Int, comment: String
@@ -52,8 +53,8 @@ extension BrewConfigurationViewController {
 // MARK: - BrewConfigurationViewProtocol
 
 extension BrewConfigurationViewController: BrewConfigurationViewProtocol {
-    func setBrewConfigurationView(navigationTitle: String) {
-        setNavigationBarTitle(with: navigationTitle)
-        configureView()
+    func setBrewConfigurationView(with viewModel: BrewConfigurationViewModel) {
+        setNavigationBarTitle(with: viewModel.navigationTitle)
+        configureView(with: viewModel)
     }
 }

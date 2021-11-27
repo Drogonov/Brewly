@@ -131,7 +131,7 @@ extension MainRouter: AuthRouterProtocol {
     func showAuthWithEmail(model: AuthWithEmailViewModel) {
         let authWithEmailViewController = authBuilder.createAuthWithEmailModule(
             router: self,
-            model: model
+                    viewModel: model
         )
         navigationController.pushViewController(authWithEmailViewController, animated: true)
     }
@@ -139,7 +139,7 @@ extension MainRouter: AuthRouterProtocol {
     func showAuthWithOTP(model: AuthWithOTPViewModel) {
         let authWithOTPViewController = authBuilder.createAuthWithOTPModule(
             router: self,
-            model: model
+                    viewModel: model
         )
         navigationController.pushViewController(authWithOTPViewController, animated: true)
     }

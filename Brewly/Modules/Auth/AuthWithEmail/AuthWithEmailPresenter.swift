@@ -11,7 +11,7 @@ protocol AuthWithEmailPresenterProtocol: AnyObject {
     init(
         view: AuthWithEmailViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthWithEmailViewModel,
+        viewModel: AuthWithEmailViewModel,
         authService: AuthServiceProtocol
     )
     func setAuthWithEmailView()
@@ -28,7 +28,7 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
     
     weak var view: AuthWithEmailViewProtocol?
     var router: AuthRouterProtocol
-    var model: AuthWithEmailViewModel
+    var viewModel: AuthWithEmailViewModel
     var authService: AuthServiceProtocol
     
     // MARK: - Construction
@@ -36,19 +36,19 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
     required init(
         view: AuthWithEmailViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthWithEmailViewModel,
+        viewModel: AuthWithEmailViewModel,
         authService: AuthServiceProtocol
     ) {
         self.view = view
         self.router = router
-        self.model = model
+        self.viewModel = viewModel
         self.authService = authService
     }
     
     // MARK: - Protocol Functions
     
     func setAuthWithEmailView() {
-        self.view?.setAuthWithEmailView(with: model)
+        self.view?.setAuthWithEmailView(with: viewModel)
     }
     
     func authWithData(
@@ -57,7 +57,7 @@ class AuthWithEmailPresenter: AuthWithEmailPresenterProtocol {
         password: String
     ) {
         view?.showLoader()
-        switch model.option {
+        switch viewModel.option {
         case .login:
             authService.handleLogin(
                 email: email,

@@ -16,7 +16,7 @@ struct AuthWithEmailView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    let model: AuthWithEmailViewModel
+    let viewModel: AuthWithEmailViewModel
     var authButtonTapped: (String, String, String) -> Void
     
     // MARK: - Construction
@@ -36,7 +36,7 @@ struct AuthWithEmailView: View {
 extension AuthWithEmailView {
     func textInputList() -> some View {
         List {
-            if model.option == .signUp {
+            if viewModel.option == .signUp {
                 HStack {
                     Image(systemName: "person")
                         .foregroundColor(Color.primaryTextColor)
@@ -88,7 +88,7 @@ extension AuthWithEmailView {
                 )
             },
             content: {
-                Text(model.authButtonText)
+                Text(viewModel.authButtonText)
                     .padding(.horizontal, 8)
             }
         )
@@ -102,7 +102,7 @@ extension AuthWithEmailView {
 struct AuthWithEmail_Previews: PreviewProvider {
     static var previews: some View {
         AuthWithEmailView(
-            model: AuthWithEmailViewModel(
+            viewModel: AuthWithEmailViewModel(
                 option: .signUp,
                 navigationTitle: "Регистрация",
                 authButtonText: "Зарегистрироваться"

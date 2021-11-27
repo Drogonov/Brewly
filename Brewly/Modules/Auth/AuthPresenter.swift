@@ -12,7 +12,7 @@ protocol AuthPresenterProtocol: AnyObject {
     init(
         view: AuthViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthViewModel,
+        viewModel: AuthViewModel,
         authService: AuthServiceProtocol
     )
     func setAuthView()
@@ -30,17 +30,17 @@ class AuthPresenter {
     weak var view: AuthViewProtocol?
     var authService: AuthServiceProtocol
     var router: AuthRouterProtocol
-    var model: AuthViewModel
+    var viewModel: AuthViewModel
         
     required init(
         view: AuthViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthViewModel,
+        viewModel: AuthViewModel,
         authService: AuthServiceProtocol
     ) {
         self.view = view
         self.router = router
-        self.model = model
+        self.viewModel = viewModel
         self.authService = authService
     }
 }
@@ -48,7 +48,7 @@ class AuthPresenter {
 
 extension AuthPresenter: AuthPresenterProtocol {
     func setAuthView() {
-        self.view?.setAuthView(with: model)
+        self.view?.setAuthView(with: viewModel)
     }
     
     func showLogin() {
@@ -60,7 +60,7 @@ extension AuthPresenter: AuthPresenterProtocol {
     }
         
     func swipeLeft() {
-        if model.option == .signUp {
+        if viewModel.option == .signUp {
             showLogin()
         }
     }

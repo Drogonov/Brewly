@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol AuthWithEmailViewProtocol: BaseViewLoader {
-    func setAuthWithEmailView(with model: AuthWithEmailViewModel)
+    func setAuthWithEmailView(with viewModel: AuthWithEmailViewModel)
 }
 
 class AuthWithEmailViewController: BaseViewController {
@@ -42,9 +42,9 @@ extension AuthWithEmailViewController {
         presenter?.setAuthWithEmailView()
     }
             
-    private func configureView(with model: AuthWithEmailViewModel) {
+    private func configureView(with viewModel: AuthWithEmailViewModel) {
         let view = AuthWithEmailView(
-            model: model,
+            viewModel: viewModel,
             authButtonTapped: { fullname, email, password in
                 self.presenter?.authWithData(fullname: fullname, email: email, password: password)
             }
@@ -56,8 +56,8 @@ extension AuthWithEmailViewController {
 // MARK: - SignUpViewProtocol
 
 extension AuthWithEmailViewController: AuthWithEmailViewProtocol {
-    func setAuthWithEmailView(with model: AuthWithEmailViewModel) {
-        configureView(with: model)
-        setNavigationBarTitle(with: model.navigationTitle)
+    func setAuthWithEmailView(with viewModel: AuthWithEmailViewModel) {
+        configureView(with: viewModel)
+        setNavigationBarTitle(with: viewModel.navigationTitle)
     }
 }

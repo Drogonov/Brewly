@@ -11,7 +11,7 @@ protocol AuthWithOTPPresenterProtocol: AnyObject {
     init(
         view: AuthWithOTPViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthWithOTPViewModel,
+        viewModel: AuthWithOTPViewModel,
         authService: AuthServiceProtocol
     )
     func setAuthWithOTPView()
@@ -27,7 +27,7 @@ class AuthWithOTPPresenter: AuthWithOTPPresenterProtocol {
     
     weak var view: AuthWithOTPViewProtocol?
     var router: AuthRouterProtocol
-    var model: AuthWithOTPViewModel
+    var viewModel: AuthWithOTPViewModel
     var authService: AuthServiceProtocol
     
     // MARK: - Construction
@@ -35,19 +35,19 @@ class AuthWithOTPPresenter: AuthWithOTPPresenterProtocol {
     required init(
         view: AuthWithOTPViewProtocol,
         router: AuthRouterProtocol,
-        model: AuthWithOTPViewModel,
+        viewModel: AuthWithOTPViewModel,
         authService: AuthServiceProtocol
     ) {
         self.view = view
         self.router = router
-        self.model = model
+        self.viewModel = viewModel
         self.authService = authService
     }
     
     // MARK: - Protocol Functions
     
     func setAuthWithOTPView() {
-        self.view?.setAuthWithOTPView(with: model)
+        self.view?.setAuthWithOTPView(with: viewModel)
     }
     
     func authWithData(

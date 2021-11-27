@@ -38,6 +38,7 @@
 		84391B482731A32E00B77E39 /* BrewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B472731A32E00B77E39 /* BrewListViewController.swift */; };
 		84391B4A2731A34300B77E39 /* BrewListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B492731A34300B77E39 /* BrewListPresenter.swift */; };
 		844F5EF62730046B00989CB3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F5EF52730046B00989CB3 /* MainTabBarController.swift */; };
+		8450C51F275288F200338927 /* BrewConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C51E275288F200338927 /* BrewConfigurationViewModel.swift */; };
 		8459A8402747CB1A00A6A1CF /* DependencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459A83F2747CB1A00A6A1CF /* DependencyManager.swift */; };
 		8459A8432747DC0B00A6A1CF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459A8422747DC0B00A6A1CF /* BaseViewController.swift */; };
 		8459A8452747DC3D00A6A1CF /* BaseLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459A8442747DC3D00A6A1CF /* BaseLoaderViewController.swift */; };
@@ -133,6 +134,7 @@
 		84391B472731A32E00B77E39 /* BrewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewListViewController.swift; sourceTree = "<group>"; };
 		84391B492731A34300B77E39 /* BrewListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewListPresenter.swift; sourceTree = "<group>"; };
 		844F5EF52730046B00989CB3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		8450C51E275288F200338927 /* BrewConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationViewModel.swift; sourceTree = "<group>"; };
 		8459A83F2747CB1A00A6A1CF /* DependencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyManager.swift; sourceTree = "<group>"; };
 		8459A8422747DC0B00A6A1CF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		8459A8442747DC3D00A6A1CF /* BaseLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLoaderViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 		84391B39273195F400B77E39 /* Brew */ = {
 			isa = PBXGroup;
 			children = (
+				8425D3B7274FD02000395ABB /* BrewViewModel.swift */,
 				84391B37273182DE00B77E39 /* BrewView.swift */,
 				8471D00F273126F300A28728 /* BrewViewController.swift */,
 				8471D0112731273600A28728 /* BrewPresenter.swift */,
@@ -303,6 +306,8 @@
 		84391B3A2731960200B77E39 /* BrewConfiguration */ = {
 			isa = PBXGroup;
 			children = (
+				84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */,
+				8450C51E275288F200338927 /* BrewConfigurationViewModel.swift */,
 				84391B3D2731968600B77E39 /* BrewConfigurationView.swift */,
 				84391B3F2731969B00B77E39 /* BrewConfigurationViewController.swift */,
 				84391B41273196AF00B77E39 /* BrewConfigurationPresenter.swift */,
@@ -333,12 +338,10 @@
 			isa = PBXGroup;
 			children = (
 				8425D3B9274FD06000395ABB /* BrewBuilder.swift */,
-				8425D3B7274FD02000395ABB /* BrewViewModel.swift */,
 				84391B39273195F400B77E39 /* Brew */,
 				84391B3A2731960200B77E39 /* BrewConfiguration */,
 				84391B3B2731961600B77E39 /* BrewList */,
 				84B5847D2739167C005EA2A4 /* BrewItem */,
-				84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */,
 			);
 			path = Brew;
 			sourceTree = "<group>";
@@ -411,12 +414,12 @@
 		8493DC12272AC49300FBE8BD /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				8493DC28272AD37700FBE8BD /* AuthBuilder.swift */,
-				8493DC22272AD30500FBE8BD /* AuthView.swift */,
 				84CDFB4D274239ED0006A666 /* AuthEnums.swift */,
 				84E3523F2744E6AC00857289 /* AuthViewModel.swift */,
-				8493DC20272AD2FB00FBE8BD /* AuthPresenter.swift */,
+				8493DC22272AD30500FBE8BD /* AuthView.swift */,
 				8411CA02274F9D78004E2060 /* AuthViewController.swift */,
+				8493DC20272AD2FB00FBE8BD /* AuthPresenter.swift */,
+				8493DC28272AD37700FBE8BD /* AuthBuilder.swift */,
 				84D5D91D274E725700C6091B /* AuthWithOTP */,
 				84264DD92745872600CFBF7D /* AuthWithEmail */,
 			);
@@ -666,6 +669,7 @@
 				840D6A3F272BFD77007E4FD7 /* ProfilePresenter.swift in Sources */,
 				8459A8432747DC0B00A6A1CF /* BaseViewController.swift in Sources */,
 				84CDFB4E274239ED0006A666 /* AuthEnums.swift in Sources */,
+				8450C51F275288F200338927 /* BrewConfigurationViewModel.swift in Sources */,
 				840D6A35272BFD2C007E4FD7 /* HistoryViewController.swift in Sources */,
 				8425D3BE274FD2E500395ABB /* ProfileBuilder.swift in Sources */,
 				8493DC21272AD2FC00FBE8BD /* AuthPresenter.swift in Sources */,

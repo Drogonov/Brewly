@@ -11,7 +11,7 @@ protocol BrewPresenterProtocol: AnyObject {
     init(
         view: BrewViewProtocol,
         router: MainTabBarRouterProtocol,
-        model: BrewViewModel
+        viewModel: BrewViewModel
     )
     func setBrewView()
     func showBrewConfigurationView(with vc: UIViewController)
@@ -24,24 +24,24 @@ class BrewPresenter: BrewPresenterProtocol {
     
     weak var view: BrewViewProtocol?
     var router: MainTabBarRouterProtocol
-    var model: BrewViewModel
+    var viewModel: BrewViewModel
     
     // MARK: - Init
     
     required init(
         view: BrewViewProtocol,
         router: MainTabBarRouterProtocol,
-        model: BrewViewModel
+        viewModel: BrewViewModel
     ) {
         self.view = view
         self.router = router
-        self.model = model
+        self.viewModel = viewModel
     }
     
     // MARK: - Protocol Functions
     
     func setBrewView() {
-        self.view?.setBrewView(with: model)
+        self.view?.setBrewView(with: viewModel)
     }
     
     func showBrewConfigurationView(with vc: UIViewController) {

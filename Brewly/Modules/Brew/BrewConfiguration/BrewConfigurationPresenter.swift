@@ -8,11 +8,16 @@
 import UIKit
 
 protocol BrewConfigurationPresenterProtocol: AnyObject {
-    init(view: BrewConfigurationViewProtocol,
-         router: MainTabBarRouterProtocol)
+    init(
+        view: BrewConfigurationViewProtocol,
+        router: MainTabBarRouterProtocol,
+        viewModel: BrewConfigurationViewModel
+    )
     func setBrewConfigurationView()
     func showBrewListView(
-        with tuple: ( cappingName: String, amountOfSamples: Int, comment: String),
+        with tuple: (
+            cappingName: String, amountOfSamples: Int, comment: String
+        ),
         and vc: UIViewController
     )
 }
@@ -23,21 +28,24 @@ class BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
     
     weak var view: BrewConfigurationViewProtocol?
     var router: MainTabBarRouterProtocol
+    var viewModel: BrewConfigurationViewModel
     
     // MARK: - Init
     
     required init(
         view: BrewConfigurationViewProtocol,
-        router: MainTabBarRouterProtocol
+        router: MainTabBarRouterProtocol,
+        viewModel: BrewConfigurationViewModel
     ) {
         self.view = view
         self.router = router
+        self.viewModel = viewModel
     }
     
     // MARK: - Protocol Functions
     
     func setBrewConfigurationView() {
-        self.view?.setBrewConfigurationView(navigationTitle: "Brew Configuration")
+        self.view?.setBrewConfigurationView(with: viewModel)
     }
     
     func showBrewListView(with tuple: (cappingName: String, amountOfSamples: Int, comment: String), and vc: UIViewController) {

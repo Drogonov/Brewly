@@ -12,6 +12,7 @@ struct BrewConfigurationView: View {
     @State private var amountOfSamples: Int?
     @State private var comment: String = ""
     
+    let brewConfigurationButtonText: String
     let createBrewTapped: (String, Int, String) -> Void
     
     var body: some View {
@@ -43,21 +44,17 @@ struct BrewConfigurationView: View {
                 )
             }
             
-            Button {
-                createBrewTapped(
-                    cappingName,
-                    amountOfSamples ?? 1,
-                    comment
-                )
-            } label: {
-                Text("Lets brew!")
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 48)
-                    .background(Color(UIColor.label))
-                    .foregroundColor(Color(UIColor.systemBackground))
-                    .cornerRadius(8)
-                    .padding(.horizontal, 64)
-            }
+            ActionButton(
+                action: {
+                    createBrewTapped(
+                        cappingName,
+                        amountOfSamples ?? 1,
+                        comment
+                    )                },
+                content: {
+                    Text(brewConfigurationButtonText)
+                }
+            )
         }
         .padding(.bottom, 32)
     }
@@ -65,6 +62,9 @@ struct BrewConfigurationView: View {
 
 struct BrewConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
-        BrewConfigurationView(createBrewTapped: {_,_,_ in })
+        BrewConfigurationView(
+            brewConfigurationButtonText: "Let's Brew!",
+            createBrewTapped: {_,_,_ in }
+        )
     }
 }

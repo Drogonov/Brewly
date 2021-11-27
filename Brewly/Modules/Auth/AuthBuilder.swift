@@ -12,11 +12,11 @@ protocol AuthModuleBuilderProtocol {
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController
     func createAuthWithEmailModule(
         router: AuthRouterProtocol,
-        model: AuthWithEmailViewModel
+        viewModel: AuthWithEmailViewModel
     ) -> UIViewController
     func createAuthWithOTPModule(
         router: AuthRouterProtocol,
-        model: AuthWithOTPViewModel
+        viewModel: AuthWithOTPViewModel
     ) -> UIViewController
 }
 
@@ -24,7 +24,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     @Inject var authService: AuthService
     
     func createLoginModule(router: AuthRouterProtocol) -> UIViewController {
-        let model = AuthViewModel(
+        let viewModel = AuthViewModel(
             navigationTitle: "Login",
             option: .login,
             buttonsArray: [
@@ -43,7 +43,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
         let presenter = AuthPresenter(
             view: view,
             router: router,
-            model: model,
+            viewModel: viewModel,
             authService: authService)
         
         view.presenter = presenter
@@ -51,7 +51,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     }
     
     func createSignUpModule(router: AuthRouterProtocol) -> UIViewController {
-        let model = AuthViewModel(
+        let viewModel = AuthViewModel(
             navigationTitle: "Sign Up",
             option: .signUp,
             buttonsArray: [
@@ -70,7 +70,7 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
         let presenter = AuthPresenter(
             view: view,
             router: router,
-            model: model,
+            viewModel: viewModel,
             authService: authService
         )
         view.presenter = presenter
@@ -79,13 +79,13 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createAuthWithEmailModule(
         router: AuthRouterProtocol,
-        model: AuthWithEmailViewModel
+        viewModel: AuthWithEmailViewModel
     ) -> UIViewController {
         let view = AuthWithEmailViewController()
         let presenter = AuthWithEmailPresenter(
             view: view,
             router: router,
-            model: model,
+            viewModel: viewModel,
             authService: authService
         )
         view.presenter = presenter
@@ -94,13 +94,13 @@ class AuthModuleBuilder: AuthModuleBuilderProtocol {
     
     func createAuthWithOTPModule(
         router: AuthRouterProtocol,
-        model: AuthWithOTPViewModel
+        viewModel: AuthWithOTPViewModel
     ) -> UIViewController {
         let view = AuthWithOTPViewController()
         let presenter = AuthWithOTPPresenter(
             view: view,
             router: router,
-            model: model,
+            viewModel: viewModel,
             authService: authService
         )
         view.presenter = presenter

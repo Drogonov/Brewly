@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol AuthWithOTPViewProtocol: BaseViewLoader {
-    func setAuthWithOTPView(with model: AuthWithOTPViewModel)
+    func setAuthWithOTPView(with viewModel: AuthWithOTPViewModel)
 }
 
 class AuthWithOTPViewController: BaseViewController {
@@ -42,9 +42,9 @@ extension AuthWithOTPViewController {
         presenter?.setAuthWithOTPView()
     }
             
-    private func configureView(with model: AuthWithOTPViewModel) {
+    private func configureView(with viewModel: AuthWithOTPViewModel) {
         let view = AuthWithOTPView(
-            model: model,
+            viewModel: viewModel,
             authButtonTapped: { phone, password in
                 self.presenter?.authWithData(phone: phone, password: password)
             }
@@ -56,8 +56,8 @@ extension AuthWithOTPViewController {
 // MARK: - SignUpViewProtocol
 
 extension AuthWithOTPViewController: AuthWithOTPViewProtocol {
-    func setAuthWithOTPView(with model: AuthWithOTPViewModel) {
-        configureView(with: model)
-        setNavigationBarTitle(with: model.navigationTitle)
+    func setAuthWithOTPView(with viewModel: AuthWithOTPViewModel) {
+        configureView(with: viewModel)
+        setNavigationBarTitle(with: viewModel.navigationTitle)
     }
 }
