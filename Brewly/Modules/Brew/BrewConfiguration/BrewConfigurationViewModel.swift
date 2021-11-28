@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 struct BrewConfigurationViewModel {
     let navigationTitle: String
+    let samplesArray: [BrewConfigurationSampleModel]
     let brewConfigurationButtonText: String
 }

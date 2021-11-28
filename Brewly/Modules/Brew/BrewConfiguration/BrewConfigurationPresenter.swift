@@ -19,6 +19,7 @@ protocol BrewConfigurationPresenterProtocol: AnyObject {
         ),
         and vc: UIViewController
     )
+    func amountOfSamplesChanged(with amountOfSamples: Int?)
 }
 
 class BrewConfigurationPresenter {
@@ -29,6 +30,7 @@ class BrewConfigurationPresenter {
     
     weak var view: BrewConfigurationViewProtocol?
     var router: MainTabBarRouterProtocol
+    var samplesArray: [BrewConfigurationSampleModel] = []
     
     // MARK: - Init
     
@@ -57,6 +59,11 @@ extension BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
         )
         self.router.showBrewList(with: model, and: vc)
     }
+    
+    func amountOfSamplesChanged(with amountOfSamples: Int?) {
+        configureSamplesArray(with: amountOfSamples)
+        setBrewConfigurationView()
+    }
 }
 
 // MARK: - Helper Functions
@@ -65,7 +72,33 @@ extension BrewConfigurationPresenter {
     func configureViewModel() -> BrewConfigurationViewModel {
         return BrewConfigurationViewModel(
             navigationTitle: "Brew Configuration",
+            samplesArray: samplesArray,
             brewConfigurationButtonText: "Let's Brew!"
         )
+    }
+    
+    func configureSamplesArray(with amountOfSamples: Int?) {
+        guard let amountOfSamples = amountOfSamples else {
+            samplesArray = []
+            return
+        }
+        
+        if amountOfSamples > samplesArray.count {
+            let newElementsAmount = amountOfSamples - samplesArray.count
+            
+            for i in 0..<newElementsAmount {
+                var sample = BrewConfigurationSampleModel()
+                sample.blindNumber = i
+                samplesArray.append(sample)
+            }
+        }
+        
+        if amountOfSamples < samplesArray.count {
+            let elementsToDelete = samplesArray.count - amountOfSamples
+            
+            for _ in 0..<elementsToDelete {
+                samplesArray.removeLast()
+            }
+        }
     }
 }

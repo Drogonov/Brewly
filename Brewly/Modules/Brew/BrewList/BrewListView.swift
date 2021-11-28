@@ -11,16 +11,13 @@ struct BrewListView: View {
     
     // MARK: - Properties
     
-    let cellsAmount: Int
     let brewCellTapped: () -> Void
     
     // MARK: - Construction
     
     var body: some View {
         List {
-            ForEach(cellsAmount) { _ in
-                cellBuilder()
-            }
+            cellBuilder()
         }
     }
 }

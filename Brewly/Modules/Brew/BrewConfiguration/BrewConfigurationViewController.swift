@@ -36,6 +36,7 @@ extension BrewConfigurationViewController {
     
     private func configureView(with viewModel: BrewConfigurationViewModel) {
         let view = BrewConfigurationView(
+            samplesArray: .constant(viewModel.samplesArray),
             brewConfigurationButtonText: viewModel.brewConfigurationButtonText,
             createBrewTapped: { cappingName, amountOfSamples, comment in
                 let tuple: (
@@ -44,6 +45,8 @@ extension BrewConfigurationViewController {
                     cappingName, amountOfSamples, comment
                 )
                 self.presenter.showBrewListView(with: tuple, and: self)
+            }, amountOfSamplesChanged: { amountOfSamples in
+                self.presenter.amountOfSamplesChanged(with: amountOfSamples)
             }
         )
         addMainViewToViewController(view)

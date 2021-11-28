@@ -36,6 +36,7 @@
 		84391B4427319AA300B77E39 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B4327319AA300B77E39 /* Extensions.swift */; };
 		84391B462731A31500B77E39 /* BrewListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84391B452731A31500B77E39 /* BrewListView.swift */; };
 		844F5EF62730046B00989CB3 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F5EF52730046B00989CB3 /* MainTabBarController.swift */; };
+		845033C027538BF3005A7E75 /* BrewConfigurationSampleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845033BF27538BF3005A7E75 /* BrewConfigurationSampleModel.swift */; };
 		8450C51F275288F200338927 /* BrewConfigurationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C51E275288F200338927 /* BrewConfigurationViewModel.swift */; };
 		8450C5252752946100338927 /* BrewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C5212752946100338927 /* BrewListViewController.swift */; };
 		8450C5262752946100338927 /* BrewListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450C5222752946100338927 /* BrewListViewModel.swift */; };
@@ -137,6 +138,7 @@
 		84391B4327319AA300B77E39 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		84391B452731A31500B77E39 /* BrewListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewListView.swift; sourceTree = "<group>"; };
 		844F5EF52730046B00989CB3 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		845033BF27538BF3005A7E75 /* BrewConfigurationSampleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationSampleModel.swift; sourceTree = "<group>"; };
 		8450C51E275288F200338927 /* BrewConfigurationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewConfigurationViewModel.swift; sourceTree = "<group>"; };
 		8450C5212752946100338927 /* BrewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewListViewController.swift; sourceTree = "<group>"; };
 		8450C5222752946100338927 /* BrewListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrewListViewModel.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			children = (
 				8425D3B9274FD06000395ABB /* BrewBuilder.swift */,
 				84D5D924274E82F300C6091B /* BrewConfigurationModel.swift */,
+				845033BF27538BF3005A7E75 /* BrewConfigurationSampleModel.swift */,
 				84391B39273195F400B77E39 /* Brew */,
 				84391B3A2731960200B77E39 /* BrewConfiguration */,
 				84391B3B2731961600B77E39 /* BrewList */,
@@ -752,6 +755,7 @@
 				84E43B45273A5EC80008E8AD /* DataUploader.swift in Sources */,
 				84391B4427319AA300B77E39 /* Extensions.swift in Sources */,
 				84391B3E2731968600B77E39 /* BrewConfigurationView.swift in Sources */,
+				845033C027538BF3005A7E75 /* BrewConfigurationSampleModel.swift in Sources */,
 				840D6A3D272BFD6B007E4FD7 /* ProfileViewController.swift in Sources */,
 				84E43B41273A5E690008E8AD /* DB.swift in Sources */,
 				8450C5292752A05100338927 /* AuthModel.swift in Sources */,
