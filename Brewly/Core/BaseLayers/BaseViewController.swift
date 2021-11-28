@@ -53,6 +53,7 @@ class BaseViewController: UIViewController {
             bottom: view.safeAreaLayoutGuide.bottomAnchor,
             trailing: view.safeAreaLayoutGuide.rightAnchor
         )
+        viewCtrl.didMove(toParent: self)
     }
     
     // MARK: - Private methods

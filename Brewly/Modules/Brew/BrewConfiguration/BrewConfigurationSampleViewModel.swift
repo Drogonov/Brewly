@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct BrewConfigurationSampleModel {
+struct BrewConfigurationSampleViewModel {
+
+    // MARK: - Values
+
     let id = UUID()
-    var name: String = "Sample"
-    var roastDate: String = "01.01.2021"
-    var blindNumber: Int = 6
+    var name: String
+    var roastDate: String
+    var blindNumber: Int
 }

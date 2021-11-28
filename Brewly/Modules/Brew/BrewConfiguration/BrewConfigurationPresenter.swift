@@ -5,9 +5,11 @@
 //  Created by Anton Vlezko on 02.11.2021.
 //
 
+import SwiftUI
 import UIKit
 
 protocol BrewConfigurationPresenterProtocol: AnyObject {
+    var viewModel: BrewConfigurationViewModel { get set }
     init(
         view: BrewConfigurationViewProtocol,
         router: MainTabBarRouterProtocol
@@ -22,15 +24,15 @@ protocol BrewConfigurationPresenterProtocol: AnyObject {
     func amountOfSamplesChanged(with amountOfSamples: Int?)
 }
 
-class BrewConfigurationPresenter {
+class BrewConfigurationPresenter: ObservableObject {
     
-    // MARK: - Services
+    // MARK: - Servicess
     
     // MARK: - Properties
     
     weak var view: BrewConfigurationViewProtocol?
     var router: MainTabBarRouterProtocol
-    var samplesArray: [BrewConfigurationSampleModel] = []
+    @ObservedObject var viewModel = BrewConfigurationViewModel()
     
     // MARK: - Init
     
@@ -47,7 +49,6 @@ class BrewConfigurationPresenter {
 
 extension BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
     func setBrewConfigurationView() {
-        let viewModel = configureViewModel()
         self.view?.setBrewConfigurationView(with: viewModel)
     }
     
@@ -62,43 +63,44 @@ extension BrewConfigurationPresenter: BrewConfigurationPresenterProtocol {
     
     func amountOfSamplesChanged(with amountOfSamples: Int?) {
         configureSamplesArray(with: amountOfSamples)
-        setBrewConfigurationView()
+        self.view?.setBrewConfigurationView(with: viewModel)
     }
 }
 
 // MARK: - Helper Functions
 
 extension BrewConfigurationPresenter {
-    func configureViewModel() -> BrewConfigurationViewModel {
-        return BrewConfigurationViewModel(
-            navigationTitle: "Brew Configuration",
-            samplesArray: samplesArray,
-            brewConfigurationButtonText: "Let's Brew!"
-        )
+    func clearViewModel() {
+        viewModel = BrewConfigurationViewModel()
     }
     
     func configureSamplesArray(with amountOfSamples: Int?) {
         guard let amountOfSamples = amountOfSamples else {
-            samplesArray = []
+            viewModel.samplesArray = []
             return
         }
         
-        if amountOfSamples > samplesArray.count {
-            let newElementsAmount = amountOfSamples - samplesArray.count
+        if amountOfSamples > viewModel.samplesArray.count {
+            let newElementsAmount = amountOfSamples - viewModel.samplesArray.count
             
             for i in 0..<newElementsAmount {
-                var sample = BrewConfigurationSampleModel()
-                sample.blindNumber = i
-                samplesArray.append(sample)
+                let sample = BrewConfigurationSampleViewModel(
+                    name: "Sample \(i + 1)",
+                    roastDate: "\(Date())",
+                    blindNumber: i + 1
+                )
+                viewModel.samplesArray.append(sample)
             }
         }
         
-        if amountOfSamples < samplesArray.count {
-            let elementsToDelete = samplesArray.count - amountOfSamples
+        if amountOfSamples < viewModel.samplesArray.count {
+            let elementsToDelete = viewModel.samplesArray.count - amountOfSamples
             
             for _ in 0..<elementsToDelete {
-                samplesArray.removeLast()
+                viewModel.samplesArray.removeLast()
             }
         }
+        
+        self.viewModel = viewModel
     }
 }

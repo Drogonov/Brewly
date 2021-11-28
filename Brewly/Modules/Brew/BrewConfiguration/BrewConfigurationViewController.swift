@@ -16,7 +16,21 @@ class BrewConfigurationViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var presenter: BrewConfigurationPresenterProtocol!
+    var presenter: BrewConfigurationPresenterProtocol?
+    
+    lazy var brewConfigurationView = BrewConfigurationView(
+        viewModel: BrewConfigurationViewModel(),
+        createBrewTapped: { cappingName, amountOfSamples, comment in
+            let tuple: (
+                cappingName: String, amountOfSamples: Int, comment: String
+            ) = (
+                cappingName, amountOfSamples, comment
+            )
+            self.presenter?.showBrewListView(with: tuple, and: self)
+        }, amountOfSamplesChanged: { amountOfSamples in
+            self.presenter?.amountOfSamplesChanged(with: amountOfSamples)
+        }
+    )
     
     // MARK: - Lifecycle
     
@@ -32,24 +46,11 @@ extension BrewConfigurationViewController {
     private func configureUI() {
         view.backgroundColor = UIColor.systemGroupedBackground
         presenter?.setBrewConfigurationView()
+        addMainViewToViewController(brewConfigurationView)
     }
     
     private func configureView(with viewModel: BrewConfigurationViewModel) {
-        let view = BrewConfigurationView(
-            samplesArray: .constant(viewModel.samplesArray),
-            brewConfigurationButtonText: viewModel.brewConfigurationButtonText,
-            createBrewTapped: { cappingName, amountOfSamples, comment in
-                let tuple: (
-                    cappingName: String, amountOfSamples: Int, comment: String
-                ) = (
-                    cappingName, amountOfSamples, comment
-                )
-                self.presenter.showBrewListView(with: tuple, and: self)
-            }, amountOfSamplesChanged: { amountOfSamples in
-                self.presenter.amountOfSamplesChanged(with: amountOfSamples)
-            }
-        )
-        addMainViewToViewController(view)
+        brewConfigurationView.viewModel = viewModel
     }
 }
 

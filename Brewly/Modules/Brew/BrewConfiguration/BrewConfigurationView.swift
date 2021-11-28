@@ -8,15 +8,8 @@
 import SwiftUI
 
 struct BrewConfigurationView: View {
-    @State private var cappingName: String = ""
-    @State private var amountOfSamples: Int?
-    @State private var isBlind: Bool = true
-    @State private var isSocial: Bool = false
-    @State private var comment: String = ""
+    @ObservedObject var viewModel: BrewConfigurationViewModel
     
-    @Binding var samplesArray: [BrewConfigurationSampleModel]
-    
-    let brewConfigurationButtonText: String
     let createBrewTapped: (String, Int, String) -> Void
     let amountOfSamplesChanged: (Int?) -> Void
     
@@ -24,56 +17,59 @@ struct BrewConfigurationView: View {
         VStack(spacing: 32) {
             List {
                 configureSettingsSection()
-                
-                ForEach(samplesArray, id: \.id) { sample in
-                    configureSampleSection(with: sample)
+                ForEach(viewModel.samplesArray.indices, id: \.self) { index in
+                    configureSampleSection(with: index)
                 }
             }
-            
-            ActionButton(
-                action: {
-                    createBrewTapped(
-                        cappingName,
-                        amountOfSamples ?? 1,
-                        comment
-                    )
-                },
-                content: {
-                    Text(brewConfigurationButtonText)
-                }
-            )
-                .padding(.horizontal, 64)
+            configureActionButton()
         }
         .padding(.vertical, 32)
+        .background(Color(UIColor.systemGroupedBackground))
     }
 }
 
-// MARK: - Helper Functions
+// MARK: - Configure UI
 
 extension BrewConfigurationView {
+    func configureActionButton() -> some View {
+        ActionButton(
+            action: {
+                createBrewTapped(
+                    viewModel.cappingName,
+                    viewModel.amountOfSamples ?? 1,
+                    viewModel.comment
+                )
+            },
+            content: {
+                Text(viewModel.brewConfigurationButtonText)
+            }
+        )
+            .padding(.horizontal, 64)
+    }
+    
     func configureSettingsSection() -> some View {
         let bindingAmountOfSamples = Binding<String>(
-            get: { self.amountOfSamples?.numberToString ?? "" },
-            set: { self.amountOfSamples = $0.stringToNumber }
+            get: { self.viewModel.amountOfSamples?.numberToString ?? "" },
+            set: { self.viewModel.amountOfSamples = $0.stringToNumber }
         )
         
         return Section(header: Text("Settings")) {
             TextField(
                 "cappingName",
-                text: $cappingName,
+                text: $viewModel.cappingName,
                 prompt: Text("Capping Name")
             )
             
-            Toggle("Is capping blind?", isOn: $isBlind)
+            Toggle("Is capping blind?", isOn: $viewModel.isBlind)
             
-            Toggle("Is capping social?", isOn: $isSocial)
+            Toggle("Is capping social?", isOn: $viewModel.isSocial)
             
             TextField(
                 "amountOfSamples",
                 text: bindingAmountOfSamples,
                 prompt: Text("Amount of Samples")
             )
-                .onChange(of: amountOfSamples, perform: { newValue in
+                .onChange(of: viewModel.amountOfSamples, perform: { newValue in
                     withAnimation {
                         amountOfSamplesChanged(newValue)
                     }
@@ -83,40 +79,36 @@ extension BrewConfigurationView {
             
             TextField(
                 "comment",
-                text: $comment,
+                text: $viewModel.comment,
                 prompt: Text("Comment")
             )
         }
     }
     
-    func configureSampleSection(with sample: BrewConfigurationSampleModel) -> some View {
-        @State var blindNumber = sample.blindNumber
-        @State var sampleName = sample.name
-        @State var sampleDate = sample.roastDate
-        
+    func configureSampleSection(with index: Int) -> some View {
         let bindingBlindNumber = Binding<String>(
-            get: { blindNumber.numberToString },
-            set: { blindNumber = $0.stringToNumber ?? 1 }
+            get: { viewModel.samplesArray[index].blindNumber.numberToString },
+            set: { viewModel.samplesArray[index].blindNumber = $0.stringToNumber ?? 1 }
         )
-        
-        return Section(header: Text("Sample configure")) {
+
+        return Section(header: Text("Configure sample \(bindingBlindNumber.wrappedValue)")) {
             TextField(
                 "blindNumber",
                 text: bindingBlindNumber,
-                prompt: Text("Blind number")
+                prompt: Text(viewModel.blindNumberPlaceholder)
             )
                 .keyboardType(.numberPad)
-            
+
             TextField(
-                "cappingName",
-                text: $sampleName,
-                prompt: Text("Sample name")
+                "sampleName",
+                text: $viewModel.samplesArray[index].name,
+                prompt: Text(viewModel.namePlaceholder + bindingBlindNumber.wrappedValue)
             )
-            
+
             TextField(
-                "cappingName",
-                text: $sampleDate,
-                prompt: Text("Roast date")
+                "roastDate",
+                text: $viewModel.samplesArray[index].roastDate,
+                prompt: Text(viewModel.roastDatePlaceholder)
             )
         }
     }
@@ -125,8 +117,7 @@ extension BrewConfigurationView {
 struct BrewConfigurationView_Previews: PreviewProvider {
     static var previews: some View {
         BrewConfigurationView(
-            samplesArray: .constant([]),
-            brewConfigurationButtonText: "Let's Brew!",
+            viewModel: BrewConfigurationViewModel(),
             createBrewTapped: {_,_,_ in },
             amountOfSamplesChanged: { _ in }
         )
